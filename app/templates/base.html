@@ -15,9 +15,9 @@
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:url"
         content="{% block og_url %}https://ishtar-ai.com{% endblock %}{% block og_path %}/{% endblock %}">
-    <meta property="og:title" content="{% block og_title %}{% block title %}Ishtar AI{% endblock %}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}Ishtar AI{% endblock %}">
     <meta property="og:description"
-        content="{% block og_description %}{% block meta_description %}AI solutions for finance and media industries. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}{% endblock %}">
+        content="{% block og_description %}AI solutions for finance and media industries. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}">
     <meta property="og:image"
         content="{% block og_image %}https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
     <meta property="og:site_name" content="Ishtar AI">
@@ -26,10 +26,9 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url"
         content="{% block twitter_url %}https://ishtar-ai.com{% endblock %}{% block twitter_path %}/{% endblock %}">
-    <meta name="twitter:title"
-        content="{% block twitter_title %}{% block title %}Ishtar AI{% endblock %}{% endblock %}">
+    <meta name="twitter:title" content="{% block twitter_title %}Ishtar AI{% endblock %}">
     <meta name="twitter:description"
-        content="{% block twitter_description %}{% block meta_description %}AI solutions for finance and media industries. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}{% endblock %}">
+        content="{% block twitter_description %}AI solutions for finance and media industries. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}">
     <meta name="twitter:image"
         content="{% block twitter_image %}https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
 
@@ -180,7 +179,7 @@
     <script src="/static/js/main.js"></script>
 
     <!-- Analytics -->
-    {% if config.google_analytics_id %}
+    {% if config and config.google_analytics_id %}
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.google_analytics_id }}"></script>
     <script>
@@ -191,7 +190,7 @@
     </script>
     {% endif %}
 
-    {% if config.plausible_domain %}
+    {% if config and config.plausible_domain %}
     <!-- Plausible Analytics -->
     <script defer data-domain="{{ config.plausible_domain }}" src="https://plausible.io/js/script.js"></script>
     {% endif %}

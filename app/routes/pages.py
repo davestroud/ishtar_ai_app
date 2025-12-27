@@ -26,19 +26,19 @@ async def home(request: Request):
 @router.get("/services", response_class=HTMLResponse)
 async def services(request: Request):
     """Services page"""
-    return templates.TemplateResponse("services.html", {"request": request})
+    return templates.TemplateResponse("services.html", get_template_context(request))
 
 
 @router.get("/finance", response_class=HTMLResponse)
 async def finance(request: Request):
     """Finance focus page"""
-    return templates.TemplateResponse("finance.html", {"request": request})
+    return templates.TemplateResponse("finance.html", get_template_context(request))
 
 
 @router.get("/media-ads", response_class=HTMLResponse)
 async def media_ads(request: Request):
     """Media/Advertising focus page"""
-    return templates.TemplateResponse("media_ads.html", {"request": request})
+    return templates.TemplateResponse("media_ads.html", get_template_context(request))
 
 
 @router.get("/contact", response_class=HTMLResponse)
