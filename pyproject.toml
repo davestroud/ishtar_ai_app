@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "ishtar-ai-site"
+version = "0.1.0"
+description = "Ishtar AI website built with FastAPI and Jinja2"
+authors = ["Ishtar AI"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.104.1"
+uvicorn = {extras = ["standard"], version = "^0.24.0"}
+jinja2 = "^3.1.2"
+python-multipart = "^0.0.6"
+pydantic-settings = "^2.1.0"
+
+[tool.poetry.group.dev.dependencies]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
