@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function () {
-            navMenu.classList.toggle('active');
+            const isExpanded = navMenu.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', isExpanded);
         });
 
         // Close menu when clicking outside
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const isClickInsideNav = navToggle.contains(event.target) || navMenu.contains(event.target);
             if (!isClickInsideNav && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
             }
         });
     }
@@ -41,6 +43,26 @@ document.addEventListener('DOMContentLoaded', function () {
             (currentPath === '/' && link.getAttribute('href') === '/')) {
             link.classList.add('active');
         }
+    });
+
+    // Track CTA button clicks
+    document.querySelectorAll('.btn-primary, .btn-secondary, .btn-link').forEach(button => {
+        button.addEventListener('click', function () {
+            const buttonText = this.textContent.trim() || this.querySelector('span')?.textContent.trim() || 'CTA Button';
+            const href = this.getAttribute('href') || '';
+
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'click', {
+                    'event_category': 'CTA',
+                    'event_label': buttonText,
+                    'value': href
+                });
+            }
+
+            if (typeof plausible !== 'undefined') {
+                plausible('CTA Click', { props: { button: buttonText, href: href } });
+            }
+        });
     });
 
     // Intersection Observer for scroll-triggered animations
@@ -127,6 +149,19 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!isValid) {
                 event.preventDefault();
             } else {
+                // Track form submission event
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submit', {
+                        'event_category': 'Contact',
+                        'event_label': 'Contact Form'
+                    });
+                }
+
+                // Plausible Analytics
+                if (typeof plausible !== 'undefined') {
+                    plausible('Contact Form Submission');
+                }
+
                 // Add success animation
                 contactForm.style.opacity = '0.7';
                 setTimeout(() => {

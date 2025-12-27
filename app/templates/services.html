@@ -2,9 +2,42 @@
 
 {% block title %}Services - Ishtar AI{% endblock %}
 
+{% block meta_description %}Comprehensive AI services including RAG copilots, agent automation, governance frameworks,
+synthetic media compliance, brand safety, and agentic content operations.{% endblock %}
+
+{% block og_path %}/services{% endblock %}
+{% block og_title %}Our Services - Ishtar AI{% endblock %}
+{% block og_description %}Comprehensive AI solutions for finance and media industries. RAG copilots, automation,
+compliance, and governance tools.{% endblock %}
+
+{% block twitter_path %}/services{% endblock %}
+{% block twitter_title %}Our Services - Ishtar AI{% endblock %}
+{% block twitter_description %}Comprehensive AI solutions for finance and media industries.{% endblock %}
+
+{% block canonical_path %}/services{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "AI Solutions for Finance and Media",
+    "provider": {
+        "@type": "Organization",
+        "name": "Ishtar AI"
+    },
+    "description": "Comprehensive AI solutions including RAG copilots, agent automation, governance frameworks, synthetic media compliance, brand safety, and agentic content operations."
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <section class="page-header">
     <div class="container">
+        <div class="page-header-logo">
+            <img src="/static/img/ishtar_ai_logo_1_400w.png" alt="Ishtar AI" class="page-logo-img" width="200"
+                height="auto" loading="lazy">
+        </div>
         <h1>Our Services</h1>
         <p>Comprehensive AI solutions for finance and media industries</p>
     </div>

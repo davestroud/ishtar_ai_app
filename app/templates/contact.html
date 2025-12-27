@@ -2,11 +2,48 @@
 
 {% block title %}Contact - Ishtar AI{% endblock %}
 
+{% block meta_description %}Contact Ishtar AI to discuss how we can help transform your finance or media operations with
+AI solutions. Schedule a consultation or send us a message.{% endblock %}
+
+{% block og_path %}/contact{% endblock %}
+{% block og_title %}Contact Us - Ishtar AI{% endblock %}
+{% block og_description %}Get in touch to discuss how Ishtar AI can help your organization with AI solutions for finance
+and media.{% endblock %}
+
+{% block twitter_path %}/contact{% endblock %}
+{% block twitter_title %}Contact Us - Ishtar AI{% endblock %}
+{% block twitter_description %}Get in touch to discuss how we can help your organization.{% endblock %}
+
+{% block canonical_path %}/contact{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Ishtar AI",
+        "url": "https://ishtar-ai.com",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "url": "https://ishtar-ai.com/contact"
+        }
+    }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <section class="page-header">
     <div class="container">
+        <div class="page-header-logo">
+            <img src="/static/img/ishtar_ai_logo_1_400w.png" alt="Ishtar AI" class="page-logo-img" width="200"
+                height="auto" loading="lazy">
+        </div>
         <h1>Contact Us</h1>
-        <p>Get in touch to discuss how Ishtar AI can help your organization</p>
+        <p>Get in touch to discuss how we can help your organization</p>
     </div>
 </section>
 
@@ -41,12 +78,18 @@
                         <label for="message">Message *</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
+                    <!-- Honeypot field for spam protection -->
+                    <div class="form-group"
+                        style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>
             <div class="contact-info">
                 <h2><i class="fas fa-calendar-alt" style="margin-right: 0.5rem;"></i>Book a consultation</h2>
-                <p>Schedule a time to discuss your specific needs and how Ishtar AI can help.</p>
+                <p>Schedule a time to discuss your specific needs and how we can help.</p>
                 <a href="https://calendly.com/david-ishtar-ai" target="_blank" class="btn btn-primary btn-large">
                     Book a Consult
                 </a>

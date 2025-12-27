@@ -4,28 +4,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="{% block meta_description %}AI solutions for finance and media industries. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}">
+    <meta name="keywords"
+        content="{% block meta_keywords %}AI, artificial intelligence, finance AI, media AI, RAG copilots, agent automation, compliance, governance{% endblock %}">
+    <meta name="author" content="Ishtar AI">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url"
+        content="{% block og_url %}https://ishtar-ai.com{% endblock %}{% block og_path %}/{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{% block title %}Ishtar AI{% endblock %}{% endblock %}">
+    <meta property="og:description"
+        content="{% block og_description %}{% block meta_description %}AI solutions for finance and media industries. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}{% endblock %}">
+    <meta property="og:image"
+        content="{% block og_image %}https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
+    <meta property="og:site_name" content="Ishtar AI">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url"
+        content="{% block twitter_url %}https://ishtar-ai.com{% endblock %}{% block twitter_path %}/{% endblock %}">
+    <meta name="twitter:title"
+        content="{% block twitter_title %}{% block title %}Ishtar AI{% endblock %}{% endblock %}">
+    <meta name="twitter:description"
+        content="{% block twitter_description %}{% block meta_description %}AI solutions for finance and media industries. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}{% endblock %}">
+    <meta name="twitter:image"
+        content="{% block twitter_image %}https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
+
+    <!-- Canonical URL -->
+    <link rel="canonical"
+        href="{% block canonical_url %}https://ishtar-ai.com{% endblock %}{% block canonical_path %}/{% endblock %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/static/img/android-chrome-512x512.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+
     <title>{% block title %}Ishtar AI{% endblock %}</title>
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/static/css/styles.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Ishtar AI",
+        "url": "https://ishtar-ai.com",
+        "logo": "https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png",
+        "description": "AI solutions for finance and media industries. Transform your operations with intelligent automation, compliance, and governance.",
+        "sameAs": [
+            {% block social_links %}{% endblock %}
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "url": "https://ishtar-ai.com/contact"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Ishtar AI",
+        "url": "https://ishtar-ai.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://ishtar-ai.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    {% block structured_data %}{% endblock %}
     {% block extra_head %}{% endblock %}
 </head>
 
 <body>
-    <nav class="navbar">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
             <div class="nav-brand">
-                <a href="/">Ishtar AI</a>
+                <a href="/" class="brand-link">
+                    <img src="/static/img/ishtar_ai_logo_1_800w.png" alt="Ishtar AI" class="logo-img" width="200"
+                        height="auto" loading="eager">
+                </a>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="/">Home</a></li>
                 <li><a href="/services">Services</a></li>
                 <li><a href="/finance">Finance</a></li>
                 <li><a href="/media-ads">Media & Ads</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
-            <button class="nav-toggle" aria-label="Toggle navigation">
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -33,7 +121,7 @@
         </div>
     </nav>
 
-    <main class="main-content">
+    <main id="main-content" class="main-content" role="main">
         {% block content %}{% endblock %}
     </main>
 
@@ -46,7 +134,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Ishtar AI</h3>
+                    <img src="/static/img/ishtar_ai_logo_1_400w.png" alt="Ishtar AI" class="footer-logo" width="200"
+                        height="auto" loading="lazy">
                     <p>AI solutions for finance and media industries.</p>
                 </div>
                 <div class="footer-section">
@@ -59,17 +148,54 @@
                     </ul>
                 </div>
                 <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
                     <h4>Contact</h4>
                     <p><a href="/contact">Get in touch</a></p>
+                    <div class="social-links" style="margin-top: 1rem;">
+                        <!-- Social media links can be added here -->
+                        <!-- Example:
+                        <a href="https://linkedin.com/company/ishtar-ai" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/ishtarai" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        -->
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Ishtar AI. All rights reserved.</p>
+                <p>&copy; 2024 Ishtar AI. All rights reserved. | <a href="/privacy">Privacy</a> | <a
+                        href="/terms">Terms</a></p>
             </div>
         </div>
     </footer>
 
     <script src="/static/js/main.js"></script>
+
+    <!-- Analytics -->
+    {% if config.google_analytics_id %}
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.google_analytics_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', '{{ config.google_analytics_id }}');
+    </script>
+    {% endif %}
+
+    {% if config.plausible_domain %}
+    <!-- Plausible Analytics -->
+    <script defer data-domain="{{ config.plausible_domain }}" src="https://plausible.io/js/script.js"></script>
+    {% endif %}
+
     {% block extra_scripts %}{% endblock %}
 </body>
 

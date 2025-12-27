@@ -2,9 +2,91 @@
 
 {% block title %}Home - Ishtar AI{% endblock %}
 
+{% block meta_description %}Transform your finance and media operations with Ishtar AI's intelligent automation, RAG
+copilots, compliance solutions, and governance frameworks. Enterprise-ready AI solutions.{% endblock %}
+
+{% block og_path %}/{% endblock %}
+{% block og_title %}Ishtar AI - AI Solutions for Finance & Media{% endblock %}
+{% block og_description %}Transform your operations with intelligent automation, compliance, and governance.
+Enterprise-ready AI solutions for finance and media industries.{% endblock %}
+
+{% block twitter_path %}/{% endblock %}
+{% block twitter_title %}Ishtar AI - AI Solutions for Finance & Media{% endblock %}
+{% block twitter_description %}Transform your operations with intelligent automation, compliance, and governance.
+Enterprise-ready AI solutions.{% endblock %}
+
+{% block canonical_path %}/{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "AI Solutions",
+    "provider": {
+        "@type": "Organization",
+        "name": "Ishtar AI"
+    },
+    "areaServed": "Worldwide",
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI Services",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "RAG Copilots for Policy/Research"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Agent Automation for Ops Workflows"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Governance, Audit Trails, Evaluation"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Synthetic Media Compliance Kit"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Brand Safety & Provenance Workflows"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Agentic Content Operations"
+                }
+            }
+        ]
+    }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <section class="hero">
     <div class="container">
+        <div class="hero-logo">
+            <img src="/static/img/ishtar_ai_logo_1_1200w.png" alt="Ishtar AI" class="hero-logo-img" width="600"
+                height="auto" loading="eager">
+        </div>
         <h1>AI Solutions for Finance & Media</h1>
         <p class="hero-subtitle">Transform your operations with intelligent automation, compliance, and governance</p>
         <div class="hero-cta">
@@ -16,7 +98,7 @@
 
 <section class="features">
     <div class="container">
-        <h2>Why Ishtar AI?</h2>
+        <h2>Why Choose Us?</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <i class="fas fa-chart-line feature-icon"></i>
@@ -43,7 +125,7 @@
 <section class="cta-section">
     <div class="container">
         <h2>Ready to Transform Your Operations?</h2>
-        <p>Book a consultation to discuss how Ishtar AI can help your organization.</p>
+        <p>Book a consultation to discuss how we can help your organization.</p>
         <a href="/contact" class="btn btn-primary">Schedule a Consult</a>
     </div>
 </section>
