@@ -45,6 +45,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Ripple effect for buttons
+    function createRipple(event) {
+        const button = event.currentTarget;
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+
+        button.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    }
+
+    // Add ripple effect to all buttons
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', createRipple);
+    });
+
     // Track CTA button clicks
     document.querySelectorAll('.btn-primary, .btn-secondary, .btn-link').forEach(button => {
         button.addEventListener('click', function () {
