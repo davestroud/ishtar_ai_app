@@ -4,6 +4,41 @@
 
 {% block meta_description %}{{ post.excerpt }}{% endblock %}
 
+{% block og_path %}/blog/{{ post.slug if post.slug else '' }}{% endblock %}
+{% block og_title %}{{ post.title }} - Ishtar AI Blog{% endblock %}
+{% block og_description %}{{ post.excerpt }}{% endblock %}
+
+{% block canonical_path %}/blog/{{ post.slug if post.slug else '' }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ post.title }}",
+    "description": "{{ post.excerpt }}",
+    "author": {
+        "@type": "Organization",
+        "name": "{{ post.author }}"
+    },
+    "datePublished": "{{ post.date }}",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Ishtar AI",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png"
+        }
+    }
+}
+</script>
+{% endblock %}
+
+{% block extra_head %}
+<!-- Mermaid.js for diagram rendering -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+{% endblock %}
+
 {% block content %}
 <section class="page-header">
     <div class="container">
@@ -19,9 +54,91 @@
     <div class="container">
         <div class="blog-post-content">
             {{ post.content|safe }}
-            <p><em>This is a placeholder blog post. Content coming soon.</em></p>
         </div>
+        <script>
+            // Initialize and render Mermaid diagrams after content is loaded
+            (function () {
+                function initMermaid() {
+                    if (typeof mermaid === 'undefined') {
+                        console.log('Mermaid not loaded yet, waiting...');
+                        return false;
+                    }
+
+                    try {
+                        mermaid.initialize({
+                            startOnLoad: false,
+                            theme: 'default',
+                            securityLevel: 'loose',
+                            themeVariables: {
+                                primaryColor: '#1e3a8a',
+                                primaryTextColor: '#1e293b',
+                                primaryBorderColor: '#1e40af',
+                                lineColor: '#64748b',
+                                secondaryColor: '#f8fafc',
+                                tertiaryColor: '#ffffff'
+                            }
+                        });
+
+                        // Render all mermaid diagrams
+                        const mermaidElements = document.querySelectorAll('.mermaid');
+                        if (mermaidElements.length > 0) {
+                            console.log('Found ' + mermaidElements.length + ' Mermaid diagram(s) to render');
+                            mermaid.run({
+                                nodes: mermaidElements
+                            });
+                            return true;
+                        } else {
+                            console.log('No Mermaid diagrams found');
+                            return false;
+                        }
+                    } catch (error) {
+                        console.error('Error initializing Mermaid:', error);
+                        return false;
+                    }
+                }
+
+                // Wait for Mermaid to load, then initialize
+                function waitForMermaid() {
+                    let attempts = 0;
+                    const maxAttempts = 50; // Wait up to 5 seconds
+
+                    const checkInterval = setInterval(function () {
+                        attempts++;
+                        if (initMermaid() || attempts >= maxAttempts) {
+                            clearInterval(checkInterval);
+                        }
+                    }, 100);
+                }
+
+                // Start checking once DOM is ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', function () {
+                        setTimeout(waitForMermaid, 200);
+                    });
+                } else {
+                    setTimeout(waitForMermaid, 200);
+                }
+
+                // Also try on window load as fallback
+                window.addEventListener('load', function () {
+                    setTimeout(waitForMermaid, 200);
+                });
+            })();
+        </script>
         <div class="blog-post-footer">
+            <div class="blog-post-share">
+                <p>Share this article:</p>
+                <div class="share-buttons">
+                    <a href="https://twitter.com/intent/tweet?url=https://ishtar-ai.com/blog/{{ post.slug if post.slug else '' }}&text={{ post.title|urlencode }}"
+                        target="_blank" rel="noopener" class="share-btn share-twitter" aria-label="Share on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ishtar-ai.com/blog/{{ post.slug if post.slug else '' }}"
+                        target="_blank" rel="noopener" class="share-btn share-linkedin" aria-label="Share on LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
             <a href="/blog" class="btn btn-secondary">← Back to Blog</a>
         </div>
     </div>
