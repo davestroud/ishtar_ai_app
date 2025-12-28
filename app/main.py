@@ -2,7 +2,6 @@ from fastapi import FastAPI, Request, status
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.middleware import SecurityHeadersMiddleware
@@ -51,12 +50,7 @@ async def server_error_handler(request: Request, exc: Exception):
 
 @app.exception_handler(StarletteHTTPException)
 async def http_exception_handler(request: Request, exc: StarletteHTTPException):
-    if exc.status_code == 404:
-        return templates.TemplateResponse(
-            "404.html",
-            {"request": request, "config": None},
-            status_code=status.HTTP_404_NOT_FOUND,
-        )
+    """Handle HTTP exceptions (excluding 404 which is handled by not_found_handler)"""
     return templates.TemplateResponse(
         "500.html", {"request": request, "config": None}, status_code=exc.status_code
     )
