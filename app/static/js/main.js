@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!isClickInsideNav && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 navToggle.setAttribute('aria-expanded', 'false');
+                // Also close any open dropdowns
+                document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
             }
         });
     }
@@ -37,12 +41,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Active page indicator
     const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navLinks = document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)');
     navLinks.forEach(link => {
         if (link.getAttribute('href') === currentPath ||
             (currentPath === '/' && link.getAttribute('href') === '/')) {
             link.classList.add('active');
+            // Also mark parent dropdown as active if it's a dropdown item
+            const dropdown = link.closest('.nav-dropdown');
+            if (dropdown) {
+                dropdown.classList.add('active');
+            }
         }
+    });
+
+    // Dropdown menu functionality
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+
+        // Prevent default link behavior for dropdown toggles
+        if (toggle && toggle.getAttribute('href') === '#') {
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Close other dropdowns
+                dropdowns.forEach(d => {
+                    if (d !== dropdown) {
+                        d.classList.remove('active');
+                    }
+                });
+                dropdown.classList.toggle('active');
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
     });
 
     // Ripple effect for buttons
@@ -473,6 +509,71 @@ function showError(input, message) {
                         });
                     }
                 });
+            }
+        });
+    }
+})();
+
+// Dark Mode Toggle
+(function () {
+    'use strict';
+
+    // Get theme preference from localStorage or system preference
+    function getThemePreference() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            return savedTheme;
+        }
+        // Check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        return 'light';
+    }
+
+    // Apply theme
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }
+
+    // Initialize theme on page load
+    const currentTheme = getThemePreference();
+    applyTheme(currentTheme);
+
+    // Theme toggle button functionality
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+
+            // Track theme change
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'theme_change', {
+                    'event_category': 'User Preference',
+                    'event_label': newTheme
+                });
+            }
+        });
+
+        // Keyboard accessibility
+        themeToggle.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                themeToggle.click();
+            }
+        });
+    }
+
+    // Listen for system theme changes
+    if (window.matchMedia) {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addEventListener('change', function (e) {
+            // Only apply system preference if user hasn't manually set a preference
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
             }
         });
     }

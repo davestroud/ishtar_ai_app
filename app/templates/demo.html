@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}Request a Demo - Ishtar AI{% endblock %}
+
+{% block meta_description %}Request a demo of Ishtar AI's solutions. See how RAG copilots, agent automation, and LLMOps
+can transform your operations.{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Request a Demo</h1>
+        <p>See our solutions in action and discuss how we can help your organization</p>
+    </div>
+</section>
+
+<section class="demo-section">
+    <div class="container">
+        <div class="demo-grid">
+            <div class="demo-form-wrapper">
+                <h2>Tell Us About Your Needs</h2>
+                {% if success %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+                {% endif %}
+                <form method="POST" action="/demo" class="demo-form">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="use_case">Primary Use Case *</label>
+                        <select id="use_case" name="use_case" required>
+                            <option value="">Select a use case</option>
+                            <option value="RAG Copilot">RAG Copilot</option>
+                            <option value="Agent Automation">Agent Automation</option>
+                            <option value="LLMOps">LLMOps</option>
+                            <option value="AI Security">AI Security</option>
+                            <option value="Synthetic Media Compliance">Synthetic Media Compliance</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="company_size">Company Size</label>
+                        <select id="company_size" name="company_size">
+                            <option value="">Select size</option>
+                            <option value="1-50">1-50 employees</option>
+                            <option value="51-200">51-200 employees</option>
+                            <option value="201-1000">201-1000 employees</option>
+                            <option value="1000+">1000+ employees</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <select id="industry" name="industry">
+                            <option value="">Select industry</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Media/Advertising">Media/Advertising</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="challenges">Current Challenges</label>
+                        <textarea id="challenges" name="challenges" rows="3"
+                            placeholder="Describe your current challenges..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeline">Timeline</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Select timeline</option>
+                            <option value="Immediate">Immediate (within 1 month)</option>
+                            <option value="Short-term">Short-term (1-3 months)</option>
+                            <option value="Medium-term">Medium-term (3-6 months)</option>
+                            <option value="Long-term">Long-term (6+ months)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget_range">Budget Range (Optional)</label>
+                        <select id="budget_range" name="budget_range">
+                            <option value="">Select range</option>
+                            <option value="Under $50k">Under $50k</option>
+                            <option value="$50k - $100k">$50k - $100k</option>
+                            <option value="$100k - $200k">$100k - $200k</option>
+                            <option value="$200k+">$200k+</option>
+                        </select>
+                    </div>
+                    <!-- Honeypot field -->
+                    <div class="form-group"
+                        style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Demo Request</button>
+                </form>
+            </div>
+            <div class="demo-info">
+                <h2>What Happens Next?</h2>
+                <div class="demo-steps">
+                    <div class="demo-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>We Review Your Request</h3>
+                            <p>Our team reviews your information and prepares a customized demo.</p>
+                        </div>
+                    </div>
+                    <div class="demo-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Schedule a Call</h3>
+                            <p>We'll contact you within 24 hours to schedule a convenient time.</p>
+                        </div>
+                    </div>
+                    <div class="demo-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>See It In Action</h3>
+                            <p>We'll show you relevant solutions and discuss how they fit your needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-calendly">
+                    <h3>Or Schedule Directly</h3>
+                    <p>Prefer to schedule right away? Use our Calendly link.</p>
+                    <a href="https://calendly.com/david-ishtar-ai" target="_blank" class="btn btn-primary btn-large">
+                        Book a Consult
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

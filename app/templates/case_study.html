@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ case_study.title }} - Case Study - Ishtar AI{% endblock %}
+
+{% block meta_description %}{{ case_study.challenge[:150] }}...{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <div class="case-study-industry-badge industry-{{ case_study.industry|lower }}">
+            {{ case_study.industry }}
+        </div>
+        <h1>{{ case_study.title }}</h1>
+        <p class="case-study-client-header">Client: {{ case_study.client }}</p>
+    </div>
+</section>
+
+<section class="case-study-detail-section">
+    <div class="container">
+        <div class="case-study-content">
+            <div class="case-study-section">
+                <h2>The Challenge</h2>
+                <p>{{ case_study.challenge }}</p>
+            </div>
+
+            <div class="case-study-section">
+                <h2>Our Solution</h2>
+                <p>{{ case_study.solution }}</p>
+            </div>
+
+            <div class="case-study-section">
+                <h2>Results</h2>
+                <p>{{ case_study.results }}</p>
+
+                <div class="case-study-metrics-detailed">
+                    {% for key, value in case_study.metrics.items() %}
+                    <div class="metric-card">
+                        <div class="metric-value-large">{{ value }}</div>
+                        <div class="metric-label-large">{{ key|replace('_', ' ')|title }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="case-study-cta">
+                <h3>Interested in Similar Results?</h3>
+                <p>Let's discuss how we can help your organization achieve similar outcomes.</p>
+                <div class="cta-buttons">
+                    <a href="/demo" class="btn btn-primary">Request a Demo</a>
+                    <a href="/contact" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

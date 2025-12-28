@@ -2,7 +2,34 @@ from fastapi import APIRouter
 from fastapi.responses import Response
 from datetime import datetime
 
+from app.utils.rss import generate_rss_feed
+
 router = APIRouter()
+
+
+def get_blog_posts_for_rss():
+    """Get blog posts formatted for RSS feed"""
+    # Import blog posts data
+    from app.routes.pages import get_blog_posts
+
+    posts_data = get_blog_posts()
+    rss_posts = []
+
+    for post in posts_data:
+        rss_posts.append(
+            {
+                "title": post.get("title", ""),
+                "slug": post.get("slug", ""),
+                "description": post.get("excerpt", ""),
+                "published_date": datetime.fromisoformat(
+                    post.get("date", "2024-01-15")
+                ),
+                "author": post.get("author", "Ishtar AI Team"),
+                "categories": ["AI", "Finance", "RAG", "LLM"],  # Default categories
+            }
+        )
+
+    return rss_posts
 
 
 @router.get("/sitemap.xml")
@@ -15,6 +42,9 @@ async def sitemap():
         {"loc": "/", "changefreq": "weekly", "priority": "1.0"},
         {"loc": "/services", "changefreq": "monthly", "priority": "0.9"},
         {"loc": "/pricing", "changefreq": "monthly", "priority": "0.8"},
+        {"loc": "/case-studies", "changefreq": "monthly", "priority": "0.8"},
+        {"loc": "/resources", "changefreq": "monthly", "priority": "0.8"},
+        {"loc": "/demo", "changefreq": "monthly", "priority": "0.8"},
         {"loc": "/finance", "changefreq": "monthly", "priority": "0.8"},
         {"loc": "/media-ads", "changefreq": "monthly", "priority": "0.8"},
         {"loc": "/blog", "changefreq": "weekly", "priority": "0.8"},
@@ -23,6 +53,22 @@ async def sitemap():
         {"loc": "/privacy", "changefreq": "yearly", "priority": "0.3"},
         {"loc": "/terms", "changefreq": "yearly", "priority": "0.3"},
     ]
+
+    # Add individual case studies
+    try:
+        from app.content.case_studies import get_case_studies
+
+        case_studies = get_case_studies()
+        for case_study in case_studies:
+            pages.append(
+                {
+                    "loc": f"/case-studies/{case_study.get('slug', '')}",
+                    "changefreq": "monthly",
+                    "priority": "0.7",
+                }
+            )
+    except Exception:
+        pass  # Silently fail if case studies can't be loaded
 
     sitemap_xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     sitemap_xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -49,3 +95,12 @@ Allow: /
 Sitemap: https://ishtar-ai.com/sitemap.xml
 """
     return Response(content=robots_txt, media_type="text/plain")
+
+
+@router.get("/feed")
+@router.get("/rss.xml")
+async def rss_feed():
+    """Generate RSS feed for blog posts"""
+    posts = get_blog_posts_for_rss()
+    rss_xml = generate_rss_feed(posts)
+    return Response(content=rss_xml, media_type="application/rss+xml")

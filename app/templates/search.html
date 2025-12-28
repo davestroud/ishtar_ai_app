@@ -2,39 +2,86 @@
 
 {% block title %}Search - Ishtar AI{% endblock %}
 
+{% block meta_description %}Search Ishtar AI's website for articles, resources, case studies, and information about AI
+solutions for finance and media industries.{% endblock %}
+
 {% block content %}
 <section class="page-header">
     <div class="container">
         <h1>Search</h1>
+        <p>Find articles, resources, and information</p>
     </div>
 </section>
 
 <section class="search-section">
     <div class="container">
-        <form class="search-form-large" action="/search" method="GET">
-            <input type="search" name="q" value="{{ query or '' }}" placeholder="Search our site..." aria-label="Search"
-                autofocus>
-            <button type="submit" class="btn btn-primary">Search</button>
+        <form class="search-form-large" action="/search" method="GET" id="search-form">
+            <div class="search-input-wrapper">
+                <input type="search" name="q" value="{{ query or '' }}" placeholder="Search our site..."
+                    aria-label="Search" autofocus id="search-input" autocomplete="off">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+
+            {% if query %}
+            <div class="search-filters">
+                <label for="type-filter">Filter by type:</label>
+                <select name="type" id="type-filter" onchange="document.getElementById('search-form').submit()">
+                    <option value="">All Types</option>
+                    <option value="blog" {% if request.query_params.get('type')=='blog' %}selected{% endif %}>Blog Posts
+                    </option>
+                    <option value="page" {% if request.query_params.get('type')=='page' %}selected{% endif %}>Pages
+                    </option>
+                    <option value="faq" {% if request.query_params.get('type')=='faq' %}selected{% endif %}>FAQ</option>
+                    <option value="resource" {% if request.query_params.get('type')=='resource' %}selected{% endif %}>
+                        Resources</option>
+                    <option value="case_study" {% if request.query_params.get('type')=='case_study' %}selected{% endif
+                        %}>Case Studies</option>
+                </select>
+            </div>
+            {% endif %}
         </form>
 
         {% if query %}
         <div class="search-results">
             {% if results %}
-            <h2>Search Results for "{{ query }}"</h2>
+            <div class="results-header">
+                <h2>Search Results for "{{ query }}"</h2>
+                <p class="results-count">{{ result_count }} result{{ 's' if result_count != 1 else '' }} found</p>
+            </div>
             <ul class="results-list">
                 {% for result in results %}
-                <li>
-                    <h3><a href="{{ result.url }}">{{ result.title }}</a></h3>
-                    <p>{{ result.excerpt }}</p>
+                <li class="result-item">
+                    <div class="result-type-badge result-type-{{ result.type }}">{{ result.type|title }}</div>
+                    <h3><a href="{{ result.url }}">{{ result.title|safe }}</a></h3>
+                    <p class="result-excerpt">{{ result.excerpt|safe }}</p>
+                    <a href="{{ result.url }}" class="result-link">Read more →</a>
                 </li>
                 {% endfor %}
             </ul>
             {% else %}
             <div class="no-results">
-                <p>No results found for "{{ query }}". Try different keywords or <a href="/contact">contact us</a> for
-                    assistance.</p>
+                <h2>No results found</h2>
+                <p>We couldn't find any results for "{{ query }}". Try:</p>
+                <ul>
+                    <li>Using different keywords</li>
+                    <li>Checking your spelling</li>
+                    <li>Using more general terms</li>
+                    <li><a href="/contact">Contacting us</a> for assistance</li>
+                </ul>
             </div>
             {% endif %}
+        </div>
+        {% else %}
+        <div class="search-suggestions">
+            <h3>Popular Searches</h3>
+            <div class="suggestion-tags">
+                <a href="/search?q=RAG+copilots" class="suggestion-tag">RAG Copilots</a>
+                <a href="/search?q=agent+automation" class="suggestion-tag">Agent Automation</a>
+                <a href="/search?q=LLMOps" class="suggestion-tag">LLMOps</a>
+                <a href="/search?q=compliance" class="suggestion-tag">Compliance</a>
+                <a href="/search?q=synthetic+media" class="suggestion-tag">Synthetic Media</a>
+                <a href="/search?q=finance" class="suggestion-tag">Finance</a>
+            </div>
         </div>
         {% endif %}
     </div>

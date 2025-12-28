@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Case Studies - Ishtar AI{% endblock %}
+
+{% block meta_description %}Explore case studies showcasing successful AI implementations for finance and media
+organizations. See real results from RAG copilots, agent automation, and LLMOps projects.{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Case Studies</h1>
+        <p>Real results from successful AI implementations</p>
+    </div>
+</section>
+
+<section class="case-studies-section">
+    <div class="container">
+        <div class="case-studies-filters">
+            <h3>Filter by Industry</h3>
+            <div class="filter-buttons">
+                <a href="/case-studies" class="filter-btn {% if selected_industry == 'All' %}active{% endif %}">All</a>
+                <a href="/case-studies?industry=Finance"
+                    class="filter-btn {% if selected_industry == 'Finance' %}active{% endif %}">Finance</a>
+                <a href="/case-studies?industry=Media"
+                    class="filter-btn {% if selected_industry == 'Media' %}active{% endif %}">Media</a>
+            </div>
+        </div>
+
+        <div class="case-studies-grid">
+            {% for case_study in case_studies %}
+            <div class="case-study-card">
+                <div class="case-study-industry-badge industry-{{ case_study.industry|lower }}">
+                    {{ case_study.industry }}
+                </div>
+                <h3><a href="/case-studies/{{ case_study.slug }}">{{ case_study.title }}</a></h3>
+                <p class="case-study-client">Client: {{ case_study.client }}</p>
+                <p class="case-study-excerpt">{{ case_study.challenge[:150] }}...</p>
+                <div class="case-study-metrics">
+                    {% for key, value in case_study.metrics.items() %}
+                    <div class="metric">
+                        <span class="metric-value">{{ value }}</span>
+                        <span class="metric-label">{{ key|replace('_', ' ')|title }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a href="/case-studies/{{ case_study.slug }}" class="btn btn-primary">Read Case Study</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

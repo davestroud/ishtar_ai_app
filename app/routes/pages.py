@@ -60,11 +60,9 @@ async def terms(request: Request):
     return templates.TemplateResponse("terms.html", get_template_context(request))
 
 
-@router.get("/blog", response_class=HTMLResponse)
-async def blog(request: Request):
-    """Blog page"""
-    # Placeholder blog posts
-    posts = [
+def get_blog_posts():
+    """Get list of blog posts for RSS and blog listing"""
+    return [
         {
             "title": "The Future of RAG Copilots in Financial Services",
             "excerpt": "How Retrieval-Augmented Generation is reshaping compliance and research into evidence-native workflows",
@@ -87,6 +85,12 @@ async def blog(request: Request):
             "author": "Ishtar AI Team",
         },
     ]
+
+
+@router.get("/blog", response_class=HTMLResponse)
+async def blog(request: Request):
+    """Blog page"""
+    posts = get_blog_posts()
     return templates.TemplateResponse(
         "blog.html", get_template_context(request, posts=posts)
     )
@@ -188,16 +192,194 @@ async def subscribe_newsletter(request: Request, email: str = Form(...)):
     )
 
 
-@router.get("/search", response_class=HTMLResponse)
-async def search(request: Request, q: Optional[str] = None):
-    """Search page"""
-    results = []
-    if q:
-        # Placeholder search - in production, implement actual search
-        # For now, return empty results
-        results = []
+@router.get("/case-studies", response_class=HTMLResponse)
+async def case_studies(request: Request, industry: Optional[str] = None):
+    """Case studies listing page"""
+    from app.content.case_studies import get_case_studies
+
+    all_case_studies = get_case_studies()
+
+    # Filter by industry if specified
+    if industry and industry != "All":
+        filtered_case_studies = [
+            c for c in all_case_studies if c.get("industry") == industry
+        ]
+    else:
+        filtered_case_studies = all_case_studies
+
     return templates.TemplateResponse(
-        "search.html", get_template_context(request, query=q, results=results)
+        "case_studies.html",
+        get_template_context(
+            request,
+            case_studies=filtered_case_studies,
+            selected_industry=industry or "All",
+        ),
+    )
+
+
+@router.get("/case-studies/{slug}", response_class=HTMLResponse)
+async def case_study_detail(request: Request, slug: str):
+    """Individual case study page"""
+    from app.content.case_studies import get_case_study_by_slug
+
+    case_study = get_case_study_by_slug(slug)
+
+    if not case_study:
+        from fastapi import HTTPException
+
+        raise HTTPException(status_code=404, detail="Case study not found")
+
+    return templates.TemplateResponse(
+        "case_study.html", get_template_context(request, case_study=case_study)
+    )
+
+
+@router.get("/demo", response_class=HTMLResponse)
+async def demo(request: Request):
+    """Request demo page"""
+    return templates.TemplateResponse("demo.html", get_template_context(request))
+
+
+@router.post("/demo", response_class=HTMLResponse)
+async def submit_demo_request(
+    request: Request,
+    name: str = Form(...),
+    email: str = Form(...),
+    company: Optional[str] = Form(None),
+    phone: Optional[str] = Form(None),
+    use_case: str = Form(...),
+    company_size: Optional[str] = Form(None),
+    industry: Optional[str] = Form(None),
+    challenges: Optional[str] = Form(None),
+    timeline: Optional[str] = Form(None),
+    budget_range: Optional[str] = Form(None),
+    website: Optional[str] = Form(None),  # Honeypot
+):
+    """Handle demo request form submission"""
+    # Honeypot spam protection
+    if website:
+        return templates.TemplateResponse(
+            "demo.html",
+            get_template_context(
+                request,
+                success=True,
+                message="Thank you for your request! We'll contact you soon.",
+            ),
+        )
+
+    # Send email if configured
+    from app.utils.email import send_contact_form_email
+
+    message = f"""
+Demo Request Details:
+- Use Case: {use_case}
+- Company Size: {company_size or 'Not specified'}
+- Industry: {industry or 'Not specified'}
+- Challenges: {challenges or 'Not specified'}
+- Timeline: {timeline or 'Not specified'}
+- Budget Range: {budget_range or 'Not specified'}
+"""
+
+    email_sent = await send_contact_form_email(
+        name=name, email=email, phone=phone, company=company, message=message
+    )
+
+    return templates.TemplateResponse(
+        "demo.html",
+        get_template_context(
+            request,
+            success=True,
+            message="Thank you for your demo request! We'll contact you within 24 hours to schedule a consultation.",
+        ),
+    )
+
+
+@router.get("/resources", response_class=HTMLResponse)
+async def resources(request: Request, category: Optional[str] = None):
+    """Resources/Downloads page"""
+    from app.content.resources import get_resources, get_resource_categories
+
+    all_resources = get_resources()
+    categories = get_resource_categories()
+
+    # Filter by category if specified
+    if category and category != "All":
+        filtered_resources = [r for r in all_resources if r.get("category") == category]
+    else:
+        filtered_resources = all_resources
+
+    return templates.TemplateResponse(
+        "resources.html",
+        get_template_context(
+            request,
+            resources=filtered_resources,
+            categories=categories,
+            selected_category=category or "All",
+        ),
+    )
+
+
+@router.post("/resources/download", response_class=HTMLResponse)
+async def download_resource(
+    request: Request,
+    resource_path: str = Form(...),
+    email: Optional[str] = Form(None),
+    name: Optional[str] = Form(None),
+):
+    """Handle resource downloads with optional email capture"""
+    from fastapi.responses import FileResponse
+    import os
+
+    # Track download analytics
+    if hasattr(request.app.state, "gtag"):
+        # Analytics tracking would go here
+        pass
+
+    # If email provided, send thank you email (optional)
+    if email:
+        # Could send email here using utils.email
+        pass
+
+    # Return file if it exists
+    file_path = f"app/static{resource_path}"
+    if os.path.exists(file_path):
+        return FileResponse(file_path)
+    else:
+        from fastapi import HTTPException
+
+        raise HTTPException(status_code=404, detail="Resource not found")
+
+
+@router.get("/search", response_class=HTMLResponse)
+async def search(request: Request, q: Optional[str] = None, type: Optional[str] = None):
+    """Search page"""
+    from app.utils.search import search as search_content
+
+    results = []
+    doc_types = None
+
+    # Parse type filter
+    if type:
+        doc_types = (
+            [type]
+            if type in ["blog", "page", "faq", "resource", "case_study"]
+            else None
+        )
+
+    if q and q.strip():
+        results = search_content(q.strip(), doc_types=doc_types, limit=50)
+
+    # Track search analytics
+    if q and results:
+        if hasattr(request.app.state, "gtag"):
+            # Analytics tracking would go here if needed
+            pass
+
+    return templates.TemplateResponse(
+        "search.html",
+        get_template_context(
+            request, query=q, results=results, result_count=len(results)
+        ),
     )
 
 

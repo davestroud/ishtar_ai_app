@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Resources - Ishtar AI{% endblock %}
+
+{% block meta_description %}Download whitepapers, guides, templates, and tools from Ishtar AI. Get resources on RAG
+copilots, AI governance, LLMOps, and more.{% endblock %}
+
+{% block og_path %}/resources{% endblock %}
+{% block og_title %}Resources & Downloads - Ishtar AI{% endblock %}
+{% block og_description %}Download free resources including whitepapers, guides, templates, and tools for AI
+implementation.{% endblock %}
+
+{% block canonical_path %}/resources{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Resources & Downloads",
+    "description": "Download whitepapers, guides, templates, and tools from Ishtar AI",
+    "url": "https://ishtar-ai.com/resources"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Resources & Downloads</h1>
+        <p>Access whitepapers, guides, templates, and tools to help you implement AI solutions</p>
+    </div>
+</section>
+
+<section class="resources-section">
+    <div class="container">
+        <div class="resources-filters">
+            <h3>Filter by Category</h3>
+            <div class="filter-buttons">
+                {% for cat in categories %}
+                <a href="/resources{% if cat != 'All' %}?category={{ cat }}{% endif %}"
+                    class="filter-btn {% if selected_category == cat %}active{% endif %}">
+                    {{ cat }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="resources-grid">
+            {% for resource in resources %}
+            <div class="resource-card">
+                <div class="resource-type-badge resource-type-{{ resource.type }}">
+                    {{ resource.type|title }}
+                </div>
+                <h3>{{ resource.title }}</h3>
+                <p class="resource-description">{{ resource.description }}</p>
+                <div class="resource-meta">
+                    <span class="resource-category">{{ resource.category }}</span>
+                    {% if resource.gated %}
+                    <span class="resource-gated">Email Required</span>
+                    {% endif %}
+                </div>
+                {% if resource.gated %}
+                <button class="btn btn-primary resource-download-btn" data-resource-path="{{ resource.file_path }}"
+                    data-resource-title="{{ resource.title }}">
+                    Download (Email Required)
+                </button>
+                {% else %}
+                <a href="/resources/download?resource_path={{ resource.file_path }}"
+                    class="btn btn-primary resource-download-link">
+                    Download Now
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if not resources %}
+        <div class="no-resources">
+            <p>No resources found in this category. <a href="/resources">View all resources</a></p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Email Capture Modal for Gated Resources -->
+<div id="download-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>Download Resource</h2>
+        <p>Please provide your email to download this resource.</p>
+        <form id="download-form" method="POST" action="/resources/download">
+            <input type="hidden" name="resource_path" id="modal-resource-path">
+            <div class="form-group">
+                <label for="download-name">Name *</label>
+                <input type="text" id="download-name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="download-email">Email *</label>
+                <input type="email" id="download-email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Download</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const downloadButtons = document.querySelectorAll('.resource-download-btn');
+        const modal = document.getElementById('download-modal');
+        const modalClose = document.querySelector('.modal-close');
+        const downloadForm = document.getElementById('download-form');
+        const resourcePathInput = document.getElementById('modal-resource-path');
+
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const resourcePath = this.getAttribute('data-resource-path');
+                resourcePathInput.value = resourcePath;
+                modal.style.display = 'block';
+            });
+        });
+
+        modalClose.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        downloadForm.addEventListener('submit', function (e) {
+            // Form will submit normally to download endpoint
+        });
+    });
+</script>
+{% endblock %}
