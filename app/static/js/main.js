@@ -15,70 +15,47 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!isClickInsideNav && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 navToggle.setAttribute('aria-expanded', 'false');
-                // Also close any open dropdowns
-                document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
             }
         });
     }
 
-    // Navbar scroll behavior
+    // Navbar scroll behavior with dynamic effects
     const navbar = document.querySelector('.navbar');
     let lastScroll = 0;
+    let ticking = false;
 
-    window.addEventListener('scroll', function () {
+    function updateNavbar() {
         const currentScroll = window.pageYOffset;
 
-        if (currentScroll > 50) {
+        if (currentScroll > 30) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
 
+        // Add parallax effect to navbar background
+        const opacity = Math.min(0.95 + (currentScroll / 1000), 0.99);
+        navbar.style.setProperty('--scroll-opacity', opacity);
+
         lastScroll = currentScroll;
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(updateNavbar);
+            ticking = true;
+        }
     });
 
     // Active page indicator
     const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)');
+    const navLinks = document.querySelectorAll('.nav-menu a');
     navLinks.forEach(link => {
         if (link.getAttribute('href') === currentPath ||
             (currentPath === '/' && link.getAttribute('href') === '/')) {
             link.classList.add('active');
-            // Also mark parent dropdown as active if it's a dropdown item
-            const dropdown = link.closest('.nav-dropdown');
-            if (dropdown) {
-                dropdown.classList.add('active');
-            }
         }
-    });
-
-    // Dropdown menu functionality
-    const dropdowns = document.querySelectorAll('.nav-dropdown');
-    dropdowns.forEach(dropdown => {
-        const toggle = dropdown.querySelector('.dropdown-toggle');
-
-        // Prevent default link behavior for dropdown toggles
-        if (toggle && toggle.getAttribute('href') === '#') {
-            toggle.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Close other dropdowns
-                dropdowns.forEach(d => {
-                    if (d !== dropdown) {
-                        d.classList.remove('active');
-                    }
-                });
-                dropdown.classList.toggle('active');
-            });
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('active');
-            }
-        });
     });
 
     // Ripple effect for buttons
