@@ -35,8 +35,19 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         response.headers["Content-Security-Policy"] = csp
 
         # Cache control for static assets
+        # In development, disable caching for CSS/JS to see changes immediately
         if request.url.path.startswith("/static/"):
-            response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+            # For CSS and JS files, disable cache in development
+            if request.url.path.endswith((".css", ".js")):
+                response.headers["Cache-Control"] = (
+                    "no-cache, no-store, must-revalidate"
+                )
+                response.headers["Pragma"] = "no-cache"
+                response.headers["Expires"] = "0"
+            else:
+                response.headers["Cache-Control"] = (
+                    "public, max-age=31536000, immutable"
+                )
         else:
             response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
             response.headers["Pragma"] = "no-cache"

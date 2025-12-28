@@ -6,9 +6,59 @@
 }
 
 :root {
-    --primary-color: #2563eb;
+    /* 
+     * COLOR SCHEME OPTIONS - Change values below to switch schemes
+     * 
+     * Option 1: Deep Navy & Gold (Premium Finance) - CURRENT
+     * Option 2: Forest Green & Slate (Growth & Stability)
+     * Option 3: Deep Purple & Teal (Modern Enterprise)
+     * Option 4: Charcoal & Blue (Corporate Professional)
+     * Option 5: Teal & Navy (Tech Finance)
+     * Option 6: Indigo & Silver (Balanced Professional)
+     */
+
+    /* Option 1: Deep Navy & Gold (Premium Finance) */
+    --primary-color: #1e3a8a;
     --primary-dark: #1e40af;
     --primary-light: #3b82f6;
+    --accent-color: #f59e0b;
+
+    /* Option 2: Forest Green & Slate (uncomment to use)
+    --primary-color: #059669;
+    --primary-dark: #047857;
+    --primary-light: #10b981;
+    --accent-color: #64748b;
+    */
+
+    /* Option 3: Deep Purple & Teal (uncomment to use)
+    --primary-color: #7c3aed;
+    --primary-dark: #6d28d9;
+    --primary-light: #8b5cf6;
+    --accent-color: #14b8a6;
+    */
+
+    /* Option 4: Charcoal & Blue (uncomment to use)
+    --primary-color: #1e293b;
+    --primary-dark: #0f172a;
+    --primary-light: #334155;
+    --accent-color: #2563eb;
+    */
+
+    /* Option 5: Teal & Navy (uncomment to use)
+    --primary-color: #0d9488;
+    --primary-dark: #0f766e;
+    --primary-light: #14b8a6;
+    --accent-color: #1e40af;
+    */
+
+    /* Option 6: Indigo & Silver (uncomment to use)
+    --primary-color: #4f46e5;
+    --primary-dark: #4338ca;
+    --primary-light: #6366f1;
+    --accent-color: #94a3b8;
+    */
+
+    /* Common colors (shared across all schemes) */
     --secondary-color: #64748b;
     --text-color: #1e293b;
     --text-light: #64748b;
@@ -304,6 +354,49 @@ body {
     outline-offset: 4px;
 }
 
+/* Navbar Social Link */
+.nav-social {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.nav-social-link {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--primary-color) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: rgba(30, 58, 138, 0.08);
+    border: 2px solid var(--primary-color);
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.nav-social-link:hover,
+.nav-social-link:focus {
+    color: white !important;
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.nav-social-link i {
+    font-size: 1.25rem;
+    line-height: 1;
+    color: inherit;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -311,6 +404,7 @@ body {
     border: none;
     cursor: pointer;
     gap: 4px;
+    margin-left: 1rem;
 }
 
 .nav-toggle span {
@@ -451,7 +545,7 @@ body {
 .btn-primary:focus {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
 }
 
 .btn-primary:focus,
@@ -672,7 +766,7 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+    background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.05), transparent);
     transition: left 0.5s ease;
 }
 
@@ -682,7 +776,7 @@ body {
 
 .service-card:hover {
     border-color: var(--primary-color);
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.15);
     transform: translateY(-4px);
 }
 
@@ -789,7 +883,7 @@ body {
 
 .solution-card:hover {
     border-color: var(--primary-color);
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.15);
     transform: translateY(-4px);
 }
 
@@ -939,7 +1033,7 @@ body {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
     background: linear-gradient(white, white) padding-box,
         linear-gradient(135deg, var(--primary-color), var(--primary-light)) border-box;
     border: 2px solid transparent;
@@ -1084,6 +1178,61 @@ body {
     color: white;
 }
 
+.footer-section .social-links {
+    display: flex !important;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.footer-section .social-links a {
+    color: white !important;
+    font-size: 1.5rem !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.35) !important;
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    margin-top: 0.5rem;
+    visibility: visible !important;
+    opacity: 1 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.footer-section .social-links a:hover,
+.footer-section .social-links a:focus {
+    color: white !important;
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.45) !important;
+    border-color: rgba(255, 255, 255, 0.95) !important;
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+.footer-section .social-links i {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 1.5rem !important;
+    line-height: 1;
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.5);
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+}
+
+.footer-section .social-links a:hover i,
+.footer-section .social-links a:focus i {
+    color: white !important;
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
@@ -1107,7 +1256,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 1.25rem;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
@@ -1124,7 +1273,7 @@ body {
 .back-to-top:hover {
     background: var(--primary-dark);
     transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5);
+    box-shadow: 0 6px 16px rgba(30, 58, 138, 0.5);
 }
 
 /* Main Content */
@@ -1150,8 +1299,23 @@ body {
         display: flex;
     }
 
+    .nav-social {
+        display: flex;
+        margin-left: 0.5rem;
+    }
+
+    .nav-social-link {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-social-link i {
+        font-size: 1.1rem;
+    }
+
     .nav-toggle {
         display: flex;
+        margin-left: 0.5rem;
     }
 
     .hero-logo-img {
