@@ -1,0 +1,365 @@
+{% extends "base.html" %}
+
+{% block title %}Security & Compliance - Ishtar AI{% endblock %}
+
+{% block meta_description %}Ishtar AI's security and compliance framework. Data handling, encryption, access controls,
+deployment options, and compliance with SOC 2-aligned controls, GDPR, and industry standards.{% endblock %}
+
+{% block og_path %}/security{% endblock %}
+{% block og_title %}Security & Compliance - Ishtar AI{% endblock %}
+{% block og_description %}Enterprise-grade security and compliance framework for finance and media organizations.{%
+endblock %}
+
+{% block canonical_path %}/security{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Security & Compliance",
+    "description": "Ishtar AI's security and compliance framework for enterprise customers",
+    "url": "https://ishtar-ai.com/security"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Security & Compliance</h1>
+        <p>Enterprise-grade security practices and compliance frameworks</p>
+    </div>
+</section>
+
+<section class="security-section">
+    <div class="container">
+        <div class="security-intro">
+            <p class="lead-text">Ishtar AI is built with security and compliance at the foundation. This page provides
+                detailed information about our security practices, data handling, and compliance posture for enterprise
+                procurement and security teams.</p>
+        </div>
+
+        <div class="security-content">
+            <section class="security-subsection">
+                <h2>Data Handling Model</h2>
+                <div class="security-details">
+                    <h3>Data Ingestion</h3>
+                    <p>We process structured and unstructured data including:</p>
+                    <ul>
+                        <li>Document repositories (PDFs, Word docs, markdown)</li>
+                        <li>Knowledge bases and wikis</li>
+                        <li>Structured data (databases, APIs)</li>
+                        <li>Conversational data (chat logs, emails)</li>
+                    </ul>
+                    <p>All data ingestion is performed through secure, authenticated APIs with audit logging.</p>
+
+                    <h3>Data Flow</h3>
+                    <p>Data flows through our systems with clear boundaries:</p>
+                    <ul>
+                        <li>Ingestion → Encrypted storage → Processing → Output (with citations)</li>
+                        <li>Customer data is isolated per tenant</li>
+                        <li>No cross-tenant data access</li>
+                        <li>All data movements are logged and auditable</li>
+                    </ul>
+
+                    <h3>Storage</h3>
+                    <ul>
+                        <li><strong>Primary Storage:</strong> Encrypted cloud storage (AWS S3, Azure Blob) with
+                            customer-specified regions</li>
+                        <li><strong>Vector Databases:</strong> Tenant-isolated vector stores with encryption at rest
+                        </li>
+                        <li><strong>Metadata:</strong> Encrypted relational databases with regular backups</li>
+                    </ul>
+
+                    <h3>Retention Periods</h3>
+                    <ul>
+                        <li><strong>Active Data:</strong> Retained for the duration of the engagement</li>
+                        <li><strong>Backup Data:</strong> Retained for 30 days after contract termination</li>
+                        <li><strong>Audit Logs:</strong> Retained for 7 years (or per customer requirement)</li>
+                        <li><strong>Processing Data:</strong> Deleted immediately after processing completion</li>
+                    </ul>
+
+                    <h3>Deletion & Exit</h3>
+                    <p>Upon contract termination or customer request:</p>
+                    <ul>
+                        <li>All customer data is deleted within 30 days</li>
+                        <li>Certified deletion process with confirmation</li>
+                        <li>Data export available in standard formats (JSON, CSV)</li>
+                        <li>No data retention beyond contractual obligations</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="security-subsection">
+                <h2>Encryption & Key Management</h2>
+                <div class="security-details">
+                    <h3>Encryption at Rest</h3>
+                    <ul>
+                        <li><strong>Algorithm:</strong> AES-256 encryption</li>
+                        <li><strong>Key Management:</strong> Cloud KMS (AWS KMS, Azure Key Vault) with automatic key
+                            rotation</li>
+                        <li><strong>Database Encryption:</strong> All databases encrypted with customer-managed keys
+                            where possible</li>
+                        <li><strong>File Storage:</strong> Server-side encryption (SSE) with customer-controlled keys
+                        </li>
+                    </ul>
+
+                    <h3>Encryption in Transit</h3>
+                    <ul>
+                        <li><strong>TLS Version:</strong> TLS 1.3+ for all connections</li>
+                        <li><strong>Certificate Management:</strong> Automated certificate rotation via Let's Encrypt or
+                            enterprise CA</li>
+                        <li><strong>API Security:</strong> All APIs require TLS with certificate pinning for mobile
+                            clients</li>
+                        <li><strong>Internal Traffic:</strong> Encrypted within VPC/VNet boundaries</li>
+                    </ul>
+
+                    <h3>Key Management</h3>
+                    <ul>
+                        <li>Keys stored in Hardware Security Modules (HSM) or cloud KMS</li>
+                        <li>Automatic key rotation every 90 days</li>
+                        <li>Key access requires multi-factor authentication</li>
+                        <li>Key usage is logged and audited</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="security-subsection">
+                <h2>Access Controls</h2>
+                <div class="security-details">
+                    <h3>Single Sign-On (SSO)</h3>
+                    <ul>
+                        <li><strong>SAML 2.0:</strong> Full support for SAML-based SSO</li>
+                        <li><strong>OIDC:</strong> OpenID Connect support for modern identity providers</li>
+                        <li><strong>Providers Supported:</strong> Okta, Azure AD, Google Workspace, Auth0, and others
+                        </li>
+                        <li><strong>SCIM:</strong> User provisioning and deprovisioning support</li>
+                    </ul>
+
+                    <h3>Role-Based Access Control (RBAC)</h3>
+                    <ul>
+                        <li>Granular role definitions (Admin, User, Viewer, Auditor)</li>
+                        <li>Custom roles supported for enterprise customers</li>
+                        <li>Permission inheritance and delegation</li>
+                        <li>Source-level entitlements for RAG copilots</li>
+                    </ul>
+
+                    <h3>Attribute-Based Access Control (ABAC)</h3>
+                    <ul>
+                        <li>Policy-based access control using user attributes</li>
+                        <li>Dynamic permission evaluation</li>
+                        <li>Integration with enterprise identity systems</li>
+                    </ul>
+
+                    <h3>Least Privilege Principles</h3>
+                    <ul>
+                        <li>Default deny access model</li>
+                        <li>Just-in-time access provisioning</li>
+                        <li>Regular access reviews and recertification</li>
+                        <li>Privileged access management for administrative functions</li>
+                    </ul>
+
+                    <h3>Audit Logging</h3>
+                    <ul>
+                        <li><strong>Logged Events:</strong> All authentication, authorization, data access,
+                            configuration changes</li>
+                        <li><strong>Log Retention:</strong> 7 years (configurable per customer)</li>
+                        <li><strong>Log Format:</strong> Structured JSON logs with tamper-proof storage</li>
+                        <li><strong>Access:</strong> Real-time log streaming and search capabilities</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="security-subsection">
+                <h2>Deployment Options</h2>
+                <div class="security-details">
+                    <h3>SaaS (Multi-Tenant)</h3>
+                    <ul>
+                        <li>Fully managed cloud deployment</li>
+                        <li>Tenant isolation at application and database levels</li>
+                        <li>Data encryption per tenant</li>
+                        <li>Region selection available (US, EU, Asia-Pacific)</li>
+                    </ul>
+
+                    <h3>VPC Deployment</h3>
+                    <ul>
+                        <li>Dedicated infrastructure in customer's VPC</li>
+                        <li>Private networking with VPN or Direct Connect</li>
+                        <li>Customer-managed encryption keys</li>
+                        <li>Full network isolation</li>
+                    </ul>
+
+                    <h3>On-Premise Patterns</h3>
+                    <ul>
+                        <li>Containerized deployment (Docker, Kubernetes)</li>
+                        <li>Air-gapped environments supported</li>
+                        <li>Customer-managed infrastructure</li>
+                        <li>Regular security updates and patches</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="security-subsection">
+                <h2>SDLC Practices</h2>
+                <div class="security-details">
+                    <h3>Code Review Process</h3>
+                    <ul>
+                        <li>All code changes require peer review</li>
+                        <li>Security-focused code review checklist</li>
+                        <li>Automated security scanning in CI/CD pipeline</li>
+                        <li>No direct commits to main branch</li>
+                    </ul>
+
+                    <h3>Dependency Scanning</h3>
+                    <ul>
+                        <li><strong>Tools:</strong> Snyk, Dependabot, OWASP Dependency-Check</li>
+                        <li><strong>Frequency:</strong> Continuous scanning on every build</li>
+                        <li><strong>Action:</strong> Automated blocking of vulnerable dependencies</li>
+                        <li><strong>Reporting:</strong> Regular vulnerability reports to security team</li>
+                    </ul>
+
+                    <h3>Secrets Management</h3>
+                    <ul>
+                        <li>No secrets in code repositories</li>
+                        <li>Secrets stored in secure vaults (HashiCorp Vault, AWS Secrets Manager)</li>
+                        <li>Automatic secret rotation</li>
+                        <li>Secrets accessed via secure APIs only</li>
+                    </ul>
+
+                    <h3>Security Testing</h3>
+                    <ul>
+                        <li><strong>SAST:</strong> Static Application Security Testing (SonarQube, Checkmarx)</li>
+                        <li><strong>DAST:</strong> Dynamic Application Security Testing (OWASP ZAP, Burp Suite)</li>
+                        <li><strong>Penetration Testing:</strong> Annual third-party penetration tests</li>
+                        <li><strong>Bug Bounty:</strong> Responsible disclosure program</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="security-subsection">
+                <h2>Incident Response</h2>
+                <div class="security-details">
+                    <h3>Security Contact</h3>
+                    <p><strong>Email:</strong> <a href="mailto:security@ishtar-ai.com">security@ishtar-ai.com</a></p>
+                    <p><strong>Response Time:</strong> Initial response within 4 hours for critical issues</p>
+
+                    <h3>Response Timelines</h3>
+                    <ul>
+                        <li><strong>Critical:</strong> Initial response within 4 hours, resolution within 24 hours</li>
+                        <li><strong>High:</strong> Initial response within 8 hours, resolution within 72 hours</li>
+                        <li><strong>Medium:</strong> Initial response within 24 hours, resolution within 7 days</li>
+                        <li><strong>Low:</strong> Initial response within 48 hours, resolution within 30 days</li>
+                    </ul>
+
+                    <h3>Customer Notification</h3>
+                    <ul>
+                        <li>Immediate notification for any security incident affecting customer data</li>
+                        <li>Regular status updates throughout incident resolution</li>
+                        <li>Post-incident report within 30 days</li>
+                    </ul>
+
+                    <h3>Post-Incident Reporting</h3>
+                    <ul>
+                        <li>Detailed incident report with root cause analysis</li>
+                        <li>Remediation steps taken</li>
+                        <li>Preventive measures implemented</li>
+                        <li>Lessons learned and process improvements</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="security-subsection">
+                <h2>Vendor & Subprocessor Posture</h2>
+                <div class="security-details">
+                    <h3>Current Subprocessors</h3>
+                    <div class="subprocessors-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subprocessor</th>
+                                    <th>Purpose</th>
+                                    <th>Data Types</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>AWS (Amazon Web Services)</td>
+                                    <td>Cloud infrastructure and hosting</td>
+                                    <td>Application data, logs, backups</td>
+                                </tr>
+                                <tr>
+                                    <td>Azure (Microsoft)</td>
+                                    <td>Cloud infrastructure (alternative deployment)</td>
+                                    <td>Application data, logs, backups</td>
+                                </tr>
+                                <tr>
+                                    <td>Calendly</td>
+                                    <td>Meeting scheduling</td>
+                                    <td>Contact information, meeting metadata</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Data Processing Agreements</h3>
+                    <p>All subprocessors are bound by Data Processing Addendums (DPAs) that meet GDPR and other
+                        regulatory requirements. We maintain a current list of subprocessors and notify customers of any
+                        changes with 30 days advance notice.</p>
+
+                    <h3>Notification Process</h3>
+                    <ul>
+                        <li>30 days advance notice for new subprocessors</li>
+                        <li>Email notification to designated security contacts</li>
+                        <li>Opportunity to object (with reasonable grounds)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="security-subsection">
+                <h2>Compliance Frameworks</h2>
+                <div class="security-details">
+                    <h3>SOC 2-Aligned Controls</h3>
+                    <p>Ishtar AI implements security controls aligned with SOC 2 Type II requirements, including:</p>
+                    <ul>
+                        <li>Access controls and authentication</li>
+                        <li>System monitoring and logging</li>
+                        <li>Change management processes</li>
+                        <li>Vendor management</li>
+                        <li>Incident response procedures</li>
+                    </ul>
+                    <p><strong>Note:</strong> We maintain SOC 2-aligned controls and can support customers with their
+                        SOC 2 requirements. Formal SOC 2 Type II certification is in progress.</p>
+
+                    <h3>GDPR Compliance</h3>
+                    <ul>
+                        <li>Data Processing Addendum (DPA) available upon request</li>
+                        <li>Right to access, rectification, erasure, and portability</li>
+                        <li>Data breach notification procedures</li>
+                        <li>Privacy by design principles</li>
+                        <li>Records of processing activities</li>
+                    </ul>
+
+                    <h3>Industry-Specific Compliance</h3>
+                    <ul>
+                        <li><strong>FINRA:</strong> Support for financial services compliance requirements</li>
+                        <li><strong>SEC:</strong> Audit trail and record-keeping capabilities</li>
+                        <li><strong>HIPAA:</strong> Healthcare data handling capabilities (with BAA)</li>
+                        <li><strong>CCPA:</strong> California Consumer Privacy Act compliance</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="security-cta">
+                <h2>Questions About Security?</h2>
+                <p>For detailed security documentation, DPAs, or security questionnaires, please contact our security
+                    team.</p>
+                <div class="cta-buttons">
+                    <a href="/contact" class="btn btn-primary">Contact Security Team</a>
+                    <a href="/trust-center" class="btn btn-secondary">Visit Trust Center</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{% endblock %}

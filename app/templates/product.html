@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.title }} - {{ product.subtitle }} - Ishtar AI{% endblock %}
+
+{% block meta_description %}{{ product.description }}{% endblock %}
+
+{% block og_path %}/products/{{ product.slug }}{% endblock %}
+{% block og_title %}{{ product.title }} - Ishtar AI{% endblock %}
+{% block og_description %}{{ product.description }}{% endblock %}
+
+{% block canonical_path %}/products/{{ product.slug }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ product.title }}",
+    "description": "{{ product.description }}",
+    "brand": {
+        "@type": "Organization",
+        "name": "Ishtar AI"
+    },
+    "offers": {
+        "@type": "Offer",
+        "price": "{{ product.pricing.range }}",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+    }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>{{ product.title }}</h1>
+        <p class="product-subtitle">{{ product.subtitle }}</p>
+        <p class="lead-text">{{ product.description }}</p>
+    </div>
+</section>
+
+<section class="product-detail-section">
+    <div class="container">
+        <div class="product-outcomes">
+            <h2>What It Does</h2>
+            <ul class="outcomes-list">
+                {% for outcome in product.outcomes %}
+                <li>{{ outcome }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="product-target-users">
+            <h2>Target Users</h2>
+            <div class="target-users-grid">
+                {% for user in product.target_users %}
+                <div class="target-user-card">
+                    <i class="fas fa-user"></i>
+                    <span>{{ user }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="product-evidence">
+            <h2>{{ product.evidence_approach.title }}</h2>
+            <p>{{ product.evidence_approach.description }}</p>
+            <ul>
+                {% for feature in product.evidence_approach.features %}
+                <li>{{ feature }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="product-permissioning">
+            <h2>{{ product.permissioning.title }}</h2>
+            <p>{{ product.permissioning.description }}</p>
+            <ul>
+                {% for feature in product.permissioning.features %}
+                <li>{{ feature }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="product-evaluation">
+            <h2>{{ product.evaluation.title }}</h2>
+            <p>{{ product.evaluation.description }}</p>
+            <div class="evaluation-metrics">
+                {% for metric in product.evaluation.metrics %}
+                <div class="evaluation-metric">
+                    <strong>{{ metric.split(':')[0] }}:</strong> {{ metric.split(':')[1] if ':' in metric else metric }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="product-deployment">
+            <h2>Deployment Patterns</h2>
+            <ul>
+                {% for pattern in product.deployment.patterns %}
+                <li>{{ pattern }}</li>
+                {% endfor %}
+            </ul>
+            {% if product.deployment.integrations %}
+            <h3>Integration Capabilities</h3>
+            <ul>
+                {% for integration in product.deployment.integrations %}
+                <li>{{ integration }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div class="product-deliverables">
+            <h2>{{ product.deliverables.title }}</h2>
+            <ul>
+                {% for item in product.deliverables.items %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="product-pricing">
+            <h2>Pricing</h2>
+            <div class="pricing-summary">
+                <div class="pricing-range">{{ product.pricing.range }}</div>
+                <div class="pricing-duration">{{ product.pricing.duration }}</div>
+            </div>
+            <a href="{{ product.pricing.link }}" class="btn btn-secondary">View Full Pricing Details</a>
+        </div>
+
+        <div class="product-cta">
+            <h2>Ready to Get Started?</h2>
+            <p>Let's discuss how {{ product.title }} can help your organization.</p>
+            <div class="cta-buttons">
+                <a href="{{ product.cta.primary_link }}" class="btn btn-primary">{{ product.cta.primary }}</a>
+                <a href="{{ product.cta.secondary_link }}" class="btn btn-secondary">{{ product.cta.secondary }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

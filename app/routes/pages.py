@@ -60,6 +60,56 @@ async def terms(request: Request):
     return templates.TemplateResponse("terms.html", get_template_context(request))
 
 
+@router.get("/security", response_class=HTMLResponse)
+async def security(request: Request):
+    """Security & Compliance page"""
+    return templates.TemplateResponse("security.html", get_template_context(request))
+
+
+@router.get("/about", response_class=HTMLResponse)
+async def about(request: Request):
+    """About page"""
+    return templates.TemplateResponse("about.html", get_template_context(request))
+
+
+@router.get("/trust-center", response_class=HTMLResponse)
+async def trust_center(request: Request):
+    """Trust Center page"""
+    return templates.TemplateResponse(
+        "trust_center.html", get_template_context(request)
+    )
+
+
+@router.get("/products/{slug}", response_class=HTMLResponse)
+async def product_detail(request: Request, slug: str):
+    """Product detail page"""
+    from app.content.products import get_product_by_slug
+    from fastapi import HTTPException
+
+    product = get_product_by_slug(slug)
+    if not product:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return templates.TemplateResponse(
+        "product.html", get_template_context(request, product=product)
+    )
+
+
+@router.get("/implementation", response_class=HTMLResponse)
+async def implementation(request: Request):
+    """Implementation Method page"""
+    return templates.TemplateResponse(
+        "implementation.html", get_template_context(request)
+    )
+
+
+@router.get("/responsible-ai", response_class=HTMLResponse)
+async def responsible_ai(request: Request):
+    """Responsible AI page"""
+    return templates.TemplateResponse(
+        "responsible_ai.html", get_template_context(request)
+    )
+
+
 def get_blog_posts():
     """Get list of blog posts for RSS and blog listing"""
     return [
@@ -144,32 +194,114 @@ async def blog_post(request: Request, slug: str):
 @router.get("/faq", response_class=HTMLResponse)
 async def faq(request: Request):
     """FAQ page"""
-    faqs = [
-        {
-            "question": "What industries do you serve?",
-            "answer": "We specialize in finance and media/advertising organizations, helping them implement enterprise-grade AI solutions.",
-        },
-        {
-            "question": "How long does a typical implementation take?",
-            "answer": "Implementation timelines vary based on project scope, but most engagements range from 8-16 weeks for production-ready solutions.",
-        },
-        {
-            "question": "Do you provide ongoing support?",
-            "answer": "Yes, we offer comprehensive support packages including maintenance, updates, and optimization services.",
-        },
-        {
-            "question": "What security standards do you follow?",
-            "answer": "We implement industry-standard security practices including encryption, audit trails, and compliance with SOC 2, GDPR, and other relevant frameworks.",
-        },
-        {
-            "question": "Can you integrate with our existing systems?",
-            "answer": "Absolutely. Our solutions are designed to integrate seamlessly with existing enterprise infrastructure and workflows.",
-        },
-        {
-            "question": "What is your pricing model?",
-            "answer": "Pricing varies based on project scope and requirements. Contact us for a customized quote tailored to your needs.",
-        },
-    ]
+    faqs = {
+        "general": [
+            {
+                "question": "What industries do you serve?",
+                "answer": "We specialize in finance and media/advertising organizations, helping them implement enterprise-grade AI solutions.",
+            },
+            {
+                "question": "How long does a typical implementation take?",
+                "answer": "Implementation timelines vary based on project scope, but most engagements range from 6-9 weeks for production-ready solutions. See our <a href='/pricing'>pricing page</a> for specific timelines.",
+            },
+            {
+                "question": "Do you provide ongoing support?",
+                "answer": "Yes, we offer comprehensive support packages including maintenance, updates, and optimization services. Our Platform Partner program provides ongoing improvement, monitoring, incident response, and expansion into additional use cases.",
+            },
+            {
+                "question": "What is your pricing model?",
+                "answer": "We offer fixed-scope engagements with clear success metrics. Pricing ranges from $50k-$200k depending on the offering. See our <a href='/pricing'>pricing page</a> for detailed information.",
+            },
+        ],
+        "authentication": [
+            {
+                "question": "Do you support SSO (Single Sign-On)?",
+                "answer": "Yes, we support both SAML 2.0 and OIDC (OpenID Connect) for SSO integration. We work with major identity providers including Okta, Azure AD, Google Workspace, and Auth0.",
+            },
+            {
+                "question": "Do you support SCIM provisioning?",
+                "answer": "Yes, we support SCIM 2.0 for automated user provisioning and deprovisioning, enabling seamless integration with your identity management systems.",
+            },
+            {
+                "question": "Do you support multi-factor authentication (MFA)?",
+                "answer": "Yes, MFA is supported and can be enforced through your SSO provider or natively within our platform.",
+            },
+        ],
+        "deployment": [
+            {
+                "question": "Can you deploy in our VPC?",
+                "answer": "Yes, we support VPC deployments with dedicated infrastructure in your cloud environment. This provides full network isolation and allows you to manage encryption keys.",
+            },
+            {
+                "question": "Do you support on-premise deployments?",
+                "answer": "Yes, we support on-premise deployments using containerized infrastructure (Docker, Kubernetes). We can deploy in air-gapped environments with regular security updates and patches.",
+            },
+            {
+                "question": "What are your data residency requirements?",
+                "answer": "We can deploy in multiple regions (US, EU, Asia-Pacific) and support customer-specified data residency requirements. For VPC and on-premise deployments, data never leaves your infrastructure.",
+            },
+        ],
+        "data_privacy": [
+            {
+                "question": "What is your data retention policy?",
+                "answer": "Active data is retained for the duration of the engagement. Backup data is retained for 30 days after contract termination. Audit logs are retained for 7 years (or per customer requirement). Processing data is deleted immediately after completion.",
+            },
+            {
+                "question": "What is your data deletion process?",
+                "answer": "Upon contract termination or customer request, all customer data is deleted within 30 days with certified deletion confirmation. Data export is available in standard formats (JSON, CSV) before deletion.",
+            },
+            {
+                "question": "Do you train on customer data?",
+                "answer": "No, we do not train models on customer data. Customer data is used only for inference and is not used to improve our models or shared with other customers.",
+            },
+            {
+                "question": "Where is data processed?",
+                "answer": "Data processing occurs in the region specified by the customer. For SaaS deployments, we support US, EU, and Asia-Pacific regions. For VPC and on-premise deployments, all processing occurs within your infrastructure.",
+            },
+        ],
+        "security": [
+            {
+                "question": "How do you prevent prompt injection?",
+                "answer": "We implement multiple layers of protection: input sanitization, prompt validation, output filtering, and monitoring for suspicious patterns. Our RAG systems use citation-based responses that can be verified against source documents.",
+            },
+            {
+                "question": "How do you prevent data exfiltration in RAG systems?",
+                "answer": "We implement permission-aware retrieval that respects source-level entitlements, query filtering to prevent unauthorized access, and audit logging of all queries. Data is isolated per tenant with no cross-tenant access.",
+            },
+            {
+                "question": "What logs are stored and for how long?",
+                "answer": "We log all authentication, authorization, data access, and configuration changes. Logs are stored in tamper-proof storage with 7-year retention (configurable per customer). Real-time log streaming and search capabilities are available.",
+            },
+            {
+                "question": "What is your security incident process?",
+                "answer": "We have a defined incident response process with initial response within 4 hours for critical issues. Customers are immediately notified of any security incident affecting their data, with regular status updates and a post-incident report within 30 days. Contact security@ishtar-ai.com for security concerns.",
+            },
+        ],
+        "ip": [
+            {
+                "question": "Who owns the intellectual property (prompts, pipelines, code, fine-tunes)?",
+                "answer": "Customer-specific customizations, prompts, and fine-tuned models are owned by the customer. Our platform code and general frameworks remain our IP, but all customer-specific work product is owned by the customer.",
+            },
+            {
+                "question": "What are your license terms?",
+                "answer": "We provide perpetual licenses for custom-built solutions. Our Platform Partner program includes ongoing updates and improvements. See our Terms of Service for detailed licensing information.",
+            },
+        ],
+        "support": [
+            {
+                "question": "What is your support SLA?",
+                "answer": "For Platform Partner customers, we provide 24/7 support with 4-hour response time for critical issues. Standard support includes business hours coverage with 8-hour response time for high-priority issues.",
+            },
+            {
+                "question": "What does your incident response process look like?",
+                "answer": "We follow a structured incident response process: immediate triage, customer notification, regular status updates, root cause analysis, remediation, and post-incident reporting. Critical incidents receive 4-hour initial response with 24-hour resolution target.",
+            },
+            {
+                "question": "What tools and systems do you integrate with?",
+                "answer": "We integrate with major enterprise systems including SharePoint, Confluence, Slack, Microsoft Teams, Active Directory, Okta, Azure AD, and various databases and APIs. Custom integrations can be built as part of engagements.",
+            },
+        ],
+    }
     return templates.TemplateResponse(
         "faq.html", get_template_context(request, faqs=faqs)
     )

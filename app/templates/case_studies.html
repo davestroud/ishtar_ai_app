@@ -34,15 +34,19 @@ organizations. See real results from RAG copilots, agent automation, and LLMOps 
                 </div>
                 <h3><a href="/case-studies/{{ case_study.slug }}">{{ case_study.title }}</a></h3>
                 <p class="case-study-client">Client: {{ case_study.client }}</p>
-                <p class="case-study-excerpt">{{ case_study.challenge[:150] }}...</p>
+                <p class="case-study-excerpt">{{ case_study.challenge }}</p>
+                {% if case_study.metrics %}
                 <div class="case-study-metrics">
                     {% for key, value in case_study.metrics.items() %}
+                    {% if key != 'measurement_period' and key != 'methodology' %}
                     <div class="metric">
                         <span class="metric-value">{{ value }}</span>
-                        <span class="metric-label">{{ key|replace('_', ' ')|title }}</span>
+                        <span class="metric-label">{{ key|replace('_', ' ')|upper }}</span>
                     </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
+                {% endif %}
                 <a href="/case-studies/{{ case_study.slug }}" class="btn btn-primary">Read Case Study</a>
             </div>
             {% endfor %}

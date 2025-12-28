@@ -34,13 +34,123 @@
 
                 <div class="case-study-metrics-detailed">
                     {% for key, value in case_study.metrics.items() %}
+                    {% if key != 'measurement_period' and key != 'methodology' %}
                     <div class="metric-card">
                         <div class="metric-value-large">{{ value }}</div>
                         <div class="metric-label-large">{{ key|replace('_', ' ')|title }}</div>
                     </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
+
+                {% if case_study.metrics.get('measurement_period') or case_study.metrics.get('methodology') %}
+                <div class="metrics-methodology">
+                    {% if case_study.metrics.get('measurement_period') %}
+                    <p><strong>Measurement Period:</strong> {{ case_study.metrics.measurement_period }}</p>
+                    {% endif %}
+                    {% if case_study.metrics.get('methodology') %}
+                    <p><strong>Methodology:</strong> {{ case_study.metrics.methodology }}</p>
+                    {% endif %}
+                </div>
+                {% endif %}
             </div>
+
+            {% if case_study.get('timeline') %}
+            <div class="case-study-section">
+                <h2>Time-to-Value</h2>
+                <div class="timeline-details">
+                    <p><strong>Total Duration:</strong> {{ case_study.timeline.total_duration }}</p>
+                    <ul class="timeline-milestones">
+                        <li><strong>Kickoff:</strong> {{ case_study.timeline.kickoff }}</li>
+                        <li><strong>Architecture Review:</strong> {{ case_study.timeline.architecture_review }}</li>
+                        <li><strong>Build Complete:</strong> {{ case_study.timeline.build_complete }}</li>
+                        <li><strong>Pilot Deployment:</strong> {{ case_study.timeline.pilot_deployment }}</li>
+                        <li><strong>Production Rollout:</strong> {{ case_study.timeline.production_rollout }}</li>
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if case_study.get('architecture') %}
+            <div class="case-study-section">
+                <h2>Architecture & Scope</h2>
+                <div class="architecture-details">
+                    {% if case_study.architecture.get('components') %}
+                    <h3>Components Deployed</h3>
+                    <ul>
+                        {% for component in case_study.architecture.components %}
+                        <li>{{ component }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% if case_study.architecture.get('integrations') %}
+                    <h3>Integration Points</h3>
+                    <ul>
+                        {% for integration in case_study.architecture.integrations %}
+                        <li>{{ integration }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% if case_study.architecture.get('diagram') %}
+                    <div class="architecture-diagram">
+                        <img src="{{ case_study.architecture.diagram }}" alt="Architecture Diagram" loading="lazy">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if case_study.get('risk_controls') %}
+            <div class="case-study-section">
+                <h2>Risk & Controls Implemented</h2>
+                <div class="risk-controls-details">
+                    {% if case_study.risk_controls.get('audit_trails') %}
+                    <div class="control-item">
+                        <h3>Audit Trails</h3>
+                        <p>{{ case_study.risk_controls.audit_trails }}</p>
+                    </div>
+                    {% endif %}
+                    {% if case_study.risk_controls.get('permissions') %}
+                    <div class="control-item">
+                        <h3>Permission Models</h3>
+                        <p>{{ case_study.risk_controls.permissions }}</p>
+                    </div>
+                    {% endif %}
+                    {% if case_study.risk_controls.get('evaluation') %}
+                    <div class="control-item">
+                        <h3>Evaluation Harnesses</h3>
+                        <p>{{ case_study.risk_controls.evaluation }}</p>
+                    </div>
+                    {% endif %}
+                    {% if case_study.risk_controls.get('compliance') %}
+                    <div class="control-item">
+                        <h3>Compliance Controls</h3>
+                        <p>{{ case_study.risk_controls.compliance }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if case_study.get('artifacts') %}
+            <div class="case-study-section">
+                <h2>Artifacts</h2>
+                <div class="artifacts-details">
+                    {% if case_study.artifacts.get('screenshots') %}
+                    <h3>Screenshots</h3>
+                    <div class="artifacts-gallery">
+                        {% for screenshot in case_study.artifacts.screenshots %}
+                        <img src="{{ screenshot }}" alt="Case Study Screenshot" loading="lazy">
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if case_study.artifacts.get('sample_outputs') %}
+                    <h3>Sample Outputs</h3>
+                    <p>{{ case_study.artifacts.sample_outputs }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
 
             <div class="case-study-cta">
                 <h3>Interested in Similar Results?</h3>

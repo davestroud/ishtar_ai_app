@@ -15,15 +15,20 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-        {% for faq in faqs %}
-        {
-            "@type": "Question",
-            "name": "{{ faq.question }}",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "{{ faq.answer }}"
-            }
-        }{% if not loop.last %},{% endif %}
+        {% set first = true %}
+        {% for category, category_faqs in faqs.items() %}
+            {% for faq in category_faqs %}
+                {% if not first %},{% endif %}
+                {% set first = false %}
+                {
+                    "@type": "Question",
+                    "name": "{{ faq.question }}",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "{{ faq.answer|striptags }}"
+                    }
+                }
+            {% endfor %}
         {% endfor %}
     ]
 }
@@ -40,19 +45,24 @@
 
 <section class="faq-section">
     <div class="container">
-        <div class="faq-list">
-            {% for faq in faqs %}
-            <div class="faq-item">
-                <button class="faq-question" aria-expanded="false">
-                    <h3>{{ faq.question }}</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">
-                    <p>{{ faq.answer }}</p>
+        {% for category, category_faqs in faqs.items() %}
+        <div class="faq-category">
+            <h2 class="faq-category-title">{{ category|replace('_', ' ')|title }}</h2>
+            <div class="faq-list">
+                {% for faq in category_faqs %}
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <h3>{{ faq.question }}</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div>{{ faq.answer|safe }}</div>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
         <div class="faq-cta">
             <p>Still have questions?</p>
             <a href="/contact" class="btn btn-primary">Contact Us</a>

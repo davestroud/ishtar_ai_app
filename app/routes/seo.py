@@ -52,6 +52,28 @@ async def sitemap():
         {"loc": "/contact", "changefreq": "monthly", "priority": "0.7"},
         {"loc": "/privacy", "changefreq": "yearly", "priority": "0.3"},
         {"loc": "/terms", "changefreq": "yearly", "priority": "0.3"},
+        {"loc": "/security", "changefreq": "monthly", "priority": "0.8"},
+        {"loc": "/trust-center", "changefreq": "monthly", "priority": "0.8"},
+        {"loc": "/about", "changefreq": "monthly", "priority": "0.8"},
+        {"loc": "/implementation", "changefreq": "monthly", "priority": "0.7"},
+        {"loc": "/responsible-ai", "changefreq": "monthly", "priority": "0.7"},
+        {"loc": "/products/rag-copilots", "changefreq": "monthly", "priority": "0.8"},
+        {
+            "loc": "/products/agent-automation",
+            "changefreq": "monthly",
+            "priority": "0.8",
+        },
+        {
+            "loc": "/products/llmops-foundation",
+            "changefreq": "monthly",
+            "priority": "0.8",
+        },
+        {"loc": "/products/genai-security", "changefreq": "monthly", "priority": "0.8"},
+        {
+            "loc": "/products/synthetic-media-compliance",
+            "changefreq": "monthly",
+            "priority": "0.8",
+        },
     ]
 
     # Add individual case studies

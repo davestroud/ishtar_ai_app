@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}Trust Center - Ishtar AI{% endblock %}
+
+{% block meta_description %}Ishtar AI Trust Center: Security documentation, AI/model risk overview, data processing
+addendums, subprocessors list, and incident communications.{% endblock %}
+
+{% block og_path %}/trust-center{% endblock %}
+{% block og_title %}Trust Center - Ishtar AI{% endblock %}
+{% block og_description %}Centralized trust and security documentation for enterprise customers.{% endblock %}
+
+{% block canonical_path %}/trust-center{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Trust Center",
+    "description": "Ishtar AI Trust Center - Security and trust documentation",
+    "url": "https://ishtar-ai.com/trust-center"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Trust Center</h1>
+        <p>Security, compliance, and trust documentation</p>
+    </div>
+</section>
+
+<section class="trust-center-section">
+    <div class="container">
+        <div class="trust-center-intro">
+            <p class="lead-text">The Ishtar AI Trust Center provides centralized access to security documentation,
+                compliance information, and trust resources for enterprise customers and security teams.</p>
+        </div>
+
+        <div class="trust-center-content">
+            <div class="trust-resource-card">
+                <div class="trust-resource-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="trust-resource-content">
+                    <h2>Security One-Pager</h2>
+                    <p>Executive summary of Ishtar AI's security posture, key certifications and alignments, and
+                        security contact information.</p>
+                    <div class="trust-resource-actions">
+                        <a href="/static/resources/security-one-pager.pdf" class="btn btn-secondary" download>Download
+                            PDF</a>
+                        <span class="trust-resource-note">Updated: January 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trust-resource-card">
+                <div class="trust-resource-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="trust-resource-content">
+                    <h2>AI/Model Risk Overview</h2>
+                    <p>Comprehensive overview of how we evaluate, monitor, and gate AI model releases to ensure
+                        reliability and safety.</p>
+                    <div class="trust-resource-details">
+                        <h3>Model Evaluation Methodology</h3>
+                        <ul>
+                            <li><strong>Groundedness Testing:</strong> Automated evaluation of response accuracy and
+                                citation quality</li>
+                            <li><strong>Citation Accuracy:</strong> Verification that citations match the claims made
+                            </li>
+                            <li><strong>Refusal Behavior:</strong> Testing appropriate refusal of out-of-scope or unsafe
+                                requests</li>
+                            <li><strong>Bias Detection:</strong> Evaluation for bias in outputs across demographic
+                                groups</li>
+                        </ul>
+
+                        <h3>Monitoring and Alerting</h3>
+                        <ul>
+                            <li>Real-time monitoring of model performance metrics</li>
+                            <li>Automated alerts for performance degradation</li>
+                            <li>Anomaly detection for unusual patterns</li>
+                            <li>Customer-facing dashboards for transparency</li>
+                        </ul>
+
+                        <h3>Release Gating Process</h3>
+                        <ul>
+                            <li>All model updates require evaluation baseline comparison</li>
+                            <li>Automated regression testing before deployment</li>
+                            <li>Human review for significant changes</li>
+                            <li>Gradual rollout with automatic rollback on issues</li>
+                        </ul>
+
+                        <h3>Risk Assessment Framework</h3>
+                        <ul>
+                            <li>Risk scoring for each model deployment</li>
+                            <li>Impact assessment for different failure modes</li>
+                            <li>Mitigation strategies for identified risks</li>
+                            <li>Regular risk reviews and updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trust-resource-card">
+                <div class="trust-resource-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div class="trust-resource-content">
+                    <h2>Data Processing Addendum (DPA)</h2>
+                    <p>Our standard Data Processing Addendum is available for customers who require GDPR, CCPA, or other
+                        data protection compliance.</p>
+                    <div class="trust-resource-details">
+                        <h3>DPA Availability</h3>
+                        <p>We provide a standard DPA that covers:</p>
+                        <ul>
+                            <li>Data processing purposes and legal basis</li>
+                            <li>Data subject rights (access, rectification, erasure, portability)</li>
+                            <li>Data breach notification procedures</li>
+                            <li>Subprocessor management and notification</li>
+                            <li>Data retention and deletion requirements</li>
+                            <li>International data transfers (Standard Contractual Clauses)</li>
+                        </ul>
+
+                        <h3>How to Request a DPA</h3>
+                        <p>To request a DPA:</p>
+                        <ol>
+                            <li>Contact your Ishtar AI account representative</li>
+                            <li>Or email <a href="mailto:legal@ishtar-ai.com">legal@ishtar-ai.com</a></li>
+                            <li>We will provide the standard DPA within 5 business days</li>
+                            <li>Custom terms can be negotiated for enterprise agreements</li>
+                        </ol>
+
+                        <h3>Standard Terms Overview</h3>
+                        <p>Our DPA includes standard terms aligned with GDPR Article 28 requirements:</p>
+                        <ul>
+                            <li>Processing only on documented instructions</li>
+                            <li>Confidentiality obligations</li>
+                            <li>Security measures (as detailed in our Security & Compliance page)</li>
+                            <li>Subprocessor engagement procedures</li>
+                            <li>Data subject rights assistance</li>
+                            <li>Data breach notification (within 72 hours)</li>
+                            <li>Deletion or return of data upon termination</li>
+                            <li>Audit rights and compliance assistance</li>
+                        </ul>
+                    </div>
+                    <div class="trust-resource-actions">
+                        <a href="/contact" class="btn btn-primary">Request DPA</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trust-resource-card">
+                <div class="trust-resource-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="trust-resource-content">
+                    <h2>Subprocessors List</h2>
+                    <p>Current list of subprocessors that may process customer data on behalf of Ishtar AI.</p>
+                    <div class="trust-resource-details">
+                        <div class="subprocessors-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Subprocessor</th>
+                                        <th>Purpose</th>
+                                        <th>Data Types</th>
+                                        <th>Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Amazon Web Services (AWS)</td>
+                                        <td>Cloud infrastructure and hosting</td>
+                                        <td>Application data, logs, backups</td>
+                                        <td>US, EU, Asia-Pacific (customer-selectable)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Microsoft Azure</td>
+                                        <td>Cloud infrastructure (alternative deployment)</td>
+                                        <td>Application data, logs, backups</td>
+                                        <td>US, EU, Asia-Pacific (customer-selectable)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calendly</td>
+                                        <td>Meeting scheduling</td>
+                                        <td>Contact information, meeting metadata</td>
+                                        <td>US</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Subprocessor Notification Process</h3>
+                        <p>We maintain a current list of subprocessors and notify customers of any changes:</p>
+                        <ul>
+                            <li><strong>Advance Notice:</strong> 30 days advance notice for new subprocessors</li>
+                            <li><strong>Notification Method:</strong> Email to designated security contacts</li>
+                            <li><strong>Objection Rights:</strong> Customers may object to new subprocessors with
+                                reasonable grounds</li>
+                            <li><strong>Updates:</strong> This list is updated quarterly or as changes occur</li>
+                        </ul>
+
+                        <p><strong>Last Updated:</strong> January 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trust-resource-card">
+                <div class="trust-resource-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="trust-resource-content">
+                    <h2>Status & Incident Communications</h2>
+                    <p>How we communicate service status and incidents to customers.</p>
+                    <div class="trust-resource-details">
+                        <h3>Status Page</h3>
+                        <p>We maintain a status page for real-time service availability and incident updates. <a
+                                href="/status" target="_blank">View Status Page</a></p>
+
+                        <h3>Incident Communication Policy</h3>
+                        <p>Our incident communication process ensures transparency and timely updates:</p>
+                        <ul>
+                            <li><strong>Immediate Notification:</strong> Customers are notified immediately of any
+                                security incident affecting their data</li>
+                            <li><strong>Regular Updates:</strong> Status updates provided every 4 hours during active
+                                incidents</li>
+                            <li><strong>Post-Incident Report:</strong> Detailed incident report within 30 days of
+                                resolution</li>
+                            <li><strong>Communication Channels:</strong> Email to designated contacts, status page
+                                updates, and optional Slack/Teams integration</li>
+                        </ul>
+
+                        <h3>Uptime & SLA Commitments</h3>
+                        <ul>
+                            <li><strong>SaaS Deployments:</strong> 99.9% uptime SLA (excluding scheduled maintenance)
+                            </li>
+                            <li><strong>VPC Deployments:</strong> 99.95% uptime SLA</li>
+                            <li><strong>Scheduled Maintenance:</strong> Advance notice of 48 hours for planned
+                                maintenance</li>
+                            <li><strong>Maintenance Windows:</strong> Typically scheduled during low-traffic periods
+                            </li>
+                        </ul>
+
+                        <h3>Incident Severity Levels</h3>
+                        <ul>
+                            <li><strong>Critical:</strong> Service unavailable or security breach - 4-hour response,
+                                24-hour resolution target</li>
+                            <li><strong>High:</strong> Significant degradation or security concern - 8-hour response,
+                                72-hour resolution target</li>
+                            <li><strong>Medium:</strong> Partial functionality impact - 24-hour response, 7-day
+                                resolution target</li>
+                            <li><strong>Low:</strong> Minor issues or feature requests - 48-hour response, 30-day
+                                resolution target</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="trust-center-cta">
+            <h2>Need More Information?</h2>
+            <p>For detailed security questionnaires, compliance documentation, or custom agreements, please contact our
+                team.</p>
+            <div class="cta-buttons">
+                <a href="/security" class="btn btn-primary">View Security & Compliance</a>
+                <a href="/contact" class="btn btn-secondary">Contact Security Team</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

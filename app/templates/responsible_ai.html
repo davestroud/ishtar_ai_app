@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block title %}Responsible AI - AI Governance - Ishtar AI{% endblock %}
+
+{% block meta_description %}Ishtar AI's responsible AI framework: evaluation philosophy, human-in-the-loop checkpoints,
+monitoring, auditability, and bias/privacy considerations.{% endblock %}
+
+{% block og_path %}/responsible-ai{% endblock %}
+{% block og_title %}Responsible AI - AI Governance - Ishtar AI{% endblock %}
+{% block og_description %}Our comprehensive approach to responsible AI and AI governance for enterprise deployments.{%
+endblock %}
+
+{% block canonical_path %}/responsible-ai{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Responsible AI",
+    "description": "Ishtar AI's responsible AI framework and AI governance approach",
+    "url": "https://ishtar-ai.com/responsible-ai"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Responsible AI</h1>
+        <p>AI governance for enterprise deployments</p>
+    </div>
+</section>
+
+<section class="responsible-ai-section">
+    <div class="container">
+        <div class="responsible-ai-intro">
+            <p class="lead-text">Responsible AI is not optional—it's foundational. Our approach ensures AI systems are
+                accurate, fair, transparent, and accountable.</p>
+        </div>
+
+        <div class="responsible-ai-content">
+            <section class="responsible-ai-subsection">
+                <h2>Evaluation Philosophy</h2>
+                <div class="subsection-content">
+                    <h3>Groundedness Testing</h3>
+                    <p>Every AI response must be grounded in source material. We evaluate:</p>
+                    <ul>
+                        <li><strong>Response Accuracy:</strong> Does the response accurately reflect the source
+                            documents?</li>
+                        <li><strong>Citation Quality:</strong> Are citations relevant and accurate?</li>
+                        <li><strong>Hallucination Detection:</strong> Automated detection of unsupported claims</li>
+                        <li><strong>Confidence Scoring:</strong> Confidence levels for each response component</li>
+                    </ul>
+
+                    <h3>Citation Accuracy Measurement</h3>
+                    <p>Citations are only valuable if they're accurate. We measure:</p>
+                    <ul>
+                        <li><strong>Citation Relevance:</strong> Do citations support the claims made?</li>
+                        <li><strong>Citation Completeness:</strong> Are all claims properly cited?</li>
+                        <li><strong>Source Verification:</strong> Can citations be verified against source documents?
+                        </li>
+                        <li><strong>Citation Precision:</strong> Are citations specific enough to be useful?</li>
+                    </ul>
+
+                    <h3>Refusal Behavior Handling</h3>
+                    <p>AI systems must know when to refuse requests. We evaluate:</p>
+                    <ul>
+                        <li><strong>Appropriate Refusal:</strong> Does the system refuse out-of-scope or unsafe
+                            requests?</li>
+                        <li><strong>Refusal Clarity:</strong> Are refusal messages clear and helpful?</li>
+                        <li><strong>False Refusals:</strong> Does the system refuse valid requests?</li>
+                        <li><strong>Escalation Paths:</strong> Clear paths for handling refused requests</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="responsible-ai-subsection">
+                <h2>Human-in-the-Loop Checkpoints</h2>
+                <div class="subsection-content">
+                    <h3>Where HITL is Implemented</h3>
+                    <p>Human oversight is built into critical decision points:</p>
+                    <ul>
+                        <li><strong>High-Stakes Decisions:</strong> Financial transactions, compliance approvals, legal
+                            interpretations</li>
+                        <li><strong>Low-Confidence Responses:</strong> When AI confidence falls below threshold</li>
+                        <li><strong>Novel Situations:</strong> Scenarios not seen in training data</li>
+                        <li><strong>Policy Violations:</strong> Potential violations of policies or regulations</li>
+                    </ul>
+
+                    <h3>Approval Workflows</h3>
+                    <p>Structured workflows ensure human oversight:</p>
+                    <ul>
+                        <li><strong>Multi-Stage Approval:</strong> Multiple reviewers for critical decisions</li>
+                        <li><strong>Role-Based Approval:</strong> Approval requirements based on decision impact</li>
+                        <li><strong>Time-Bounded Reviews:</strong> Automatic escalation if not reviewed in time</li>
+                        <li><strong>Approval Audit Trails:</strong> Complete records of who approved what and when</li>
+                    </ul>
+
+                    <h3>Escalation Processes</h3>
+                    <p>Clear escalation paths for complex situations:</p>
+                    <ul>
+                        <li><strong>Automatic Escalation:</strong> Escalate based on risk scores or confidence levels
+                        </li>
+                        <li><strong>Manual Escalation:</strong> Users can escalate for human review</li>
+                        <li><strong>Expert Routing:</strong> Route to domain experts based on content type</li>
+                        <li><strong>Feedback Loops:</strong> Learn from escalations to improve future performance</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="responsible-ai-subsection">
+                <h2>Monitoring & Regression Testing</h2>
+                <div class="subsection-content">
+                    <h3>Continuous Monitoring Approach</h3>
+                    <p>Real-time monitoring ensures systems operate correctly:</p>
+                    <ul>
+                        <li><strong>Performance Metrics:</strong> Latency, throughput, error rates</li>
+                        <li><strong>Quality Metrics:</strong> Accuracy, relevance, completeness</li>
+                        <li><strong>Usage Metrics:</strong> User adoption, query patterns, feature usage</li>
+                        <li><strong>Anomaly Detection:</strong> Automated detection of unusual patterns</li>
+                    </ul>
+
+                    <h3>Regression Testing Framework</h3>
+                    <p>Automated testing prevents quality degradation:</p>
+                    <ul>
+                        <li><strong>Baseline Comparisons:</strong> Compare new versions against baseline metrics</li>
+                        <li><strong>Automated Test Suites:</strong> Comprehensive test coverage for critical scenarios
+                        </li>
+                        <li><strong>CI/CD Integration:</strong> Tests run automatically before deployment</li>
+                        <li><strong>Performance Regression Detection:</strong> Alert on performance degradation</li>
+                    </ul>
+
+                    <h3>Alert Thresholds</h3>
+                    <p>Proactive alerting for quality issues:</p>
+                    <ul>
+                        <li><strong>Quality Degradation:</strong> Alert when accuracy drops below threshold</li>
+                        <li><strong>Error Rate Spikes:</strong> Alert on sudden increases in errors</li>
+                        <li><strong>Confidence Drops:</strong> Alert when confidence levels decrease</li>
+                        <li><strong>Usage Anomalies:</strong> Alert on unusual usage patterns</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="responsible-ai-subsection">
+                <h2>Auditability & Reproducibility</h2>
+                <div class="subsection-content">
+                    <h3>Audit Trail Capabilities</h3>
+                    <p>Complete audit trails for compliance and accountability:</p>
+                    <ul>
+                        <li><strong>Query Logging:</strong> Every query logged with timestamp, user, and context</li>
+                        <li><strong>Response Logging:</strong> Complete responses with citations and confidence scores
+                        </li>
+                        <li><strong>Decision Logging:</strong> All AI decisions logged with reasoning</li>
+                        <li><strong>Change Logging:</strong> All configuration and model changes logged</li>
+                    </ul>
+
+                    <h3>Version Control for Prompts & Models</h3>
+                    <p>Complete versioning ensures reproducibility:</p>
+                    <ul>
+                        <li><strong>Prompt Versioning:</strong> Version control for all prompts</li>
+                        <li><strong>Model Versioning:</strong> Track model versions and changes</li>
+                        <li><strong>Configuration Versioning:</strong> Version control for system configurations</li>
+                        <li><strong>Rollback Capabilities:</strong> Quick rollback to previous versions</li>
+                    </ul>
+
+                    <h3>Reproducibility Guarantees</h3>
+                    <p>Reproducible results for debugging and compliance:</p>
+                    <ul>
+                        <li><strong>Deterministic Responses:</strong> Same input produces same output (where applicable)
+                        </li>
+                        <li><strong>Reproducible Evaluations:</strong> Evaluation results can be reproduced</li>
+                        <li><strong>Experiment Tracking:</strong> Track experiments and their results</li>
+                        <li><strong>Documentation:</strong> Complete documentation for reproducibility</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="responsible-ai-subsection">
+                <h2>Bias & Privacy Considerations</h2>
+                <div class="subsection-content">
+                    <h3>Bias Detection and Mitigation</h3>
+                    <p>Proactive bias detection and mitigation:</p>
+                    <ul>
+                        <li><strong>Bias Testing:</strong> Regular testing for bias across demographic groups</li>
+                        <li><strong>Fairness Metrics:</strong> Quantitative measures of fairness</li>
+                        <li><strong>Mitigation Strategies:</strong> Techniques to reduce bias in outputs</li>
+                        <li><strong>Ongoing Monitoring:</strong> Continuous monitoring for bias emergence</li>
+                    </ul>
+
+                    <h3>Privacy-Preserving Techniques</h3>
+                    <p>Privacy protection built into the system:</p>
+                    <ul>
+                        <li><strong>Data Minimization:</strong> Only process necessary data</li>
+                        <li><strong>Anonymization:</strong> Anonymize sensitive data where possible</li>
+                        <li><strong>Access Controls:</strong> Strict access controls to protect privacy</li>
+                        <li><strong>Data Retention:</strong> Automatic deletion of data after retention period</li>
+                    </ul>
+
+                    <h3>Fairness Evaluation</h3>
+                    <p>Comprehensive fairness assessment:</p>
+                    <ul>
+                        <li><strong>Group Fairness:</strong> Equal treatment across demographic groups</li>
+                        <li><strong>Individual Fairness:</strong> Similar individuals treated similarly</li>
+                        <li><strong>Fairness Metrics:</strong> Quantitative fairness measures</li>
+                        <li><strong>Fairness Reporting:</strong> Regular fairness reports for stakeholders</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="responsible-ai-cta">
+                <h2>Learn More</h2>
+                <p>For detailed information about our security practices and compliance frameworks, visit our Security &
+                    Compliance page.</p>
+                <div class="cta-buttons">
+                    <a href="/security" class="btn btn-primary">Security & Compliance</a>
+                    <a href="/contact" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

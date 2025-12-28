@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Ishtar AI{% endblock %}
+
+{% block meta_description %}Learn about Ishtar AI, a New York-based AI consultancy specializing in enterprise-grade
+Generative AI solutions for finance and media organizations.{% endblock %}
+
+{% block og_path %}/about{% endblock %}
+{% block og_title %}About Ishtar AI{% endblock %}
+{% block og_description %}New York-based AI consultancy specializing in enterprise-grade Generative AI, machine
+learning, and LLM systems.{% endblock %}
+
+{% block canonical_path %}/about{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Ishtar AI",
+        "url": "https://ishtar-ai.com",
+        "logo": "https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png",
+        "description": "AI consultancy specializing in enterprise-grade Generative AI solutions",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "addressCountry": "US"
+        },
+        "founder": {
+            "@type": "Person",
+            "name": "David Stroud"
+        }
+    }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>About Ishtar AI</h1>
+        <p>Enterprise AI solutions built for production, not prototypes</p>
+    </div>
+</section>
+
+<section class="about-page-section">
+    <div class="container">
+        <div class="about-why">
+            <h2>Why Ishtar AI Exists</h2>
+            <div class="why-content">
+                <p class="lead-text">Most AI implementations fail to reach production. They start as promising
+                    prototypes but stumble when faced with real-world requirements: security, compliance, reliability,
+                    and measurable business impact.</p>
+
+                <p>Ishtar AI was founded to bridge this gap. We don't build demos—we build production-ready systems that
+                    finance and media organizations can deploy with confidence.</p>
+
+                <h3>Our Thesis</h3>
+                <p>Enterprise AI must be:</p>
+                <ul>
+                    <li><strong>Evidence-first:</strong> Every claim backed by citations and audit trails</li>
+                    <li><strong>Secure by design:</strong> Security and compliance built in, not bolted on</li>
+                    <li><strong>Measurable:</strong> Clear KPIs and evaluation frameworks</li>
+                    <li><strong>Production-ready:</strong> Real systems with monitoring, rollback, and governance</li>
+                </ul>
+
+                <h3>The Problem We Solve</h3>
+                <p>Finance and media organizations need AI solutions that:</p>
+                <ul>
+                    <li>Meet strict compliance requirements (FINRA, SEC, GDPR, industry standards)</li>
+                    <li>Provide audit trails and explainability</li>
+                    <li>Integrate with existing enterprise systems</li>
+                    <li>Deliver measurable ROI, not just "AI magic"</li>
+                    <li>Scale reliably with proper monitoring and evaluation</li>
+                </ul>
+
+                <p>We help these organizations move from AI strategy to deployed, production-ready systems in 6-8 weeks,
+                    not 6-8 months.</p>
+            </div>
+        </div>
+
+        <div class="about-values">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Security-First</h3>
+                    <p>Security and compliance are not afterthoughts—they're foundational. Every system we build
+                        includes encryption, access controls, audit logging, and compliance frameworks from day one.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Evidence-First Systems</h3>
+                    <p>We build AI systems that provide citations, sources, and audit trails. Every claim can be traced
+                        back to evidence. This is critical for finance and compliance use cases.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Auditability</h3>
+                    <p>Complete audit trails for all AI decisions. Who accessed what, when, and why. Version control for
+                        prompts, models, and configurations. Reproducibility guaranteed.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Measurable Outcomes</h3>
+                    <p>We define success metrics upfront and measure them continuously. No vague promises—real KPIs like
+                        "60% reduction in compliance review time" with clear measurement methodology.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Production-Ready Focus</h3>
+                    <p>We ship deployable systems, not notebooks. Every solution includes monitoring, evaluation
+                        pipelines, rollback capabilities, and operational runbooks.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-location">
+            <h2>Location & Contact</h2>
+            <div class="location-content">
+                <p><strong>Based in:</strong> New York, NY</p>
+                <p>Ishtar AI serves clients across the United States and internationally, with a focus on finance and
+                    media organizations in major metropolitan areas.</p>
+                <p>For inquiries, please <a href="/contact">contact us</a> or <a href="/demo">request a demo</a>.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
