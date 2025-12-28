@@ -1,0 +1,158 @@
+<svg viewBox="0 0 1200 750" xmlns="http://www.w3.org/2000/svg">
+  <text x="600" y="25" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1e3a8a">Finance-Grade RAG Copilot Architecture</text>
+  
+  <!-- User -->
+  <rect x="50" y="50" width="130" height="50" rx="6" fill="#1e3a8a" stroke="#1e40af" stroke-width="2"/>
+  <text x="115" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="white">User</text>
+  <text x="115" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="white">Compliance / Research</text>
+  
+  <!-- Copilot UI -->
+  <rect x="220" y="50" width="130" height="50" rx="6" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+  <text x="285" y="80" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="white">Copilot UI</text>
+  
+  <!-- Arrow User to UI -->
+  <path d="M 180 75 L 220 75" stroke="#64748b" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Identity & Entitlements -->
+  <rect x="390" y="50" width="150" height="50" rx="6" fill="#6366f1" stroke="#4f46e5" stroke-width="2"/>
+  <text x="465" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="white">Identity &amp;</text>
+  <text x="465" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="white">Entitlements</text>
+  
+  <!-- Arrow UI to IAM -->
+  <path d="M 350 75 L 390 75" stroke="#64748b" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Query Planner -->
+  <rect x="580" y="50" width="130" height="50" rx="6" fill="#8b5cf6" stroke="#7c3aed" stroke-width="2"/>
+  <text x="645" y="80" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="white">Query Planner</text>
+  
+  <!-- Arrow IAM to QP -->
+  <path d="M 540 75 L 580 75" stroke="#64748b" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Retrieval Layer -->
+  <rect x="750" y="50" width="130" height="50" rx="6" fill="#a855f7" stroke="#9333ea" stroke-width="2"/>
+  <text x="815" y="80" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="white">Retrieval Layer</text>
+  
+  <!-- Arrow QP to RET -->
+  <path d="M 710 75 L 750 75" stroke="#64748b" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Hybrid Search -->
+  <rect x="750" y="140" width="130" height="45" rx="6" fill="#c084fc" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="815" y="162" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Hybrid Search</text>
+  <text x="815" y="177" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#475569">BM25 + Vector</text>
+  
+  <!-- Arrow RET to HYB -->
+  <path d="M 815 100 L 815 140" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Reranker -->
+  <rect x="750" y="215" width="130" height="45" rx="6" fill="#d8b4fe" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="815" y="237" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Reranker</text>
+  
+  <!-- Arrow HYB to RR -->
+  <path d="M 815 185 L 815 215" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Context Builder -->
+  <rect x="750" y="290" width="130" height="45" rx="6" fill="#e9d5ff" stroke="#d8b4fe" stroke-width="1.5"/>
+  <text x="815" y="312" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Context Builder</text>
+  <text x="815" y="327" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#475569">time-slice, dedupe</text>
+  
+  <!-- Arrow RR to CB -->
+  <path d="M 815 260 L 815 290" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- LLM Generation -->
+  <rect x="580" y="365" width="130" height="45" rx="6" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+  <text x="645" y="387" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="white">LLM Generation</text>
+  <text x="645" y="402" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="white">guarded, schema-guided</text>
+  
+  <!-- Arrow CB to LLM -->
+  <path d="M 750 312 L 710 365" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Post-Processing -->
+  <rect x="390" y="365" width="130" height="45" rx="6" fill="#f97316" stroke="#ea580c" stroke-width="2"/>
+  <text x="455" y="387" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="white">Post-Processing</text>
+  <text x="455" y="402" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="white">redaction, tone</text>
+  
+  <!-- Arrow LLM to POST -->
+  <path d="M 580 387 L 520 387" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow POST to UI -->
+  <path d="M 390 387 L 285 75" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Data Plane Box -->
+  <rect x="50" y="450" width="480" height="270" rx="6" fill="#f8fafc" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="4,4" opacity="0.9"/>
+  <text x="290" y="475" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1e3a8a">Data Plane</text>
+  
+  <!-- Sources -->
+  <rect x="70" y="495" width="100" height="45" rx="5" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="120" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Sources</text>
+  <text x="120" y="530" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#475569">Policies,</text>
+  <text x="120" y="540" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#475569">Filings</text>
+  
+  <!-- Ingestion -->
+  <rect x="190" y="495" width="100" height="45" rx="5" fill="#ddd6fe" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="240" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Ingestion</text>
+  <text x="240" y="530" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">+ Parsing</text>
+  
+  <!-- Chunking -->
+  <rect x="310" y="495" width="100" height="45" rx="5" fill="#e9d5ff" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="360" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Chunking</text>
+  <text x="360" y="530" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">+ Metadata</text>
+  
+  <!-- Embedding -->
+  <rect x="70" y="560" width="100" height="45" rx="5" fill="#fce7f3" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="120" y="585" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Embedding</text>
+  
+  <!-- Index -->
+  <rect x="190" y="560" width="100" height="45" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="240" y="580" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Index /</text>
+  <text x="240" y="595" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Vector Store</text>
+  
+  <!-- Arrows in Data Plane -->
+  <path d="M 170 517 L 190 517" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead-small)"/>
+  <path d="M 290 517 L 310 517" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead-small)"/>
+  <path d="M 360 540 L 360 560" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead-small)"/>
+  <path d="M 170 582 L 190 582" stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#arrowhead-small)"/>
+  <path d="M 290 582 L 750 75" stroke="#64748b" stroke-width="1.5" fill="none" stroke-dasharray="2,2" marker-end="url(#arrowhead-small)"/>
+  
+  <!-- Control Plane Box -->
+  <rect x="570" y="450" width="580" height="270" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,4" opacity="0.9"/>
+  <text x="860" y="475" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#dc2626">Control Plane</text>
+  
+  <!-- Audit Logging -->
+  <rect x="590" y="495" width="120" height="45" rx="5" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="650" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Audit Logging</text>
+  <text x="650" y="530" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#475569">prompt, retrieval</text>
+  
+  <!-- Policy Engine -->
+  <rect x="730" y="495" width="120" height="45" rx="5" fill="#fecaca" stroke="#f87171" stroke-width="1.5"/>
+  <text x="790" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Policy Engine</text>
+  <text x="790" y="530" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" fill="#475569">OPA-style rules</text>
+  
+  <!-- Evaluation Harness -->
+  <rect x="870" y="495" width="120" height="45" rx="5" fill="#fca5a5" stroke="#f87171" stroke-width="1.5"/>
+  <text x="930" y="515" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Evaluation</text>
+  <text x="930" y="530" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#1e293b">Harness</text>
+  
+  <!-- Supervision Workflow -->
+  <rect x="590" y="560" width="120" height="45" rx="5" fill="#f87171" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="650" y="580" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="white">Supervision</text>
+  <text x="650" y="595" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="white">Workflow</text>
+  
+  <!-- Control Plane Arrows -->
+  <path d="M 465 75 L 590 517" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-dasharray="3,3" marker-end="url(#arrowhead-small)"/>
+  <path d="M 645 75 L 790 495" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-dasharray="3,3" marker-end="url(#arrowhead-small)"/>
+  <path d="M 815 75 L 815 495" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-dasharray="3,3" marker-end="url(#arrowhead-small)"/>
+  <path d="M 645 387 L 930 517" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-dasharray="3,3" marker-end="url(#arrowhead-small)"/>
+  <path d="M 285 75 L 590 582" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-dasharray="3,3" marker-end="url(#arrowhead-small)"/>
+  <path d="M 455 387 L 590 582" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-dasharray="3,3" marker-end="url(#arrowhead-small)"/>
+  
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#64748b"/>
+    </marker>
+    <marker id="arrowhead-small" markerWidth="8" markerHeight="8" refX="7" refY="2.5" orient="auto">
+      <polygon points="0 0, 8 2.5, 0 5" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>
+
