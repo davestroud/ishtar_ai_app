@@ -374,6 +374,7 @@ body {
 .nav-social {
     display: flex;
     align-items: center;
+    gap: 0.75rem;
     margin-left: 1rem;
 }
 
@@ -420,7 +421,8 @@ body {
     height: 100%;
 }
 
-.nav-social-link .twitter-icon {
+.nav-social-link .twitter-icon,
+.nav-social-link .linkedin-icon {
     width: 20px !important;
     height: 20px !important;
     fill: var(--primary-color) !important;
@@ -429,9 +431,11 @@ body {
 .nav-social-link:hover i,
 .nav-social-link:hover svg,
 .nav-social-link:hover .twitter-icon,
+.nav-social-link:hover .linkedin-icon,
 .nav-social-link:focus i,
 .nav-social-link:focus svg,
-.nav-social-link:focus .twitter-icon {
+.nav-social-link:focus .twitter-icon,
+.nav-social-link:focus .linkedin-icon {
     color: white !important;
     fill: white !important;
 }
@@ -1442,7 +1446,8 @@ body {
 
     .nav-social-link i,
     .nav-social-link svg,
-    .nav-social-link .twitter-icon {
+    .nav-social-link .twitter-icon,
+    .nav-social-link .linkedin-icon {
         font-size: 1.3rem !important;
         width: 18px !important;
         height: 18px !important;
@@ -2006,20 +2011,45 @@ body {
 
 /* Diagram Container for SVG diagrams */
 .blog-post-content .diagram-container {
-    margin: 2rem 0;
-    padding: 1.5rem;
+    margin: 4rem calc(50% - 50vw);
+    padding: 2.5rem;
     background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
+    border: 3px solid var(--border-color);
+    border-radius: 1rem;
     overflow-x: auto;
+    overflow-y: hidden;
     text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    width: 100vw;
+    max-width: 1400px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+@media (min-width: 1400px) {
+    .blog-post-content .diagram-container {
+        margin-left: calc((100vw - 1400px) / 2 - (100vw - 900px) / 2);
+        margin-right: calc((100vw - 1400px) / 2 - (100vw - 900px) / 2);
+        width: 1400px;
+    }
 }
 
 .blog-post-content .diagram-container svg {
     display: block;
     margin: 0 auto;
+    width: 100%;
+    min-width: 1200px;
+    height: auto;
+    max-height: none;
+}
+
+.blog-post-content .diagram-container .diagram-image {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
     max-width: 100%;
     height: auto;
+    border-radius: 0.5rem;
 }
 
 /* Code Example Container */
