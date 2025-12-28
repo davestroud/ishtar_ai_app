@@ -10,11 +10,11 @@ def get_case_studies() -> List[Dict]:
     """Get list of case studies"""
     return [
         {
-            "title": "RAG Copilot Implementation for Financial Compliance",
+            "title": "RAG Copilot Implementation for Policy & Compliance Research",
             "slug": "rag-copilot-financial-compliance",
-            "industry": "Finance",
-            "client": "Top-10 US Bank (Asset Management Division)",
-            "challenge": "The client needed to streamline compliance research and policy lookup across multiple regulatory frameworks. Manual processes were time-consuming and error-prone, with compliance officers spending 60% of their time on research tasks.",
+            "industry": "Regulated Enterprise",
+            "client": "Top-10 U.S. enterprise (risk & compliance division)",
+            "challenge": "The client needed to streamline policy interpretation, evidence gathering, and internal knowledge lookup across multiple governance frameworks. Manual processes were time-consuming and error-prone, with reviewers spending significant time searching, cross-referencing, and documenting decisions.",
             "solution": "We implemented a RAG copilot system that integrated with their existing knowledge base, providing instant access to compliance information with proper citations and evidence trails. The system included permission-aware retrieval, audit logging, and evaluation baselines.",
             "results": "Reduced compliance research time by 75%, improved accuracy of policy interpretations, and enabled real-time compliance checks.",
             "metrics": {
@@ -51,7 +51,7 @@ def get_case_studies() -> List[Dict]:
                 "audit_trails": "Complete audit logging of all queries and responses",
                 "permissions": "RBAC with source-level entitlements",
                 "evaluation": "Automated groundedness and citation accuracy testing",
-                "compliance": "FINRA and SEC record-keeping compliance",
+                "compliance": "Record-keeping controls, retention support, and audit-ready traceability",
             },
             "artifacts": {
                 "screenshots": ["/static/img/case-study-placeholder.jpg"],
@@ -114,8 +114,8 @@ def get_case_studies() -> List[Dict]:
         {
             "title": "LLMOps Foundation for Enterprise AI Platform",
             "slug": "llmops-enterprise-platform",
-            "industry": "Finance",
-            "client": "Fortune 500 Financial Services",
+            "industry": "Regulated Enterprise",
+            "client": "Fortune 500 enterprise",
             "challenge": "Multiple AI applications lacked centralized monitoring, evaluation, and governance, making it difficult to ensure reliability and compliance. Incidents were frequent and deployments were slow due to manual processes.",
             "solution": "We established a comprehensive LLMOps foundation with evaluation pipelines, monitoring, versioning, and CI/CD gating for all AI applications. The platform included automated regression testing, prompt/model versioning, and rollback capabilities.",
             "results": "Achieved 99.9% uptime, reduced incidents by 80%, and enabled rapid iteration with confidence in production deployments.",

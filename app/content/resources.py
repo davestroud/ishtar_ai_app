@@ -10,9 +10,9 @@ def get_resources() -> List[Dict]:
     """Get list of available resources"""
     return [
         {
-            "title": "RAG Copilots: A Complete Guide for Financial Services",
+            "title": "RAG Copilots: A Complete Guide for Regulated Enterprises",
             "type": "whitepaper",
-            "description": "Comprehensive guide to implementing RAG copilots in financial services, covering architecture, compliance, and best practices.",
+            "description": "Comprehensive guide to implementing RAG copilots in regulated environments, covering architecture, governance, and production best practices.",
             "file_path": "/static/resources/rag-copilots-guide.pdf",
             "category": "Whitepapers",
             "gated": True,
@@ -25,13 +25,13 @@ def get_resources() -> List[Dict]:
                 "Compliance and Security Considerations",
                 "Implementation Best Practices",
                 "Evaluation and Monitoring",
-                "Case Studies"
+                "Case Studies",
             ],
             "key_takeaways": [
-                "How to design RAG systems for financial services",
-                "Compliance requirements and how to meet them",
-                "Best practices for evaluation and monitoring"
-            ]
+                "How to design RAG systems for regulated environments",
+                "Governance requirements and how to meet them",
+                "Best practices for evaluation and monitoring",
+            ],
         },
         {
             "title": "AI Governance Framework Template",
@@ -48,13 +48,13 @@ def get_resources() -> List[Dict]:
                 "Policy Templates",
                 "Risk Assessment Framework",
                 "Evaluation Criteria",
-                "Compliance Checklist"
+                "Compliance Checklist",
             ],
             "key_takeaways": [
                 "Ready-to-use governance framework",
                 "Policy templates for AI systems",
-                "Risk assessment methodology"
-            ]
+                "Risk assessment methodology",
+            ],
         },
         {
             "title": "Synthetic Media Compliance Checklist",
@@ -71,13 +71,13 @@ def get_resources() -> List[Dict]:
                 "Provenance Tracking",
                 "Brand Safety Checks",
                 "Compliance Checklist",
-                "Best Practices"
+                "Best Practices",
             ],
             "key_takeaways": [
                 "Complete compliance checklist",
                 "Disclosure workflow guidance",
-                "Brand safety considerations"
-            ]
+                "Brand safety considerations",
+            ],
         },
         {
             "title": "LLMOps Best Practices Guide",
@@ -95,13 +95,13 @@ def get_resources() -> List[Dict]:
                 "Monitoring and Alerting",
                 "Version Control",
                 "CI/CD Integration",
-                "Best Practices"
+                "Best Practices",
             ],
             "key_takeaways": [
                 "How to build evaluation pipelines",
                 "Monitoring and alerting strategies",
-                "CI/CD integration patterns"
-            ]
+                "CI/CD integration patterns",
+            ],
         },
         {
             "title": "Agent Automation ROI Calculator",
@@ -112,18 +112,18 @@ def get_resources() -> List[Dict]:
             "gated": False,
             "download_count": 0,
             "estimated_time": "15 minutes",
-            "target_audience": "Operations Teams, Finance Teams, Process Owners",
+            "target_audience": "Operations Teams, BizOps Leaders, Process Owners",
             "table_of_contents": [
                 "Input Parameters",
                 "Cost Calculations",
                 "Time Savings Analysis",
-                "ROI Projections"
+                "ROI Projections",
             ],
             "key_takeaways": [
                 "Estimate automation ROI",
                 "Calculate time and cost savings",
-                "Build business case for automation"
-            ]
+                "Build business case for automation",
+            ],
         },
     ]
 

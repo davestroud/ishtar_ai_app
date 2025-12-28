@@ -7,7 +7,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from app.middleware import SecurityHeadersMiddleware
 
 # Initialize FastAPI app
-app = FastAPI(title="Ishtar AI", description="AI Solutions for Finance and Media")
+app = FastAPI(title="Ishtar AI", description="AI Solutions for Regulated Enterprises and Media")
 
 # Add security headers middleware
 app.add_middleware(SecurityHeadersMiddleware)

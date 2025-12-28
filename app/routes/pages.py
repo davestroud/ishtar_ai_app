@@ -32,7 +32,7 @@ async def services(request: Request):
 
 @router.get("/finance", response_class=HTMLResponse)
 async def finance(request: Request):
-    """Finance focus page"""
+    """Regulated Enterprise Solutions page"""
     return templates.TemplateResponse("finance.html", get_template_context(request))
 
 
@@ -114,7 +114,7 @@ def get_blog_posts():
     """Get list of blog posts for RSS and blog listing"""
     return [
         {
-            "title": "The Future of RAG Copilots in Financial Services",
+            "title": "The Future of RAG Copilots in Regulated Enterprises",
             "excerpt": "How Retrieval-Augmented Generation is reshaping compliance and research into evidence-native workflows",
             "date": "2024-01-15",
             "slug": "future-of-rag-copilots-financial-services",
@@ -152,7 +152,7 @@ async def blog_post(request: Request, slug: str):
     # Article content mapping
     articles = {
         "future-of-rag-copilots-financial-services": {
-            "title": "The Future of RAG Copilots in Financial Services",
+            "title": "The Future of RAG Copilots in Regulated Enterprises",
             "excerpt": "How Retrieval-Augmented Generation is reshaping compliance and research into evidence-native workflows",
             "date": "2024-01-15",
             "author": "Ishtar AI Team",
@@ -160,7 +160,7 @@ async def blog_post(request: Request, slug: str):
             "content": get_rag_copilots_article_content(),
         },
         "future-of-rag-copilots-finance": {
-            "title": "The Future of RAG Copilots in Financial Services",
+            "title": "The Future of RAG Copilots in Regulated Enterprises",
             "excerpt": "How Retrieval-Augmented Generation is reshaping compliance and research into evidence-native workflows",
             "date": "2024-01-15",
             "author": "Ishtar AI Team",
@@ -198,7 +198,7 @@ async def faq(request: Request):
         "general": [
             {
                 "question": "What industries do you serve?",
-                "answer": "We specialize in finance and media/advertising organizations, helping them implement enterprise-grade AI solutions.",
+                "answer": "We specialize in regulated enterprises and media/advertising organizations, helping them implement enterprise-grade AI solutions.",
             },
             {
                 "question": "How long does a typical implementation take?",

@@ -7,7 +7,7 @@
 {% block content %}
 <section class="page-header">
     <div class="container">
-        <div class="case-study-industry-badge industry-{{ case_study.industry|lower }}">
+        <div class="case-study-industry-badge industry-{{ case_study.industry|lower|replace(' ', '-') }}">
             {{ case_study.industry }}
         </div>
         <h1>{{ case_study.title }}</h1>

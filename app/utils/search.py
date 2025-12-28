@@ -192,8 +192,8 @@ def _build_index(index: SearchIndex):
             "type": "page",
         },
         {
-            "title": "Finance Solutions",
-            "content": "Finance RAG copilots policy research agent automation operations workflows governance audit trails evaluation",
+            "title": "Regulated Enterprise Solutions",
+            "content": "Regulated enterprise RAG copilots policy research agent automation operations workflows governance audit trails evaluation",
             "url": "/finance",
             "type": "page",
         },
@@ -235,7 +235,7 @@ def _build_index(index: SearchIndex):
     faqs = [
         {
             "title": "What industries do you serve?",
-            "content": "We specialize in finance and media/advertising organizations",
+            "content": "We specialize in regulated enterprises and media/advertising organizations",
             "url": "/faq#industries",
             "type": "faq",
         },

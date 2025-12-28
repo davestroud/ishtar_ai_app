@@ -9,7 +9,7 @@
     /* 
      * COLOR SCHEME OPTIONS - Change values below to switch schemes
      * 
-     * Option 1: Deep Navy & Gold (Premium Finance) - CURRENT
+     * Option 1: Deep Navy & Gold (Premium Enterprise) - CURRENT
      * Option 2: Forest Green & Slate (Growth & Stability)
      * Option 3: Deep Purple & Teal (Modern Enterprise)
      * Option 4: Charcoal & Blue (Corporate Professional)
@@ -17,7 +17,7 @@
      * Option 6: Indigo & Silver (Balanced Professional)
      */
 
-    /* Option 1: Deep Navy & Gold (Premium Finance) */
+    /* Option 1: Deep Navy & Gold (Premium Enterprise) */
     --primary-color: #1e3a8a;
     --primary-dark: #1e40af;
     --primary-light: #3b82f6;
@@ -3842,7 +3842,7 @@ body {
     letter-spacing: 0.05em;
 }
 
-.industry-finance {
+.industry-regulated-enterprise {
     background-color: rgba(59, 130, 246, 0.1);
     color: var(--primary-color);
 }

@@ -25,7 +25,12 @@ def get_blog_posts_for_rss():
                     post.get("date", "2024-01-15")
                 ),
                 "author": post.get("author", "Ishtar AI Team"),
-                "categories": ["AI", "Finance", "RAG", "LLM"],  # Default categories
+                "categories": [
+                    "AI",
+                    "Regulated Enterprise",
+                    "RAG",
+                    "LLM",
+                ],  # Default categories
             }
         )
 

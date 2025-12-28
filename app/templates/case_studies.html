@@ -2,7 +2,8 @@
 
 {% block title %}Case Studies - Ishtar AI{% endblock %}
 
-{% block meta_description %}Explore case studies showcasing successful AI implementations for finance and media
+{% block meta_description %}Explore case studies showcasing successful AI implementations for regulated enterprises and
+media
 organizations. See real results from RAG copilots, agent automation, and LLMOps projects.{% endblock %}
 
 {% block content %}
@@ -19,8 +20,9 @@ organizations. See real results from RAG copilots, agent automation, and LLMOps 
             <h3>Filter by Industry</h3>
             <div class="filter-buttons">
                 <a href="/case-studies" class="filter-btn {% if selected_industry == 'All' %}active{% endif %}">All</a>
-                <a href="/case-studies?industry=Finance"
-                    class="filter-btn {% if selected_industry == 'Finance' %}active{% endif %}">Finance</a>
+                <a href="/case-studies?industry=Regulated Enterprise"
+                    class="filter-btn {% if selected_industry == 'Regulated Enterprise' %}active{% endif %}">Regulated
+                    Enterprise</a>
                 <a href="/case-studies?industry=Media"
                     class="filter-btn {% if selected_industry == 'Media' %}active{% endif %}">Media</a>
             </div>
@@ -29,7 +31,7 @@ organizations. See real results from RAG copilots, agent automation, and LLMOps 
         <div class="case-studies-grid">
             {% for case_study in case_studies %}
             <div class="case-study-card">
-                <div class="case-study-industry-badge industry-{{ case_study.industry|lower }}">
+                <div class="case-study-industry-badge industry-{{ case_study.industry|lower|replace(' ', '-') }}">
                     {{ case_study.industry }}
                 </div>
                 <h3><a href="/case-studies/{{ case_study.slug }}">{{ case_study.title }}</a></h3>

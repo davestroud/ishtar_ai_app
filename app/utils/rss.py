@@ -39,7 +39,7 @@ def generate_rss_feed(
     ET.SubElement(channel, "title").text = "Ishtar AI Blog"
     ET.SubElement(channel, "link").text = f"{site_url}/blog"
     ET.SubElement(channel, "description").text = (
-        "AI solutions for finance and media industries. Latest insights on RAG copilots, agent automation, LLMOps, and AI security."
+        "AI solutions for regulated enterprises and media organizations. Latest insights on RAG copilots, agent automation, LLMOps, and AI security."
     )
     ET.SubElement(channel, "language").text = "en-US"
     ET.SubElement(channel, "lastBuildDate").text = datetime.utcnow().strftime(
