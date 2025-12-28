@@ -427,3 +427,53 @@ function showError(input, message) {
         }
     }, trackInterval);
 })();
+
+// Pricing Page Analytics
+(function () {
+    if (window.location.pathname === '/pricing') {
+        // Track pricing page view
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                'event_category': 'Pricing',
+                'event_label': 'Pricing Page'
+            });
+        }
+
+        // Track pricing card interactions
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        pricingCards.forEach((card, index) => {
+            const cardTitle = card.querySelector('h3')?.textContent || `Pricing Tier ${index + 1}`;
+
+            // Track card views (when scrolled into view)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'pricing_card_view', {
+                                'event_category': 'Pricing',
+                                'event_label': cardTitle
+                            });
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(card);
+
+            // Track CTA clicks
+            const ctaButton = card.querySelector('.pricing-cta');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function () {
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'pricing_cta_click', {
+                            'event_category': 'Pricing',
+                            'event_label': cardTitle,
+                            'value': index + 1
+                        });
+                    }
+                });
+            }
+        });
+    }
+})();

@@ -1238,6 +1238,15 @@ body {
     z-index: 1;
 }
 
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
 /* Footer */
 .footer {
     background-color: var(--text-color);
@@ -2126,5 +2135,224 @@ body {
     .social-share-btn {
         width: 40px;
         height: 40px;
+    }
+}
+
+/* Pricing Section */
+.pricing-hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.pricing-philosophy {
+    padding: 4rem 0;
+    background-color: var(--bg-light);
+}
+
+.pricing-philosophy h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.philosophy-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.philosophy-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.philosophy-item p {
+    color: var(--text-light);
+    margin: 0;
+}
+
+.pricing-section {
+    padding: 4rem 0;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.pricing-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.15);
+    transform: translateY(-4px);
+}
+
+.pricing-card-featured {
+    border-color: var(--accent-color);
+    border-width: 3px;
+}
+
+.pricing-card-featured::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-color);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.pricing-card-header {
+    margin-bottom: 1rem;
+}
+
+.pricing-card-header h3 {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.pricing-duration {
+    display: inline-block;
+    background: var(--bg-light);
+    color: var(--text-light);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.pricing-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.pricing-period {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.pricing-description {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.pricing-best-for {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.pricing-includes {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.pricing-includes h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.pricing-includes ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pricing-includes li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-color);
+}
+
+.pricing-includes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.pricing-cta {
+    width: 100%;
+    margin-top: auto;
+    text-align: center;
+}
+
+.pricing-summary {
+    padding: 4rem 0;
+    background-color: var(--bg-light);
+    text-align: center;
+}
+
+.pricing-summary h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.summary-text {
+    font-size: 1.125rem;
+    color: var(--text-color);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Responsive Pricing */
+@media (max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-amount {
+        font-size: 1.75rem;
+    }
+
+    .pricing-card-header h3 {
+        font-size: 1.125rem;
     }
 }

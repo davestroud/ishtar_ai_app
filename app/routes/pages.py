@@ -140,6 +140,12 @@ async def faq(request: Request):
     )
 
 
+@router.get("/pricing", response_class=HTMLResponse)
+async def pricing(request: Request):
+    """Pricing page"""
+    return templates.TemplateResponse("pricing.html", get_template_context(request))
+
+
 @router.post("/newsletter", response_class=HTMLResponse)
 async def subscribe_newsletter(request: Request, email: str = Form(...)):
     """Handle newsletter subscription"""
