@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - Ishtar AI Blog{% endblock %}
+
+{% block meta_description %}{{ post.excerpt }}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <div class="blog-post-meta">
+            <span>{{ post.date }}</span>
+            <span>By {{ post.author }}</span>
+        </div>
+    </div>
+</section>
+
+<article class="blog-post">
+    <div class="container">
+        <div class="blog-post-content">
+            {{ post.content|safe }}
+            <p><em>This is a placeholder blog post. Content coming soon.</em></p>
+        </div>
+        <div class="blog-post-footer">
+            <a href="/blog" class="btn btn-secondary">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+{% endblock %}

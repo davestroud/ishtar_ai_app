@@ -62,7 +62,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwE99gUGQ1M0VlH9QxY1QHZzTl5XKKS0NaoMZElT3BWOCsS3oV8ocVpg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/static/css/styles.css?v=10" type="text/css">
+    <link rel="stylesheet" href="/static/css/styles.css?v=11" type="text/css">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -131,6 +131,8 @@
                 <li><a href="/services">Services</a></li>
                 <li><a href="/finance">Finance</a></li>
                 <li><a href="/media-ads">Media & Ads</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/faq">FAQ</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
             <div class="nav-social">
@@ -155,6 +157,19 @@
         {% block content %}{% endblock %}
     </main>
 
+    <!-- Social Sharing Buttons -->
+    <div class="social-share" id="social-share" style="display: none;">
+        <button class="social-share-btn" data-platform="twitter" aria-label="Share on Twitter">
+            <i class="fab fa-twitter"></i>
+        </button>
+        <button class="social-share-btn" data-platform="linkedin" aria-label="Share on LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </button>
+        <button class="social-share-btn" data-platform="email" aria-label="Share via Email">
+            <i class="fas fa-envelope"></i>
+        </button>
+    </div>
+
     <!-- Back to Top Button -->
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
@@ -174,6 +189,8 @@
                         <li><a href="/services">Services</a></li>
                         <li><a href="/finance">Finance Solutions</a></li>
                         <li><a href="/media-ads">Media & Advertising</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/faq">FAQ</a></li>
                         <li><a href="/contact">Contact Us</a></li>
                     </ul>
                 </div>
@@ -195,6 +212,18 @@
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-consent-content">
+            <p>We use cookies to enhance your browsing experience and analyze site traffic. By continuing to use this
+                site, you consent to our use of cookies. <a href="/privacy">Learn more</a></p>
+            <div class="cookie-consent-buttons">
+                <button id="accept-cookies" class="btn btn-primary">Accept</button>
+                <button id="decline-cookies" class="btn btn-secondary">Decline</button>
+            </div>
+        </div>
+    </div>
 
     <script src="/static/js/main.js"></script>
 

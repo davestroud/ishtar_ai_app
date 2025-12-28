@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - Ishtar AI{% endblock %}
+
+{% block meta_description %}Insights and articles on AI solutions for finance and media industries.{% endblock %}
+
+{% block og_path %}/blog{% endblock %}
+{% block og_title %}Blog - Ishtar AI{% endblock %}
+{% block og_description %}Latest insights on AI solutions for finance and media.{% endblock %}
+
+{% block canonical_path %}/blog{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Blog</h1>
+        <p>Insights and articles on AI solutions for finance and media</p>
+    </div>
+</section>
+
+<section class="blog-section">
+    <div class="container">
+        <div class="blog-grid">
+            {% for post in posts %}
+            <article class="blog-card">
+                <div class="blog-card-content">
+                    <h2><a href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
+                    <p class="blog-excerpt">{{ post.excerpt }}</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">{{ post.date }}</span>
+                        <span class="blog-author">By {{ post.author }}</span>
+                    </div>
+                    <a href="/blog/{{ post.slug }}" class="btn-link">Read More →</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

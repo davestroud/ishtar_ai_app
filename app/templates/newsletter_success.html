@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Newsletter Subscription - Ishtar AI{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Thank You!</h1>
+    </div>
+</section>
+
+<section class="newsletter-success">
+    <div class="container">
+        <div class="success-content">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h2>You're Subscribed!</h2>
+            <p>Thank you for subscribing to our newsletter. We'll send you the latest insights on AI solutions for
+                finance and media industries.</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <a href="/" class="btn btn-primary">Return to Homepage</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

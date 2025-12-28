@@ -16,6 +16,8 @@ async def sitemap():
         {"loc": "/services", "changefreq": "monthly", "priority": "0.9"},
         {"loc": "/finance", "changefreq": "monthly", "priority": "0.8"},
         {"loc": "/media-ads", "changefreq": "monthly", "priority": "0.8"},
+        {"loc": "/blog", "changefreq": "weekly", "priority": "0.8"},
+        {"loc": "/faq", "changefreq": "monthly", "priority": "0.7"},
         {"loc": "/contact", "changefreq": "monthly", "priority": "0.7"},
         {"loc": "/privacy", "changefreq": "yearly", "priority": "0.3"},
         {"loc": "/terms", "changefreq": "yearly", "priority": "0.3"},

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ - Ishtar AI{% endblock %}
+
+{% block meta_description %}Frequently asked questions about Ishtar AI's services and solutions.{% endblock %}
+
+{% block og_path %}/faq{% endblock %}
+{% block og_title %}FAQ - Ishtar AI{% endblock %}
+
+{% block canonical_path %}/faq{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {% for faq in faqs %}
+        {
+            "@type": "Question",
+            "name": "{{ faq.question }}",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ faq.answer }}"
+            }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to common questions about our services</p>
+    </div>
+</section>
+
+<section class="faq-section">
+    <div class="container">
+        <div class="faq-list">
+            {% for faq in faqs %}
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <h3>{{ faq.question }}</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>{{ faq.answer }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="faq-cta">
+            <p>Still have questions?</p>
+            <a href="/contact" class="btn btn-primary">Contact Us</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

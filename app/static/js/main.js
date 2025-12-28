@@ -243,3 +243,187 @@ function showError(input, message) {
     errorDiv.style.animation = 'slideDown 0.3s ease-out';
     input.parentElement.appendChild(errorDiv);
 }
+
+// Cookie Consent
+(function () {
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const declineBtn = document.getElementById('decline-cookies');
+
+    if (!cookieConsent) return;
+
+    // Check if user has already made a choice
+    const consent = localStorage.getItem('cookie-consent');
+    if (!consent) {
+        cookieConsent.style.display = 'block';
+    }
+
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function () {
+            localStorage.setItem('cookie-consent', 'accepted');
+            cookieConsent.style.display = 'none';
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'cookie_consent', {
+                    'event_category': 'Privacy',
+                    'event_label': 'Accepted'
+                });
+            }
+        });
+    }
+
+    if (declineBtn) {
+        declineBtn.addEventListener('click', function () {
+            localStorage.setItem('cookie-consent', 'declined');
+            cookieConsent.style.display = 'none';
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'cookie_consent', {
+                    'event_category': 'Privacy',
+                    'event_label': 'Declined'
+                });
+            }
+        });
+    }
+})();
+
+// FAQ Accordion
+(function () {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function () {
+            const faqItem = this.closest('.faq-item');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+            // Close all other items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle current item
+            if (isExpanded) {
+                faqItem.classList.remove('active');
+                this.setAttribute('aria-expanded', 'false');
+            } else {
+                faqItem.classList.add('active');
+                this.setAttribute('aria-expanded', 'true');
+
+                // Track FAQ view
+                if (typeof gtag !== 'undefined') {
+                    const questionText = this.querySelector('h3').textContent;
+                    gtag('event', 'faq_view', {
+                        'event_category': 'Engagement',
+                        'event_label': questionText
+                    });
+                }
+            }
+        });
+    });
+})();
+
+// Social Sharing
+(function () {
+    const socialShare = document.getElementById('social-share');
+    const shareButtons = document.querySelectorAll('.social-share-btn');
+
+    // Show share buttons on blog posts
+    if (window.location.pathname.includes('/blog/')) {
+        if (socialShare) {
+            socialShare.style.display = 'flex';
+        }
+    }
+
+    shareButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const platform = this.getAttribute('data-platform');
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            let shareUrl = '';
+
+            switch (platform) {
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    break;
+                case 'email':
+                    shareUrl = `mailto:?subject=${title}&body=${url}`;
+                    break;
+            }
+
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+
+                // Track social share
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'share', {
+                        'method': platform,
+                        'content_type': 'blog_post',
+                        'item_id': window.location.pathname
+                    });
+                }
+            }
+        });
+    });
+})();
+
+// Newsletter Form Tracking
+(function () {
+    const newsletterForms = document.querySelectorAll('.newsletter-form');
+    newsletterForms.forEach(form => {
+        form.addEventListener('submit', function (e) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'newsletter_signup', {
+                    'event_category': 'Lead Generation',
+                    'event_label': 'Newsletter Subscription'
+                });
+            }
+        });
+    });
+})();
+
+// Enhanced GA4 Tracking - Page View with Scroll Depth
+(function () {
+    let maxScroll = 0;
+    const scrollThresholds = [25, 50, 75, 90, 100];
+
+    window.addEventListener('scroll', function () {
+        const scrollPercent = Math.round(
+            (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+        );
+
+        if (scrollPercent > maxScroll) {
+            scrollThresholds.forEach(threshold => {
+                if (scrollPercent >= threshold && maxScroll < threshold) {
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'scroll_depth', {
+                            'event_category': 'Engagement',
+                            'event_label': `${threshold}%`,
+                            'value': threshold
+                        });
+                    }
+                }
+            });
+            maxScroll = scrollPercent;
+        }
+    });
+})();
+
+// Track Time on Page
+(function () {
+    let startTime = Date.now();
+    const trackInterval = 30000; // 30 seconds
+
+    setInterval(function () {
+        const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+        if (typeof gtag !== 'undefined' && timeOnPage % 30 === 0) {
+            gtag('event', 'time_on_page', {
+                'event_category': 'Engagement',
+                'event_label': '30 seconds',
+                'value': timeOnPage
+            });
+        }
+    }, trackInterval);
+})();
