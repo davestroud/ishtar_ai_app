@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     csrf_secret_key: Optional[str] = None
 
     # Analytics
-    google_analytics_id: Optional[str] = None
+    google_analytics_id: Optional[str] = "G-KRTEM16GDJ"
     plausible_domain: Optional[str] = None
 
     class Config:
