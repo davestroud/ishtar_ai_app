@@ -65,7 +65,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwE99gUGQ1M0VlH9QxY1QHZzTl5XKKS0NaoMZElT3BWOCsS3oV8ocVpg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/static/css/styles.css?v=28" type="text/css">
+    <link rel="stylesheet" href="/static/css/styles.css?v=31" type="text/css">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -76,6 +76,14 @@
         "url": "https://ishtar-ai.com",
         "logo": "https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png",
         "description": "AI solutions for regulated enterprises and media organizations. Transform your operations with intelligent automation, compliance, and governance.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1325 Avenue of Americas, 27th and 28th Floors",
+            "addressLocality": "New York",
+            "addressRegion": "NY",
+            "postalCode": "10019",
+            "addressCountry": "US"
+        },
         "sameAs": [
             "https://x.com/ishtar_ai",
             "https://www.linkedin.com/company/ishtar-ai"
@@ -250,34 +258,36 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
+                <div class="footer-section footer-brand">
                     <img src="/static/img/ishtar_ai_logo_1_400w.png" alt="Ishtar AI" class="footer-logo" width="200"
                         height="auto" loading="lazy">
-                    <p>AI solutions for regulated enterprises and media organizations.</p>
+                    <p class="footer-tagline">AI solutions for regulated enterprises and media organizations.</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
+                <div class="footer-section footer-links">
+                    <h4>Links</h4>
                     <ul>
                         <li><a href="/services">Services</a></li>
                         <li><a href="/pricing">Pricing</a></li>
-                        <li><a href="/finance">Regulated Enterprise Solutions</a></li>
-                        <li><a href="/media-ads">Media & Advertising</a></li>
+                        <li><a href="/finance">Solutions</a></li>
                         <li><a href="/case-studies">Case Studies</a></li>
-                        <li><a href="/security">Security & Compliance</a></li>
-                        <li><a href="/trust-center">Trust Center</a></li>
+                        <li><a href="/security">Security</a></li>
                         <li><a href="/resources">Resources</a></li>
                         <li><a href="/blog">Blog</a></li>
-                        <li><a href="/faq">FAQ</a></li>
                         <li><a href="/about">About</a></li>
-                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
+                <div class="footer-section footer-info">
+                    <h4>Legal & Office</h4>
+                    <ul class="footer-legal">
                         <li><a href="/privacy">Privacy Policy</a></li>
                         <li><a href="/terms">Terms of Service</a></li>
                     </ul>
+                    <address class="footer-address">
+                        1325 Avenue of Americas<br>
+                        27th and 28th Floors<br>
+                        New York, NY 10019
+                    </address>
                 </div>
             </div>
             <div class="footer-bottom">
