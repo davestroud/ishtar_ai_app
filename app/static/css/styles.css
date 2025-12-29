@@ -827,8 +827,8 @@ body {
 .resource-metadata {
     margin: 1rem 0;
     padding: 0.75rem 0;
-    border-top: 1px solid #e5e7eb;
-    border-bottom: 1px solid #e5e7eb;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .resource-meta-item {
@@ -849,7 +849,7 @@ body {
 .resource-takeaways {
     margin: 1rem 0;
     padding: 1rem;
-    background: #f8f9fa;
+    background: var(--bg-light);
     border-radius: 6px;
 }
 
@@ -3315,9 +3315,32 @@ body {
 [data-theme="dark"] .pricing-card,
 [data-theme="dark"] .blog-card,
 [data-theme="dark"] .resource-card,
-[data-theme="dark"] .case-study-card {
+[data-theme="dark"] .case-study-card,
+[data-theme="dark"] .solution-card {
     background-color: var(--bg-light);
     border-color: var(--border-color);
+}
+
+[data-theme="dark"] .solution-card h2 {
+    color: var(--primary-light);
+}
+
+[data-theme="dark"] .solution-card p,
+[data-theme="dark"] .solution-card li {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .use-case-item {
+    background-color: var(--bg-light);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .use-case-item h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .use-case-item p {
+    color: var(--text-color);
 }
 
 [data-theme="dark"] .form-group input,
@@ -4076,9 +4099,82 @@ body {
 [data-theme="dark"] .case-study-card,
 [data-theme="dark"] .metric-card,
 [data-theme="dark"] .case-study-cta,
-[data-theme="dark"] .demo-calendly {
+[data-theme="dark"] .demo-calendly,
+[data-theme="dark"] .trust-resource-card,
+[data-theme="dark"] .trust-center-cta,
+[data-theme="dark"] .security-cta {
     background-color: var(--bg-light);
     border-color: var(--border-color);
+}
+
+[data-theme="dark"] .trust-resource-content h2,
+[data-theme="dark"] .security-subsection h2 {
+    color: var(--primary-light);
+}
+
+[data-theme="dark"] .subprocessors-table table {
+    background-color: var(--bg-light);
+}
+
+[data-theme="dark"] .subprocessors-table tbody tr:hover {
+    background-color: var(--bg-color);
+}
+
+[data-theme="dark"] .subprocessors-table td {
+    border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .trust-resource-details .subprocessors-table table {
+    background-color: var(--bg-light);
+}
+
+[data-theme="dark"] .trust-resource-details .subprocessors-table tbody tr:hover {
+    background-color: var(--bg-color);
+}
+
+[data-theme="dark"] .resource-card {
+    background-color: var(--bg-light);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .resource-card h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .resource-description,
+[data-theme="dark"] .resource-metadata,
+[data-theme="dark"] .resource-meta-item {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .resource-toc,
+[data-theme="dark"] .resource-takeaways {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .resource-toc h4,
+[data-theme="dark"] .resource-takeaways h4 {
+    color: var(--primary-light);
+}
+
+[data-theme="dark"] .resource-toc ul,
+[data-theme="dark"] .resource-takeaways ul {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .resource-toc li,
+[data-theme="dark"] .resource-takeaways li {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .resource-meta {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .resource-category {
+    color: var(--text-light);
 }
 
 @media (max-width: 768px) {
@@ -4197,7 +4293,7 @@ body {
 .subprocessors-table table {
     width: 100%;
     border-collapse: collapse;
-    background-color: white;
+    background-color: var(--bg-light);
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -4219,7 +4315,7 @@ body {
 
 .subprocessors-table td {
     padding: 1rem;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border-color);
     color: var(--text-color);
     font-size: 0.9375rem;
 }
@@ -4229,7 +4325,7 @@ body {
 }
 
 .subprocessors-table tbody tr:hover {
-    background-color: #f8f9fa;
+    background-color: var(--bg-light);
 }
 
 .security-cta {
@@ -4465,7 +4561,7 @@ body {
 .trust-resource-details .subprocessors-table table {
     width: 100%;
     border-collapse: collapse;
-    background-color: white;
+    background-color: var(--bg-light);
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -4497,7 +4593,7 @@ body {
 }
 
 .trust-resource-details .subprocessors-table tbody tr:hover {
-    background-color: #f8f9fa;
+    background-color: var(--bg-light);
 }
 
 @media (max-width: 768px) {

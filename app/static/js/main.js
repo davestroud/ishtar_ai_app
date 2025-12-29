@@ -501,11 +501,8 @@ function showError(input, message) {
         if (savedTheme) {
             return savedTheme;
         }
-        // Check system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-        }
-        return 'light';
+        // Default to dark mode
+        return 'dark';
     }
 
     // Apply theme
