@@ -132,12 +132,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!prefersReducedMotion) {
         // Observe headings for text reveal animations
-        const textRevealElements = document.querySelectorAll('h1:not(.hero h1), h2:not(.hero h2), h3:not(.hero h3), .animate-text-reveal');
+        const textRevealElements = document.querySelectorAll('h1:not(.hero h1), h2:not(.hero h2), h3:not(.hero h3), .logos-intro, .customer-logos-placeholder');
         const textObserver = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    // Add animate-text-reveal class to trigger CSS animations
+                    if (entry.target.classList.contains('logos-intro') || entry.target.classList.contains('customer-logos-placeholder')) {
+                        entry.target.classList.add('animate-text-reveal');
+                    } else {
+                        // For headings without the class, use inline styles
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
                     textObserver.unobserve(entry.target);
                 }
             });
