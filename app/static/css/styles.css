@@ -4469,6 +4469,77 @@ label,
     font-size: 1.1rem;
 }
 
+/* Architecture Details Section */
+.architecture-details {
+    margin-top: 1.5rem;
+}
+
+.architecture-details h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.architecture-details h3:first-child {
+    margin-top: 0;
+}
+
+.architecture-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+}
+
+.architecture-details ul:last-of-type {
+    margin-bottom: 2.5rem;
+}
+
+.architecture-details li {
+    color: var(--text-color);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.architecture-details li::before {
+    content: '•';
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.architecture-details li:last-child {
+    margin-bottom: 0;
+}
+
+.architecture-diagram {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.architecture-diagram img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .architecture-details li {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .architecture-diagram img {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 .case-study-client-header {
     color: var(--text-light);
     font-size: 1.1rem;
