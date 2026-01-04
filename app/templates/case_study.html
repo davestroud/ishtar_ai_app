@@ -152,6 +152,22 @@
             </div>
             {% endif %}
 
+            {% if case_study.get('book_reference') %}
+            <div class="case-study-section">
+                <div class="book-reference-badge">
+                    <i class="fas fa-book" style="margin-right: 0.5rem;"></i>
+                    <span>Featured in</span>
+                </div>
+                <div class="book-reference-details">
+                    <h3>{{ case_study.book_reference.title }}</h3>
+                    <p class="book-author">By {{ case_study.book_reference.author }}</p>
+                    <p class="book-publisher">{{ case_study.book_reference.publisher }}, {{
+                        case_study.book_reference.year }}</p>
+                    <p class="book-chapter"><strong>Chapter:</strong> {{ case_study.book_reference.chapter }}</p>
+                </div>
+            </div>
+            {% endif %}
+
             <div class="case-study-cta">
                 <h3>Interested in Similar Results?</h3>
                 <p>Let's discuss how we can help your organization achieve similar outcomes.</p>
