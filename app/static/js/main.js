@@ -151,10 +151,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         textRevealElements.forEach((el, index) => {
             if (!el.closest('.hero')) { // Don't animate hero headings (already animated)
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-                el.style.transitionDelay = `${Math.min(index * 0.05, 0.5)}s`;
+                // Don't set inline styles for elements that use CSS classes for animation
+                if (!el.classList.contains('logos-intro') && !el.classList.contains('customer-logos-placeholder')) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                    el.style.transitionDelay = `${Math.min(index * 0.05, 0.5)}s`;
+                }
                 textObserver.observe(el);
             }
         });
