@@ -202,7 +202,7 @@ async def faq(request: Request):
             },
             {
                 "question": "How long does a typical implementation take?",
-                "answer": "We’re currently publishing research artifacts; client engagements reopen July 2026. Join the waitlist for release updates and availability.",
+                "answer": "We’re currently publishing research artifacts; client engagements reopen July 2026. Follow release updates and availability.",
             },
             {
                 "question": "Do you provide ongoing support?",
@@ -210,7 +210,7 @@ async def faq(request: Request):
             },
             {
                 "question": "What is your pricing model?",
-                "answer": "We’re currently publishing research artifacts; client engagements reopen July 2026. Join the waitlist for release updates and availability.",
+                "answer": "We’re currently publishing research artifacts; client engagements reopen July 2026. Follow release updates and availability.",
             },
         ],
         "authentication": [
