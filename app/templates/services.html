@@ -2,14 +2,13 @@
 
 {% block title %}Services - Ishtar AI{% endblock %}
 
-{% block meta_description %}Comprehensive AI services including RAG copilots, agent automation, governance frameworks,
-synthetic media compliance, brand safety, and agentic content operations.{% endblock %}
+{% block meta_description %}Comprehensive AI services including RAG copilots, agent automation, LLMOps foundation, GenAI
+security, synthetic media compliance, and agentic content operations.{% endblock %}
 
 {% block og_path %}/services{% endblock %}
 {% block og_title %}Our Services - Ishtar AI{% endblock %}
 {% block og_description %}Comprehensive AI solutions for regulated enterprises and media/advertising teams. RAG
-copilots, automation,
-compliance, and governance tools.{% endblock %}
+copilots, agent automation, LLMOps foundation, GenAI security, and synthetic media compliance.{% endblock %}
 
 {% block twitter_path %}/services{% endblock %}
 {% block twitter_title %}Our Services - Ishtar AI{% endblock %}
@@ -28,7 +27,7 @@ endblock %}
         "@type": "Organization",
         "name": "Ishtar AI"
     },
-    "description": "Comprehensive AI solutions including RAG copilots, agent automation, governance frameworks, synthetic media compliance, brand safety, and agentic content operations."
+    "description": "Comprehensive AI solutions including RAG copilots, agent automation, LLMOps foundation, GenAI security, synthetic media compliance, and agentic content operations."
 }
 </script>
 {% endblock %}
@@ -48,7 +47,7 @@ endblock %}
 <section class="services-list">
     <div class="container">
         <div class="service-grid">
-            <div class="service-card">
+            <div class="service-card" id="rag-copilots">
                 <i class="fas fa-search service-icon"></i>
                 <h2>RAG Copilots for Policy, Knowledge, and Research</h2>
                 <p>Intelligent retrieval-augmented generation systems that help your team navigate complex policy
@@ -60,7 +59,7 @@ endblock %}
                 </ul>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" id="agent-automation">
                 <i class="fas fa-robot service-icon"></i>
                 <h2>Agent Automation for Ops Workflows</h2>
                 <p>Automate repetitive operational tasks with intelligent agents that understand context, make
@@ -72,21 +71,21 @@ endblock %}
                 </ul>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" id="llmops-foundation">
                 <i class="fas fa-clipboard-check service-icon"></i>
-                <h2>Governance, Audit Trails, Evaluation</h2>
-                <p>Comprehensive governance frameworks with complete audit trails and evaluation metrics to ensure
-                    transparency, compliance, and continuous improvement.</p>
+                <h2>LLMOps Foundation</h2>
+                <p>Foundational LLMOps capabilities for secure deployment, observability, and reliable evaluation across
+                    your GenAI stack.</p>
                 <ul>
-                    <li>Complete audit logging</li>
-                    <li>Compliance monitoring</li>
-                    <li>Performance evaluation</li>
+                    <li>Model monitoring and observability</li>
+                    <li>Prompt versioning and audit trails</li>
+                    <li>Evaluation and regression testing</li>
                 </ul>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" id="synthetic-media-compliance">
                 <i class="fas fa-video service-icon"></i>
-                <h2>Synthetic Media Compliance Kit</h2>
+                <h2>Synthetic Media Compliance</h2>
                 <p>Ensure your synthetic media content meets regulatory requirements with automated compliance checking,
                     provenance tracking, and disclosure workflows.</p>
                 <ul>
@@ -96,15 +95,15 @@ endblock %}
                 </ul>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" id="genai-security">
                 <i class="fas fa-shield-check service-icon"></i>
-                <h2>Brand Safety & Provenance Workflows</h2>
-                <p>Protect your brand with advanced content verification, brand safety checks, and transparent
-                    provenance workflows for all media assets.</p>
+                <h2>GenAI Security</h2>
+                <p>Security controls for GenAI systems, from data protection and access controls to safety testing and
+                    risk mitigation.</p>
                 <ul>
-                    <li>Brand safety monitoring</li>
-                    <li>Content verification</li>
-                    <li>Provenance documentation</li>
+                    <li>Threat modeling and risk assessment</li>
+                    <li>Data loss prevention and access controls</li>
+                    <li>Safety testing and red-team exercises</li>
                 </ul>
             </div>
 

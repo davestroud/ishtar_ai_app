@@ -261,7 +261,7 @@ def get_product_by_slug(slug: str) -> Optional[Dict]:
             },
         },
         "genai-security": {
-            "title": "GenAI Security Hardening",
+            "title": "GenAI Security",
             "slug": "genai-security",
             "subtitle": "Enterprise Readiness Audit",
             "description": "Red-team, guardrails, leakage checks, and an exec-ready risk report.",
