@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Request a Demo - Ishtar AI{% endblock %}
+{% block title %}Research Preview & Waitlist - Ishtar AI{% endblock %}
 
 {% block meta_description %}Request a demo of Ishtar AI's solutions. See how RAG copilots, agent automation, and LLMOps
 can transform your operations.{% endblock %}
@@ -8,8 +8,9 @@ can transform your operations.{% endblock %}
 {% block content %}
 <section class="page-header">
     <div class="container">
-        <h1>Request a Demo</h1>
-        <p>See our solutions in action and discuss how we can help your organization</p>
+        <h1>Research Preview & Waitlist</h1>
+        <p>Get notified as new reference builds and book-aligned artifacts are published. Engagements reopen July 2026.
+        </p>
     </div>
 </section>
 
@@ -17,7 +18,7 @@ can transform your operations.{% endblock %}
     <div class="container">
         <div class="demo-grid">
             <div class="demo-form-wrapper">
-                <h2>Tell Us About Your Needs</h2>
+                <h2>Tell Us Your Research Focus</h2>
                 {% if success %}
                 <div class="alert alert-success">
                     {{ message }}
@@ -33,22 +34,23 @@ can transform your operations.{% endblock %}
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="company">Company</label>
+                        <label for="company">Organization (optional)</label>
                         <input type="text" id="company" name="company">
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
+                        <label for="phone">Preferred contact (optional)</label>
                         <input type="tel" id="phone" name="phone">
                     </div>
                     <div class="form-group">
                         <label for="use_case">Primary Use Case *</label>
                         <select id="use_case" name="use_case" required>
                             <option value="">Select a use case</option>
-                            <option value="RAG Copilot">RAG Copilot</option>
-                            <option value="Agent Automation">Agent Automation</option>
-                            <option value="LLMOps Foundation">LLMOps Foundation</option>
-                            <option value="GenAI Security">GenAI Security</option>
-                            <option value="Synthetic Media Compliance">Synthetic Media Compliance</option>
+                            <option value="RAG Evaluation">RAG Evaluation</option>
+                            <option value="Agent Orchestration">Agent Orchestration</option>
+                            <option value="LLMOps CI/CD">LLMOps CI/CD</option>
+                            <option value="Observability & Tracing">Observability & Tracing</option>
+                            <option value="Security & Red-Teaming">Security & Red-Teaming</option>
+                            <option value="Synthetic Media Policy">Synthetic Media Policy</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
@@ -79,23 +81,23 @@ can transform your operations.{% endblock %}
                             placeholder="Describe your current challenges..."></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="timeline">Timeline</label>
+                        <label for="timeline">Interest Window</label>
                         <select id="timeline" name="timeline">
-                            <option value="">Select timeline</option>
-                            <option value="Immediate">Immediate (within 1 month)</option>
-                            <option value="Short-term">Short-term (1-3 months)</option>
-                            <option value="Medium-term">Medium-term (3-6 months)</option>
-                            <option value="Long-term">Long-term (6+ months)</option>
+                            <option value="">Select window</option>
+                            <option value="Now">Now (research updates)</option>
+                            <option value="Later 2026">Later in 2026</option>
+                            <option value="2027+">2027+</option>
+                            <option value="Not sure yet">Not sure yet</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="budget_range">Budget Range (Optional)</label>
+                        <label for="budget_range">Research Interest (Optional)</label>
                         <select id="budget_range" name="budget_range">
-                            <option value="">Select range</option>
-                            <option value="Under $50k">Under $50k</option>
-                            <option value="$50k - $100k">$50k - $100k</option>
-                            <option value="$100k - $200k">$100k - $200k</option>
-                            <option value="$200k+">$200k+</option>
+                            <option value="">Select interest</option>
+                            <option value="Evaluation access">Evaluation access</option>
+                            <option value="Reference builds">Reference builds</option>
+                            <option value="Security patterns">Security patterns</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <!-- Honeypot field -->
@@ -104,7 +106,7 @@ can transform your operations.{% endblock %}
                         <label for="website">Website</label>
                         <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Demo Request</button>
+                    <button type="submit" class="btn btn-primary">Join Waitlist</button>
                 </form>
             </div>
             <div class="demo-info">
@@ -113,31 +115,24 @@ can transform your operations.{% endblock %}
                     <div class="demo-step">
                         <div class="step-number">1</div>
                         <div class="step-content">
-                            <h3>We Review Your Request</h3>
-                            <p>Our team reviews your information and prepares a customized demo.</p>
+                            <h3>You’ll get Lab Notes + release updates</h3>
+                            <p>We share new reference builds, evaluations, and field notes as they ship.</p>
                         </div>
                     </div>
                     <div class="demo-step">
                         <div class="step-number">2</div>
                         <div class="step-content">
-                            <h3>Schedule a Call</h3>
-                            <p>We'll contact you within 24 hours to schedule a convenient time.</p>
+                            <h3>We’ll share new reference builds as they ship</h3>
+                            <p>Expect early access notes and implementation details aligned to the book.</p>
                         </div>
                     </div>
                     <div class="demo-step">
                         <div class="step-number">3</div>
                         <div class="step-content">
-                            <h3>See It In Action</h3>
-                            <p>We'll show you relevant solutions and discuss how they fit your needs.</p>
+                            <h3>We’ll announce when engagements reopen</h3>
+                            <p>Client engagements reopen in July 2026.</p>
                         </div>
                     </div>
-                </div>
-                <div class="demo-calendly">
-                    <h3>Or Schedule Directly</h3>
-                    <p>Prefer to schedule right away? Use our Calendly link.</p>
-                    <a href="https://calendly.com/david-ishtar-ai" target="_blank" class="btn btn-primary btn-large">
-                        Book a Consult
-                    </a>
                 </div>
             </div>
         </div>

@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="{% block meta_description %}AI solutions for regulated enterprises and media organizations. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}">
+        content="{% block meta_description %}Ishtar AI Research Lab publishes production LLMOps, RAG, and agent-system reference architectures, evaluations, and security patterns.{% endblock %}">
     <meta name="keywords"
         content="{% block meta_keywords %}AI, artificial intelligence, regulated enterprise AI, media AI, RAG copilots, agent automation, compliance, governance{% endblock %}">
     <meta name="author" content="Ishtar AI">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="{% block robots_content %}index, follow{% endblock %}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
@@ -17,7 +17,7 @@
         content="{% block og_url %}https://ishtar-ai.com{% endblock %}{% block og_path %}/{% endblock %}">
     <meta property="og:title" content="{% block og_title %}Ishtar AI{% endblock %}">
     <meta property="og:description"
-        content="{% block og_description %}AI solutions for regulated enterprises and media organizations. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}">
+        content="{% block og_description %}Ishtar AI Research Lab publishes production LLMOps, RAG, and agent-system reference architectures, evaluations, and security patterns.{% endblock %}">
     <meta property="og:image"
         content="{% block og_image %}https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
     <meta property="og:site_name" content="Ishtar AI">
@@ -28,7 +28,7 @@
         content="{% block twitter_url %}https://ishtar-ai.com{% endblock %}{% block twitter_path %}/{% endblock %}">
     <meta name="twitter:title" content="{% block twitter_title %}Ishtar AI{% endblock %}">
     <meta name="twitter:description"
-        content="{% block twitter_description %}AI solutions for regulated enterprises and media organizations. Transform your operations with intelligent automation, compliance, and governance.{% endblock %}">
+        content="{% block twitter_description %}Ishtar AI Research Lab publishes production LLMOps, RAG, and agent-system reference architectures, evaluations, and security patterns.{% endblock %}">
     <meta name="twitter:image"
         content="{% block twitter_image %}https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
 
@@ -73,11 +73,11 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": "ResearchOrganization",
         "name": "Ishtar AI",
         "url": "https://ishtar-ai.com",
         "logo": "https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png",
-        "description": "AI solutions for regulated enterprises and media organizations. Transform your operations with intelligent automation, compliance, and governance.",
+        "description": "Ishtar AI Research Lab publishes production LLMOps, RAG, and agent-system reference architectures, evaluations, and security patterns.",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "1325 Avenue of the Americas, 27th and 28th Floors",
@@ -144,15 +144,15 @@
                 <li><a href="/">Home</a></li>
                 <li class="nav-separator"></li>
                 <li class="nav-dropdown">
-                    <a href="/finance" class="dropdown-toggle">Solutions <i class="fas fa-chevron-down"></i></a>
+                    <a href="/finance" class="dropdown-toggle">Research Tracks <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/finance">Regulated Enterprise</a></li>
-                        <li><a href="/media-ads">Media & Advertising</a></li>
+                        <li><a href="/finance">Regulated Enterprise (Research)</a></li>
+                        <li><a href="/media-ads">Media & Advertising (Research)</a></li>
                     </ul>
                 </li>
                 <li class="nav-separator"></li>
                 <li class="nav-dropdown">
-                    <a href="/services" class="dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                    <a href="/services" class="dropdown-toggle">Research Areas <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="/services#rag-copilots">RAG Copilots</a></li>
                         <li><a href="/services#agent-automation">Agent Automation</a></li>
@@ -162,7 +162,7 @@
                     </ul>
                 </li>
                 <li class="nav-separator"></li>
-                <li><a href="/case-studies">Case Studies</a></li>
+                <li><a href="/case-studies">Reference Architectures</a></li>
                 <li class="nav-separator"></li>
                 <li><a href="/security">Security & Compliance</a></li>
                 <li class="nav-separator"></li>
@@ -175,8 +175,8 @@
                 <li><a href="/about">About</a></li>
                 <li class="nav-separator"></li>
                 <li><a href="/demo" class="nav-cta">
-                        <span class="cta-line-1">Request</span>
-                        <span class="cta-line-2">Demo</span>
+                        <span class="cta-line-1">Join</span>
+                        <span class="cta-line-2">Waitlist</span>
                     </a></li>
                 <li class="nav-separator"></li>
                 <li><a href="/contact">Contact</a></li>
@@ -224,6 +224,19 @@
             </button>
         </div>
     </nav>
+    <div class="research-banner" role="note" aria-label="Research Lab status">
+        <div class="container research-banner-inner">
+            <div class="research-banner-title">Ishtar AI Research Lab</div>
+            <div class="research-banner-text">
+                Publishing production LLMOps research, reference architectures, and evaluation tooling.
+                <span class="research-banner-divider">•</span>
+                <strong>Client engagements reopen July 2026.</strong>
+            </div>
+            <div class="research-banner-cta">
+                <a class="btn btn-secondary btn-small" href="/demo">Join the waitlist</a>
+            </div>
+        </div>
+    </div>
 
     <main id="main-content" class="main-content" role="main">
         {% block content %}{% endblock %}

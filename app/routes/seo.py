@@ -46,7 +46,6 @@ async def sitemap():
     pages = [
         {"loc": "/", "changefreq": "weekly", "priority": "1.0"},
         {"loc": "/services", "changefreq": "monthly", "priority": "0.9"},
-        {"loc": "/pricing", "changefreq": "monthly", "priority": "0.8"},
         {"loc": "/case-studies", "changefreq": "monthly", "priority": "0.8"},
         {"loc": "/resources", "changefreq": "monthly", "priority": "0.8"},
         {"loc": "/demo", "changefreq": "monthly", "priority": "0.8"},
@@ -118,6 +117,7 @@ async def robots():
     """Generate robots.txt for search engines"""
     robots_txt = """User-agent: *
 Allow: /
+Disallow: /pricing
 
 Sitemap: https://ishtar-ai.com/sitemap.xml
 """

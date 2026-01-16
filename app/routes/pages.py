@@ -202,7 +202,7 @@ async def faq(request: Request):
             },
             {
                 "question": "How long does a typical implementation take?",
-                "answer": "Implementation timelines vary based on project scope, but most engagements range from 6-9 weeks for production-ready solutions. See our <a href='/pricing'>pricing page</a> for specific timelines.",
+                "answer": "We’re currently publishing research artifacts; client engagements reopen July 2026. Join the waitlist for release updates and availability.",
             },
             {
                 "question": "Do you provide ongoing support?",
@@ -210,7 +210,7 @@ async def faq(request: Request):
             },
             {
                 "question": "What is your pricing model?",
-                "answer": "We offer fixed-scope engagements with clear success metrics. Pricing ranges from $50k-$200k depending on the offering. See our <a href='/pricing'>pricing page</a> for detailed information.",
+                "answer": "We’re currently publishing research artifacts; client engagements reopen July 2026. Join the waitlist for release updates and availability.",
             },
         ],
         "authentication": [
