@@ -34,10 +34,25 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Project Setup
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
         run: |
-          npm run setup
-          npm run dev:daemon
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+          poetry install --no-interaction --no-ansi
+
+      - name: Start FastAPI server
+        run: |
+          poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000 > logs.txt 2>&1 &
+          sleep 5
+          echo "FastAPI server started on port 8000"
 
       - name: Run Claude Code
         id: claude
@@ -50,6 +65,6 @@ jobs:
             actions: read
 
           claude_args: |
-            --system-prompt "The project is already set up with all dependencies installed. The server is already running at localhost:8000. Logs from it are being written to logs.txt. If needed, use the mcp__playwright set of tools to launch a browser and interact with the app."
+            --system-prompt "This is a FastAPI + Jinja2 Python web application using Poetry for dependency management. The project dependencies are already installed via Poetry. The FastAPI server is running at localhost:8000. Server logs are being written to logs.txt. If needed, use the mcp__playwright tools to launch a browser and interact with the app."
             --mcp-config '{"mcpServers":{"playwright":{"command":"npx","args":["@playwright/mcp@latest","--allowed-origins","localhost:8000;fonts.googleapis.com;fonts.gstatic.com;cdnjs.cloudflare.com;www.googletagmanager.com;plausible.io"]}}}'
-            --allowedTools "Bash(npm:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click"
+            --allowedTools "Bash(poetry *),Bash(python *),Bash(uvicorn *),mcp__playwright__browser_snapshot,mcp__playwright__browser_click"
