@@ -49,24 +49,7 @@ jobs:
           additional_permissions: |
             actions: read
 
-          custom_instructions: |
-            The project is already set up with all dependencies installed.
-            The server is already running at localhost:8000. Logs from it
-            are being written to logs.txt. If needed, use the mcp__playwright
-            set of tools to launch a browser and interact with the app.
-
-          mcp_config: |
-            {
-              "mcpServers": {
-                "playwright": {
-                  "command": "npx",
-                  "args": [
-                    "@playwright/mcp@latest",
-                    "--allowed-origins",
-                    "localhost:8000;fonts.googleapis.com;fonts.gstatic.com;cdnjs.cloudflare.com;www.googletagmanager.com;plausible.io"
-                  ]
-                }
-              }
-            }
-
-          allowed_tools: "Bash(npm:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click,..."
+          claude_args: |
+            --system-prompt "The project is already set up with all dependencies installed. The server is already running at localhost:8000. Logs from it are being written to logs.txt. If needed, use the mcp__playwright set of tools to launch a browser and interact with the app."
+            --mcp-config '{"mcpServers":{"playwright":{"command":"npx","args":["@playwright/mcp@latest","--allowed-origins","localhost:8000;fonts.googleapis.com;fonts.gstatic.com;cdnjs.cloudflare.com;www.googletagmanager.com;plausible.io"]}}}'
+            --allowedTools "Bash(npm:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click"
