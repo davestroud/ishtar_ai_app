@@ -17,6 +17,7 @@ solutions for regulated enterprises and media organizations.{% endblock %}
     <div class="container">
         <form class="search-form-large" action="/search" method="GET" id="search-form">
             <div class="search-input-wrapper">
+                <label for="search-input" class="visually-hidden">Search</label>
                 <input type="search" name="q" value="{{ query or '' }}" placeholder="Search our site..."
                     aria-label="Search" autofocus id="search-input" autocomplete="off">
                 <button type="submit" class="btn btn-primary">Search</button>

@@ -192,10 +192,24 @@ uvicorn app.main:app --reload
 ### Running Locally
 
 ```bash
+# Install dependencies (including dev dependencies for build tools)
+poetry install --with dev
+
+# Run development server
 poetry run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 The `--reload` flag enables auto-reload on code changes.
+
+### Building for Production
+
+Minify CSS and JS assets before deploying to production:
+
+```bash
+python scripts/minify_assets.py
+```
+
+This creates optimized `.min.css` and `.min.js` versions of all static assets. See `scripts/README.md` for details on using minified assets in production.
 
 ### Adding New Pages
 

@@ -100,7 +100,8 @@ Enterprise-ready AI solutions.{% endblock %}
             <p>Get the latest insights on production-grade GenAI for regulated enterprises and media/advertising teams.
             </p>
             <form class="newsletter-form" method="POST" action="/newsletter">
-                <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
+                <label for="newsletter-email" class="visually-hidden">Email address</label>
+                <input type="email" id="newsletter-email" name="email" placeholder="Enter your email" required aria-label="Email address">
                 <button type="submit" class="btn btn-primary">Subscribe</button>
             </form>
             <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>

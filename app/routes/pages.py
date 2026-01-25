@@ -159,14 +159,6 @@ async def blog_post(request: Request, slug: str):
             "slug": "future-of-rag-copilots-financial-services",
             "content": get_rag_copilots_article_content(),
         },
-        "future-of-rag-copilots-finance": {
-            "title": "The Future of RAG Copilots in Regulated Enterprises",
-            "excerpt": "How Retrieval-Augmented Generation is reshaping compliance and research into evidence-native workflows",
-            "date": "2024-01-15",
-            "author": "Ishtar AI Team",
-            "slug": "future-of-rag-copilots-finance",
-            "content": get_rag_copilots_article_content(),
-        },
     }
 
     # Get article or return placeholder

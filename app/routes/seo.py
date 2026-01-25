@@ -43,6 +43,24 @@ async def sitemap():
     base_url = "https://ishtar-ai.com"
     current_date = datetime.now().strftime("%Y-%m-%d")
 
+    # Content modification dates (update when content changes)
+    # Format: "path": "YYYY-MM-DD"
+    content_dates = {
+        "/": "2024-01-15",
+        "/services": "2024-01-15",
+        "/blog": "2024-01-15",
+        "/finance": "2024-01-15",
+        "/media-ads": "2024-01-15",
+        "/contact": "2024-01-15",
+        "/privacy": "2024-01-01",
+        "/terms": "2024-01-01",
+        "/security": "2024-01-15",
+        "/trust-center": "2024-01-15",
+        "/about": "2024-01-15",
+        "/implementation": "2024-01-15",
+        "/responsible-ai": "2024-01-15",
+    }
+
     pages = [
         {"loc": "/", "changefreq": "weekly", "priority": "1.0"},
         {"loc": "/services", "changefreq": "monthly", "priority": "0.9"},
@@ -102,7 +120,9 @@ async def sitemap():
     for page in pages:
         sitemap_xml += f"  <url>\n"
         sitemap_xml += f'    <loc>{base_url}{page["loc"]}</loc>\n'
-        sitemap_xml += f"    <lastmod>{current_date}</lastmod>\n"
+        # Use specific content date if available, otherwise current date
+        lastmod = content_dates.get(page["loc"], current_date)
+        sitemap_xml += f"    <lastmod>{lastmod}</lastmod>\n"
         sitemap_xml += f'    <changefreq>{page["changefreq"]}</changefreq>\n'
         sitemap_xml += f'    <priority>{page["priority"]}</priority>\n'
         sitemap_xml += f"  </url>\n"

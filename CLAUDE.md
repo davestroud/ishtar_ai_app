@@ -8,11 +8,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # Install dependencies
 poetry install
 
+# Install dev dependencies (for minification tools)
+poetry install --with dev
+
 # Run development server (auto-reload enabled)
 poetry run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 # Run without poetry (if dependencies installed globally)
 uvicorn app.main:app --reload
+
+# Minify CSS/JS for production
+python scripts/minify_assets.py
 ```
 
 ## Architecture
@@ -47,6 +53,16 @@ Blog articles are defined in `app/content/blog_articles.py`. To add a new articl
 - CSS: `app/static/css/styles.css` (uses CSS custom properties for theming)
 - JS: `app/static/js/main.js`
 - Images: `app/static/img/`
+
+### Build Process
+
+For production deployment, minify CSS and JS assets:
+
+```bash
+python scripts/minify_assets.py
+```
+
+This creates `.min.css` and `.min.js` versions of all assets. See `scripts/README.md` for details.
 
 ### Middleware
 
