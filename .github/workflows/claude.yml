@@ -46,7 +46,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry install --no-root --no-interaction --no-ansi
+          poetry install --no-root --with dev --no-interaction --no-ansi
+
+      - name: Minify assets (if script exists)
+        run: |
+          if [ -f "scripts/minify_assets.py" ]; then
+            python scripts/minify_assets.py
+            echo "Assets minified successfully"
+          else
+            echo "Minification script not found, skipping..."
+          fi
 
       - name: Start FastAPI server
         run: |
