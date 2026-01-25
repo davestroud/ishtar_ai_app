@@ -168,6 +168,7 @@ body {
     letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
 /* Typography - Headings use serif font */
@@ -546,6 +547,7 @@ label,
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 }
 
 .nav-brand a,
@@ -596,7 +598,7 @@ label,
     white-space: nowrap;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .brand-text {
         display: none;
     }
@@ -2286,8 +2288,8 @@ label,
     min-height: calc(100vh - 200px);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Responsive Design - Navigation collapse at 1024px */
+@media (max-width: 1024px) {
     .nav-menu {
         display: none;
         position: absolute;
@@ -2327,7 +2329,10 @@ label,
         display: flex;
         margin-left: 0.5rem;
     }
+}
 
+/* Responsive Design - Smaller screens */
+@media (max-width: 768px) {
     .hero-logo-img {
         max-width: 100%;
     }
