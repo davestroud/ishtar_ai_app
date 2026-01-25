@@ -24,14 +24,30 @@ can transform your operations.{% endblock %}
                     {{ message }}
                 </div>
                 {% endif %}
+                {% if errors %}
+                <div class="alert alert-error">
+                    <strong>Please correct the following errors:</strong>
+                    <ul>
+                        {% for field, error in errors.items() %}
+                        <li>{{ field }}: {{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
                 <form method="POST" action="/demo" class="demo-form">
                     <div class="form-group">
                         <label for="name">Name *</label>
                         <input type="text" id="name" name="name" required>
+                        {% if errors and 'name' in errors %}
+                        <span class="field-error">{{ errors.name }}</span>
+                        {% endif %}
                     </div>
                     <div class="form-group">
                         <label for="email">Email *</label>
                         <input type="email" id="email" name="email" required>
+                        {% if errors and 'email' in errors %}
+                        <span class="field-error">{{ errors.email }}</span>
+                        {% endif %}
                     </div>
                     <div class="form-group">
                         <label for="company">Organization (optional)</label>

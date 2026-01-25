@@ -3,6 +3,10 @@ from typing import Optional
 
 
 class Settings(BaseSettings):
+    # Application Configuration
+    base_url: str = "https://ishtar-ai.com"
+    environment: str = "production"  # "development" or "production"
+
     # Email Configuration
     email_enabled: bool = False
     email_provider: str = "smtp"  # "smtp" or "sendgrid"

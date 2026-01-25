@@ -3,6 +3,7 @@ from fastapi.responses import Response
 from datetime import datetime
 
 from app.utils.rss import generate_rss_feed
+from app.config import settings
 
 router = APIRouter()
 
@@ -40,7 +41,7 @@ def get_blog_posts_for_rss():
 @router.get("/sitemap.xml")
 async def sitemap():
     """Generate sitemap.xml for search engines"""
-    base_url = "https://ishtar-ai.com"
+    base_url = settings.base_url
     current_date = datetime.now().strftime("%Y-%m-%d")
 
     pages = [
@@ -115,11 +116,11 @@ async def sitemap():
 @router.get("/robots.txt")
 async def robots():
     """Generate robots.txt for search engines"""
-    robots_txt = """User-agent: *
+    robots_txt = f"""User-agent: *
 Allow: /
 Disallow: /pricing
 
-Sitemap: https://ishtar-ai.com/sitemap.xml
+Sitemap: {settings.base_url}/sitemap.xml
 """
     return Response(content=robots_txt, media_type="text/plain")
 

@@ -1,14 +1,21 @@
-from fastapi import APIRouter, Request, Form
+from fastapi import APIRouter, Request, Form, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from typing import Optional
+from pydantic import ValidationError
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 
 from app.config import settings
 from app.content.blog_articles import get_rag_copilots_article_content
+from app.schemas import ContactFormSchema, DemoFormSchema, NewsletterFormSchema
 
 router = APIRouter()
 
 templates = Jinja2Templates(directory="app/templates")
+
+# Initialize rate limiter
+limiter = Limiter(key_func=get_remote_address)
 
 
 # Add config to all template contexts
@@ -314,13 +321,32 @@ async def pricing(request: Request):
 
 
 @router.post("/newsletter", response_class=HTMLResponse)
+@limiter.limit("3/minute")
 async def subscribe_newsletter(request: Request, email: str = Form(...)):
-    """Handle newsletter subscription"""
+    """Handle newsletter subscription with validation and rate limiting"""
+    try:
+        # Validate email
+        form_data = NewsletterFormSchema(email=email)
+    except ValidationError as e:
+        # Return error - for newsletter we'll show a simple error page
+        errors = {}
+        for error in e.errors():
+            field = error["loc"][0]
+            errors[field] = error["msg"]
+        # Redirect back to home with error (or show error on current page)
+        return templates.TemplateResponse(
+            "index.html",
+            get_template_context(
+                request, newsletter_error="Please enter a valid email address."
+            ),
+            status_code=422,
+        )
+
     # Note: Newsletter integration can be added here (Mailchimp, SendGrid, etc.)
     # For now, just return success
     return templates.TemplateResponse(
         "newsletter_success.html",
-        get_template_context(request, email=email),
+        get_template_context(request, email=form_data.email),
     )
 
 
@@ -373,6 +399,7 @@ async def demo(request: Request):
 
 
 @router.post("/demo", response_class=HTMLResponse)
+@limiter.limit("3/minute")
 async def submit_demo_request(
     request: Request,
     name: str = Form(...),
@@ -387,9 +414,36 @@ async def submit_demo_request(
     budget_range: Optional[str] = Form(None),
     website: Optional[str] = Form(None),  # Honeypot
 ):
-    """Handle demo request form submission"""
+    """Handle demo request form submission with validation and rate limiting"""
+    try:
+        # Validate form data
+        form_data = DemoFormSchema(
+            name=name,
+            email=email,
+            company=company,
+            phone=phone,
+            use_case=use_case,
+            company_size=company_size,
+            industry=industry,
+            challenges=challenges,
+            timeline=timeline,
+            budget_range=budget_range,
+            website=website,
+        )
+    except ValidationError as e:
+        # Return form with validation errors
+        errors = {}
+        for error in e.errors():
+            field = error["loc"][0]
+            errors[field] = error["msg"]
+        return templates.TemplateResponse(
+            "demo.html",
+            get_template_context(request, errors=errors, form_data=request.__dict__),
+            status_code=422,
+        )
+
     # Honeypot spam protection
-    if website:
+    if form_data.website:
         return templates.TemplateResponse(
             "demo.html",
             get_template_context(
@@ -404,16 +458,20 @@ async def submit_demo_request(
 
     message = f"""
 Demo Request Details:
-- Use Case: {use_case}
-- Company Size: {company_size or 'Not specified'}
-- Industry: {industry or 'Not specified'}
-- Challenges: {challenges or 'Not specified'}
-- Timeline: {timeline or 'Not specified'}
-- Budget Range: {budget_range or 'Not specified'}
+- Use Case: {form_data.use_case}
+- Company Size: {form_data.company_size or 'Not specified'}
+- Industry: {form_data.industry or 'Not specified'}
+- Challenges: {form_data.challenges or 'Not specified'}
+- Timeline: {form_data.timeline or 'Not specified'}
+- Budget Range: {form_data.budget_range or 'Not specified'}
 """
 
     email_sent = await send_contact_form_email(
-        name=name, email=email, phone=phone, company=company, message=message
+        name=form_data.name,
+        email=form_data.email,
+        phone=form_data.phone,
+        company=form_data.company,
+        message=message,
     )
 
     return templates.TemplateResponse(
@@ -516,6 +574,7 @@ async def search(request: Request, q: Optional[str] = None, type: Optional[str] 
 
 
 @router.post("/contact", response_class=HTMLResponse)
+@limiter.limit("5/minute")
 async def submit_contact(
     request: Request,
     name: str = Form(...),
@@ -525,9 +584,31 @@ async def submit_contact(
     message: str = Form(...),
     website: Optional[str] = Form(None),  # Honeypot field for spam protection
 ):
-    """Handle contact form submission"""
+    """Handle contact form submission with validation and rate limiting"""
+    try:
+        # Validate form data
+        form_data = ContactFormSchema(
+            name=name,
+            email=email,
+            phone=phone,
+            company=company,
+            message=message,
+            website=website,
+        )
+    except ValidationError as e:
+        # Return form with validation errors
+        errors = {}
+        for error in e.errors():
+            field = error["loc"][0]
+            errors[field] = error["msg"]
+        return templates.TemplateResponse(
+            "contact.html",
+            get_template_context(request, errors=errors, form_data=request.__dict__),
+            status_code=422,
+        )
+
     # Honeypot spam protection
-    if website:
+    if form_data.website:
         # Bot detected, return success anyway to not reveal the honeypot
         return templates.TemplateResponse(
             "contact.html",
@@ -542,7 +623,11 @@ async def submit_contact(
     from app.utils.email import send_contact_form_email
 
     email_sent = await send_contact_form_email(
-        name=name, email=email, phone=phone, company=company, message=message
+        name=form_data.name,
+        email=form_data.email,
+        phone=form_data.phone,
+        company=form_data.company,
+        message=form_data.message,
     )
 
     if email_sent:

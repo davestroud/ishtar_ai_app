@@ -14,27 +14,27 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:url"
-        content="{% block og_url %}https://ishtar-ai.com{% endblock %}{% block og_path %}/{% endblock %}">
+        content="{% block og_url %}{{ config.base_url if config else 'https://ishtar-ai.com' }}{% endblock %}{% block og_path %}/{% endblock %}">
     <meta property="og:title" content="{% block og_title %}Ishtar AI{% endblock %}">
     <meta property="og:description"
         content="{% block og_description %}Ishtar AI Research Lab publishes production LLMOps, RAG, and agent-system reference architectures, evaluations, and security patterns.{% endblock %}">
     <meta property="og:image"
-        content="{% block og_image %}https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
+        content="{% block og_image %}{{ config.base_url if config else 'https://ishtar-ai.com' }}/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
     <meta property="og:site_name" content="Ishtar AI">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url"
-        content="{% block twitter_url %}https://ishtar-ai.com{% endblock %}{% block twitter_path %}/{% endblock %}">
+        content="{% block twitter_url %}{{ config.base_url if config else 'https://ishtar-ai.com' }}{% endblock %}{% block twitter_path %}/{% endblock %}">
     <meta name="twitter:title" content="{% block twitter_title %}Ishtar AI{% endblock %}">
     <meta name="twitter:description"
         content="{% block twitter_description %}Ishtar AI Research Lab publishes production LLMOps, RAG, and agent-system reference architectures, evaluations, and security patterns.{% endblock %}">
     <meta name="twitter:image"
-        content="{% block twitter_image %}https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
+        content="{% block twitter_image %}{{ config.base_url if config else 'https://ishtar-ai.com' }}/static/img/ishtar_ai_logo_1_1200w.png{% endblock %}">
 
     <!-- Canonical URL -->
     <link rel="canonical"
-        href="{% block canonical_url %}https://ishtar-ai.com{% endblock %}{% block canonical_path %}/{% endblock %}">
+        href="{% block canonical_url %}{{ config.base_url if config else 'https://ishtar-ai.com' }}{% endblock %}{% block canonical_path %}/{% endblock %}">
 
     <!-- Favicon -->
     <!-- Note: Favicon files can be added to /app/static/img/ directory -->
@@ -75,8 +75,8 @@
         "@context": "https://schema.org",
         "@type": "ResearchOrganization",
         "name": "Ishtar AI",
-        "url": "https://ishtar-ai.com",
-        "logo": "https://ishtar-ai.com/static/img/ishtar_ai_logo_1_1200w.png",
+        "url": "{{ config.base_url if config else 'https://ishtar-ai.com' }}",
+        "logo": "{{ config.base_url if config else 'https://ishtar-ai.com' }}/static/img/ishtar_ai_logo_1_1200w.png",
         "description": "Ishtar AI Research Lab publishes production LLMOps, RAG, and agent-system reference architectures, evaluations, and security patterns.",
         "address": {
             "@type": "PostalAddress",
@@ -93,7 +93,7 @@
         "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "Customer Service",
-            "url": "https://ishtar-ai.com/contact"
+            "url": "{{ config.base_url if config else 'https://ishtar-ai.com' }}/contact"
         }
     }
     </script>
@@ -103,10 +103,10 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Ishtar AI",
-        "url": "https://ishtar-ai.com",
+        "url": "{{ config.base_url if config else 'https://ishtar-ai.com' }}",
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://ishtar-ai.com/search?q={search_term_string}",
+            "target": "{{ config.base_url if config else 'https://ishtar-ai.com' }}/search?q={search_term_string}",
             "query-input": "required name=search_term_string"
         }
     }

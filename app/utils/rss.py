@@ -4,13 +4,14 @@ Generates RSS 2.0 compliant feeds for blog posts
 """
 
 from datetime import datetime
-from typing import List, Dict
+from typing import List, Dict, Optional
 from xml.etree import ElementTree as ET
 from xml.dom import minidom
+from app.config import settings
 
 
 def generate_rss_feed(
-    posts: List[Dict], site_url: str = "https://ishtar-ai.com"
+    posts: List[Dict], site_url: Optional[str] = None
 ) -> str:
     """
     Generate RSS 2.0 compliant XML feed from blog posts
@@ -23,11 +24,15 @@ def generate_rss_feed(
             - published_date: datetime object or ISO string
             - author: Author name (optional)
             - categories: List of categories/tags (optional)
-        site_url: Base URL of the site
+        site_url: Base URL of the site (defaults to settings.base_url)
 
     Returns:
         RSS XML string
     """
+    # Use configured base URL if not provided
+    if site_url is None:
+        site_url = settings.base_url
+
     # Create root element
     rss = ET.Element("rss", version="2.0")
     rss.set("xmlns:atom", "http://www.w3.org/2005/Atom")
