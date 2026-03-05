@@ -1,0 +1,504 @@
+{% extends "base.html" %}
+
+{% block title %}Task Manager - Ishtar AI{% endblock %}
+
+{% block meta_description %}Modern task management interface for Ishtar AI workflows{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* Todo-specific styles for bold aesthetic */
+    .todo-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: var(--spacing-3xl) var(--spacing-xl);
+    }
+
+    .todo-header {
+        margin-bottom: var(--spacing-3xl);
+        text-align: center;
+    }
+
+    .todo-header h1 {
+        font-size: 4rem;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: var(--spacing-md);
+        letter-spacing: -0.04em;
+    }
+
+    .todo-header p {
+        font-size: 1.25rem;
+        color: var(--text-light);
+        font-weight: 400;
+    }
+
+    /* Filter tabs with brutalist aesthetic */
+    .filter-tabs {
+        display: flex;
+        gap: 0;
+        margin-bottom: var(--spacing-2xl);
+        border: 2px solid var(--border-color);
+        background: var(--bg-light);
+        overflow: hidden;
+    }
+
+    .filter-tab {
+        flex: 1;
+        padding: var(--spacing-lg) var(--spacing-xl);
+        background: transparent;
+        border: none;
+        color: var(--text-light);
+        font-family: var(--body-font);
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .filter-tab:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 25%;
+        height: 50%;
+        width: 2px;
+        background: var(--border-color);
+    }
+
+    .filter-tab:hover {
+        background: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    .filter-tab.active {
+        background: var(--primary-color);
+        color: white;
+        box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .filter-tab .count {
+        display: inline-block;
+        margin-left: var(--spacing-sm);
+        padding: 0.25rem 0.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        font-size: 0.875rem;
+        font-weight: 700;
+    }
+
+    .filter-tab.active .count {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Add todo form - minimalist card */
+    .add-todo-card {
+        background: var(--bg-light);
+        border: 2px solid var(--border-color);
+        padding: var(--spacing-2xl);
+        margin-bottom: var(--spacing-3xl);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .add-todo-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .add-todo-form {
+        display: grid;
+        gap: var(--spacing-lg);
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .form-group label {
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-light);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: var(--spacing-md) var(--spacing-lg);
+        background: var(--bg-color);
+        border: 2px solid var(--border-color);
+        color: var(--text-color);
+        font-family: var(--body-font);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+        font-family: var(--body-font);
+    }
+
+    .btn-add-todo {
+        padding: var(--spacing-lg) var(--spacing-2xl);
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        font-family: var(--body-font);
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-add-todo::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .btn-add-todo:hover::before {
+        left: 100%;
+    }
+
+    .btn-add-todo:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-add-todo:active {
+        transform: translateY(0);
+    }
+
+    /* Todo list - grid layout */
+    .todos-grid {
+        display: grid;
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-3xl);
+    }
+
+    .todo-card {
+        background: var(--bg-light);
+        border: 2px solid var(--border-color);
+        padding: var(--spacing-xl);
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+    }
+
+    .todo-card::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .todo-card.status-pending::before {
+        background: var(--accent-color);
+    }
+
+    .todo-card.status-in_progress::before {
+        background: var(--primary-color);
+    }
+
+    .todo-card.status-completed::before {
+        background: var(--success-color);
+    }
+
+    .todo-card:hover {
+        border-color: var(--primary-color);
+        transform: translateX(4px);
+        box-shadow: -4px 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .todo-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .todo-title {
+        font-family: var(--heading-font);
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-color);
+        margin: 0;
+        flex: 1;
+    }
+
+    .todo-actions {
+        display: flex;
+        gap: var(--spacing-sm);
+    }
+
+    .btn-icon {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        background: transparent;
+        border: 2px solid var(--border-color);
+        color: var(--text-light);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .btn-icon:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+        transform: scale(1.1);
+    }
+
+    .btn-delete:hover {
+        border-color: var(--error-color);
+        color: var(--error-color);
+    }
+
+    .todo-description {
+        color: var(--text-light);
+        line-height: 1.7;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .todo-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--spacing-lg);
+        padding-top: var(--spacing-lg);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .status-select {
+        padding: var(--spacing-sm) var(--spacing-md);
+        background: var(--bg-color);
+        border: 2px solid var(--border-color);
+        color: var(--text-color);
+        font-family: var(--body-font);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .status-select:hover {
+        border-color: var(--primary-color);
+    }
+
+    .todo-timestamp {
+        font-size: 0.875rem;
+        color: var(--text-light);
+        font-style: italic;
+    }
+
+    /* Empty state */
+    .empty-state {
+        text-align: center;
+        padding: var(--spacing-3xl) var(--spacing-xl);
+        background: var(--bg-light);
+        border: 2px dashed var(--border-color);
+        margin: var(--spacing-3xl) 0;
+    }
+
+    .empty-state-icon {
+        font-size: 4rem;
+        color: var(--text-light);
+        margin-bottom: var(--spacing-lg);
+        opacity: 0.3;
+    }
+
+    .empty-state h3 {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .empty-state p {
+        color: var(--text-light);
+    }
+
+    /* Loading state */
+    .loading-spinner {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 4px solid var(--border-color);
+        border-top-color: var(--primary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Toast notifications */
+    .toast {
+        position: fixed;
+        bottom: var(--spacing-2xl);
+        right: var(--spacing-2xl);
+        padding: var(--spacing-lg) var(--spacing-xl);
+        background: var(--bg-light);
+        border: 2px solid var(--border-color);
+        color: var(--text-color);
+        font-weight: 600;
+        box-shadow: var(--shadow-xl);
+        transform: translateX(400px);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        max-width: 400px;
+    }
+
+    .toast.show {
+        transform: translateX(0);
+    }
+
+    .toast.success {
+        border-color: var(--success-color);
+        border-left-width: 6px;
+    }
+
+    .toast.error {
+        border-color: var(--error-color);
+        border-left-width: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .todo-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .filter-tabs {
+            flex-direction: column;
+        }
+
+        .filter-tab:not(:last-child)::after {
+            display: none;
+        }
+
+        .todo-card-header {
+            flex-direction: column;
+        }
+
+        .todo-meta {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="todo-container">
+    <header class="todo-header">
+        <h1>Task Manager</h1>
+        <p>Organize and track your workflow with precision</p>
+    </header>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs" role="tablist">
+        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+            All <span class="count">0</span>
+        </button>
+        <button class="filter-tab" data-filter="pending" role="tab">
+            Pending <span class="count">0</span>
+        </button>
+        <button class="filter-tab" data-filter="in_progress" role="tab">
+            In Progress <span class="count">0</span>
+        </button>
+        <button class="filter-tab" data-filter="completed" role="tab">
+            Completed <span class="count">0</span>
+        </button>
+    </div>
+
+    <!-- Add Todo Card -->
+    <div class="add-todo-card">
+        <form class="add-todo-form" id="add-todo-form">
+            <div class="form-group">
+                <label for="todo-title">Title</label>
+                <input type="text" id="todo-title" name="title" required placeholder="Enter task title...">
+            </div>
+            <div class="form-group">
+                <label for="todo-description">Description</label>
+                <textarea id="todo-description" name="description" placeholder="Add task details..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="todo-status">Status</label>
+                <select id="todo-status" name="status">
+                    <option value="pending">Pending</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-add-todo">
+                <span>Add Task</span>
+            </button>
+        </form>
+    </div>
+
+    <!-- Todos Grid -->
+    <div class="todos-grid" id="todos-grid">
+        <!-- Todos will be rendered here -->
+    </div>
+
+    <!-- Empty State (hidden by default) -->
+    <div class="empty-state" id="empty-state" style="display: none;">
+        <div class="empty-state-icon">📋</div>
+        <h3>No tasks yet</h3>
+        <p>Create your first task to get started</p>
+    </div>
+
+    <!-- Loading State (shown initially) -->
+    <div style="text-align: center; padding: var(--spacing-3xl);" id="loading-state">
+        <div class="loading-spinner" style="margin: 0 auto;"></div>
+        <p style="margin-top: var(--spacing-lg); color: var(--text-light);">Loading tasks...</p>
+    </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast" id="toast"></div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="/static/js/todos.js"></script>
+{% endblock %}

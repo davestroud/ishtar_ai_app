@@ -103,6 +103,63 @@ endblock %}
                     <li>Quality assurance</li>
                 </ul>
             </div>
+
+            <div class="service-card" id="performance-engineering">
+                <i class="fas fa-tachometer-alt service-icon"></i>
+                <h2>LLM Performance Engineering</h2>
+                <p>Squeeze maximum throughput and minimum cost from your LLM infrastructure through model-level,
+                    inference-engine, and system-level optimizations grounded in quantitative cost formulas.</p>
+                <ul>
+                    <li>Quantization (FP32→FP16→INT8→GPTQ) and PEFT/LoRA/QLoRA adapter serving</li>
+                    <li>PagedAttention (vLLM) for 2–3× throughput via virtual KV cache paging</li>
+                    <li>Speculative decoding for latency-sensitive endpoints</li>
+                    <li>Dynamic batching, autoscale replica sizing, cost-per-1K-token modeling</li>
+                    <li>KV cache quantization and prefix caching strategies</li>
+                </ul>
+            </div>
+
+            <div class="service-card" id="cicd-evaluation">
+                <i class="fas fa-code-branch service-icon"></i>
+                <h2>CI/CD &amp; Evaluation for LLM Systems</h2>
+                <p>Prompts, adapters, and schemas are production artifacts — treat them with the same rigor as
+                    application code. Behavioral guarantees, not just unit tests.</p>
+                <ul>
+                    <li>LLM-as-Judge with calibration protocol (Spearman ρ &gt; 0.7 against human anchors)</li>
+                    <li>Evaluation taxonomy: functional, semantic/RAG, adversarial, and behavioral regression</li>
+                    <li>Golden datasets, adversarial probes, and statistical control chart gates (x̄ ± 2σ)</li>
+                    <li>Canary → blue-green deployments with rollback in &lt; 5 minutes</li>
+                    <li>Bias/verbosity/position bias mitigations in judge rubric design</li>
+                </ul>
+            </div>
+
+            <div class="service-card" id="monitoring-observability">
+                <i class="fas fa-chart-bar service-icon"></i>
+                <h2>LLM Monitoring &amp; Observability</h2>
+                <p>Standard infrastructure metrics are not enough for LLM systems. Semantic drift, token-level cost
+                    attribution, and multi-step trace correlation require a purpose-built observability layer.</p>
+                <ul>
+                    <li>Semantic drift detection and output quality scoring (not just CPU/latency)</li>
+                    <li>Token-level cost attribution per request, user, and feature</li>
+                    <li>TTFT vs. end-to-end SLO tracking with streaming UX tradeoff analysis</li>
+                    <li>RAG recall@K and faithfulness score continuous monitoring</li>
+                    <li>Correlation IDs across multi-agent hops for deterministic replay and debugging</li>
+                    <li>Hallucination spike incident playbooks with index rollback runbooks</li>
+                </ul>
+            </div>
+
+            <div class="service-card" id="responsible-ai">
+                <i class="fas fa-balance-scale service-icon"></i>
+                <h2>Responsible AI &amp; Governance</h2>
+                <p>Responsible AI is an engineering discipline, not a policy checkbox. Bias audits, compliance
+                    mapping, and fairness metrics belong in your CI/CD pipeline from day one.</p>
+                <ul>
+                    <li>5-level Responsible AI Maturity Model (Ad Hoc → Documented → Systematic → Governed → Optimized)</li>
+                    <li>OWASP LLM Top 10 mitigations deployed in CI gates</li>
+                    <li>EU AI Act compliance mapping and NIST AI RMF implementation</li>
+                    <li>Automated bias audits, structured fairness metrics, and cross-regulation compliance matrix</li>
+                    <li>Audit trails, PII leakage controls, and safety violation taxonomy enforcement</li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>

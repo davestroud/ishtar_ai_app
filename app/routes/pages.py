@@ -555,3 +555,9 @@ async def submit_contact(
         "contact.html",
         get_template_context(request, success=True, message=success_message),
     )
+
+
+@router.get("/todos", response_class=HTMLResponse)
+async def todos_page(request: Request):
+    """Task Manager page"""
+    return templates.TemplateResponse("todos.html", get_template_context(request))
